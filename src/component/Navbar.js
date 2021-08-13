@@ -3,7 +3,7 @@ import '../css/navbar.css';
 
 export default function Navbar() {
   return (
-    <div>
+    <>
       <div className='navbar_notification'>
         <h4>Free U.S. Shipping & Returns $150+ | Free Intl Shipping $200+</h4>
       </div>
@@ -121,6 +121,6 @@ export default function Navbar() {
           </svg>
         </div>
       </div>
-    </div>
+    </>
   );
 }
