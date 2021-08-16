@@ -16,12 +16,18 @@ export default function Overview() {
   };
 
   const host = 'http://localhost:5000';
-  const [collection, setCollection] = useState('');
+  const [mainCollection, setMainCollection] = useState('');
+  const [firstCollection, setFirstCollection] = useState('');
 
   useEffect(() => {
     const getData = async () => {
-      const response = await request('GET', `/api/v1/collections/displayed`);
-      setCollection(response.data.data.collection);
+      const response = await request('GET', `/api/v1/collections/display/main`);
+      setMainCollection(response.data.data.collection);
+      const FirstResponse = await request(
+        'GET',
+        '/api/v1/collections/display/first'
+      );
+      setFirstCollection(FirstResponse.data.data.collection);
     };
     getData();
   }, []);
@@ -39,25 +45,38 @@ export default function Overview() {
     }
   };
 
+  window.onscroll = function () {
+    myFn();
+  };
+
   return (
     <>
-      <div className='overview__scroll' onScroll={() => myFn()}>
-        <div className='overview__first--collection'>
-          <img
-            className='overview__first--collection__img'
-            src={`${host}/api/v1/images/${collection.image}`}
-            alt=''
-          />
-          <div className='overview__first--collection__box'>
-            <h2>{collection.name}</h2>
-            <button className='shop-now-btn'>shop now</button>
-          </div>
+      <div className='overview__main--collection'>
+        <img
+          className='overview__main--collection__img'
+          src={`${host}/api/v1/images/${mainCollection.imageHero}`}
+          alt=''
+        />
+        <div className='overview__main--collection__box'>
+          <h2>{mainCollection.name}</h2>
+          <button className='shop-now-btn'>shop now</button>
         </div>
-        <div className='overview__our--mission' id='our--mission'>
-          <h4 className='overview__our--mission__h4'>our mission</h4>
-          <h3 className='overview__our--mission__h3'>
-            We're here to outfit the world’s most ambitious people.
-          </h3>
+      </div>
+      <div className='overview__our--mission' id='our--mission'>
+        <h4 className='overview__our--mission__h4'>our mission</h4>
+        <h3 className='overview__our--mission__h3'>
+          We're here to outfit the world’s most ambitious people.
+        </h3>
+      </div>
+      <div className='secondCollection'>
+        <img
+          className='secondCollection__img'
+          src={`${host}/api/v1/images/${firstCollection.image}`}
+          alt=''
+        />
+        <div className='secondCollection__box'>
+          <h3 className='secondCollection__box__h3'>{firstCollection.name}</h3>
+          <button className='shop-now-btn'>shop now</button>
         </div>
       </div>
     </>

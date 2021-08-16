@@ -32,13 +32,19 @@
 
 .navbar__headings {
   display: flex;
+  align-items: center;
+  /* padding: 2rem 0; */
+  gap: 3.5rem;
 }
 
 .navbar__headings h4 {
   color: var(--gray);
-  padding: 1.5rem 1rem;
+  padding: 2rem 0.1rem;
+  /* margin: 0 1.5rem; */
   border: 1px solid white;
   cursor: pointer;
+  /* font-size: 0.7rem; */
+  text-transform: uppercase;
 }
 
 .navbar__headings h4:hover {
@@ -51,9 +57,9 @@
   align-items: center;
   border-left: 1px solid #dddddd;
   padding-left: 1rem;
+  margin-right: -1rem;
 }
 .navbar__icons__icon {
-  margin: 0.5rem;
+  margin-left: 1.5rem;
   cursor: pointer;
-  width: 1rem;
 }

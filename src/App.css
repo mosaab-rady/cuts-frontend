@@ -4,7 +4,25 @@
 }
 
 body {
-  overflow: hidden;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dfdfdf;
+  /* margin-top: -60px; */
+  /* margin-bottom: 450px; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(173, 173, 173);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
 
 :root {
