@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import '../css/overview.css';
 import { request } from '../js/axios';
+import { isInViewport } from '../js/viewport';
 // import Spinner from '../Spinner';
 
 export default function Overview() {
-  var isInViewport = function (elem) {
-    var bounding = elem.getBoundingClientRect();
-    return (
-      bounding.top >= 0 &&
-      bounding.left >= 0 &&
-      bounding.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      bounding.right <=
-        (window.innerWidth || document.documentElement.clientWidth)
-    );
-  };
-
   const host = 'http://localhost:5000';
   const [mainCollection, setMainCollection] = useState('');
-  const [firstCollection, setFirstCollection] = useState('');
+  const [collections, setCollections] = useState([]);
+  // const [secondCollection, setSecondCollection] = useState('');
+  // const [thirdCollection, setThirdCollection] = useState('');
 
   useEffect(() => {
     const getData = async () => {
@@ -28,22 +19,19 @@ export default function Overview() {
       );
       if (response) {
         if (response.data.status === 'success') {
-          setMainCollection(response.data.data.collection);
-        } else if (response.data.status === 'fail') {
-          response = await request(
-            'GET',
-            `/api/v1/collections/display?name=all product`
-          );
-          if (response.data.status === 'success')
-            setMainCollection(response.data.data.collection);
+          setMainCollection(response.data.data.collection[0]);
         }
       }
 
       const FirstResponse = await request(
         'GET',
-        '/api/v1/collections/display?mode=first'
+        '/api/v1/collections/display?mode=first&mode=second'
       );
-      setFirstCollection(FirstResponse.data.data.collection);
+      if (FirstResponse) {
+        if (FirstResponse.data.status === 'success') {
+          setCollections(FirstResponse.data.data.collection);
+        }
+      }
     };
     getData();
   }, []);
@@ -88,17 +76,29 @@ export default function Overview() {
           We're here to outfit the world’s most ambitious people.
         </h3>
       </div>
-      <div className='secondCollection'>
-        <img
-          className='secondCollection__img'
-          src={`${host}/api/v1/images/${firstCollection.image}`}
-          alt=''
-        />
-        <div className='secondCollection__box'>
-          <h3 className='secondCollection__box__h3'>{firstCollection.name}</h3>
-          <button className='shop-now-btn'>shop now</button>
+      {collections ? (
+        <div className='overview__collections'>
+          {collections.map((collection, i) => {
+            return (
+              <div key={i} className='overvieew__collections__collection'>
+                <img
+                  className='overview__collections__collection__img'
+                  src={`${host}/api/v1/images/${collection.image}`}
+                  alt=''
+                />
+                <div className='overview__collections__collection__box'>
+                  <h3 className='overview__collections__collection__h3'>
+                    {collection.name}
+                  </h3>
+                  <button className='shop-now-btn'>shop now</button>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </div>
+      ) : (
+        ''
+      )}
     </>
   );
 }

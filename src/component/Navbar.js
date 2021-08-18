@@ -85,7 +85,7 @@ export default function Navbar() {
               d='M18.3584 7.86266C18.3584 11.4686 14.6768 14.7253 9.67918 14.7253C4.68155 14.7253 1 11.4686 1 7.86266C1 4.25671 4.68155 1 9.67918 1C14.6768 1 18.3584 4.25671 18.3584 7.86266Z'
               fill='white'
               stroke='black'
-              stroke-width='2'
+              strokeWidth='2'
             />
             <line
               y1='-1'
@@ -93,7 +93,7 @@ export default function Navbar() {
               y2='-1'
               transform='matrix(0.702427 0.711756 -0.837974 0.545711 13.9457 13.8653)'
               stroke='black'
-              stroke-width='2'
+              strokeWidth='2'
             />
           </svg>
           <svg

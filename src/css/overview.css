@@ -83,13 +83,34 @@
   color: var(--gray);
   text-align: center;
   width: 50%;
+  font-weight: 900;
 }
 
-.secondCollection {
+.overview__collections {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 2rem;
+}
+
+.overvieew__collections__collection {
   position: relative;
+  /* width: 100%; */
 }
 
-.secondCollection__img {
-  width: 50vw;
-  height: 100vh;
+.overview__collections__collection__img {
+  width: 100%;
+  height: 100%;
+}
+
+.overview__collections__collection__box {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+}
+
+.overview__collections__collection__h3 {
+  color: var(--main-white);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  font-size: 1.5rem;
 }
