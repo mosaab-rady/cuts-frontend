@@ -114,3 +114,25 @@
   text-transform: capitalize;
   font-size: 1.5rem;
 }
+
+.overview__mid--group__h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--gray);
+  text-transform: capitalize;
+  margin: 5rem 0 3rem 0;
+}
+
+.overview__mid--group__products {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 3rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  width: 100%;
+  padding: 0 6.75rem;
+}
+.overview__mid--group__products::-webkit-scrollbar {
+  display: none;
+}

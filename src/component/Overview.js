@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import '../css/overview.css';
 import { request } from '../js/axios';
 import { isInViewport } from '../js/viewport';
+import Product from './Product';
 // import Spinner from '../Spinner';
 
 export default function Overview() {
   const host = 'http://localhost:5000';
   const [mainCollection, setMainCollection] = useState('');
   const [collections, setCollections] = useState([]);
+  const [midGroup, setMidGroup] = useState('');
   // const [secondCollection, setSecondCollection] = useState('');
   // const [thirdCollection, setThirdCollection] = useState('');
 
@@ -30,6 +32,16 @@ export default function Overview() {
       if (FirstResponse) {
         if (FirstResponse.data.status === 'success') {
           setCollections(FirstResponse.data.data.collection);
+        }
+      }
+
+      response = await request(
+        'GET',
+        'api/v1/collections/display/products?mode=first&limit=3'
+      );
+      if (response) {
+        if (response.data.status === 'success') {
+          setMidGroup(response.data.data.collection);
         }
       }
     };
@@ -99,6 +111,22 @@ export default function Overview() {
       ) : (
         ''
       )}
+      {midGroup ? (
+        <div className='overview__mid--group'>
+          <h3 className='overview__mid--group__h3'>{midGroup.name}</h3>
+          <div className='overview__mid--group__products'>
+            {midGroup.products.map((product, i) => {
+              return <Product key={i} product={product} />;
+            })}
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
+      <h3>hello world!!!!</h3>
+      <h3>hello world!!!!</h3>
+      <h3>hello world!!!!</h3>
+      <h3>hello world!!!!</h3>
     </>
   );
 }
