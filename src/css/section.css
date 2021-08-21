@@ -1,0 +1,21 @@
+.section {
+  position: relative;
+}
+
+.section__img {
+  width: 100%;
+  height: 100%;
+}
+
+.section__box {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+}
+
+.section__box__h3 {
+  color: var(--main-white);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}

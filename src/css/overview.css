@@ -91,10 +91,9 @@
   grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
   gap: 2rem;
 }
-
-.overvieew__collections__collection {
+/* 
+.overview__collections__collection {
   position: relative;
-  /* width: 100%; */
 }
 
 .overview__collections__collection__img {
@@ -113,12 +112,17 @@
   margin-bottom: 0.5rem;
   text-transform: capitalize;
   font-size: 1.5rem;
+} */
+
+.overview__mid--group {
+  margin-bottom: 3rem;
 }
 
 .overview__mid--group__h3 {
   width: 100%;
   text-align: center;
   font-size: 1.5rem;
+  letter-spacing: 0.01rem;
   color: var(--gray);
   text-transform: capitalize;
   margin: 5rem 0 3rem 0;
@@ -135,4 +139,8 @@
 }
 .overview__mid--group__products::-webkit-scrollbar {
   display: none;
+}
+
+.third--collection {
+  width: 100%;
 }

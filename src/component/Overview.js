@@ -3,6 +3,7 @@ import '../css/overview.css';
 import { request } from '../js/axios';
 import { isInViewport } from '../js/viewport';
 import Product from './Product';
+import Section from './Section';
 // import Spinner from '../Spinner';
 
 export default function Overview() {
@@ -11,7 +12,7 @@ export default function Overview() {
   const [collections, setCollections] = useState([]);
   const [midGroup, setMidGroup] = useState('');
   // const [secondCollection, setSecondCollection] = useState('');
-  // const [thirdCollection, setThirdCollection] = useState('');
+  const [thirdCollection, setThirdCollection] = useState('');
 
   useEffect(() => {
     const getData = async () => {
@@ -42,6 +43,13 @@ export default function Overview() {
       if (response) {
         if (response.data.status === 'success') {
           setMidGroup(response.data.data.collection);
+        }
+      }
+
+      response = await request('GET', '/api/v1/collections/display?mode=third');
+      if (response) {
+        if (response.data.status === 'success') {
+          setThirdCollection(response.data.data.collection[0]);
         }
       }
     };
@@ -89,44 +97,42 @@ export default function Overview() {
         </h3>
       </div>
       {collections ? (
-        <div className='overview__collections'>
+        <section className='overview__collections'>
           {collections.map((collection, i) => {
             return (
-              <div key={i} className='overvieew__collections__collection'>
-                <img
-                  className='overview__collections__collection__img'
-                  src={`${host}/api/v1/images/${collection.image}`}
-                  alt=''
-                />
-                <div className='overview__collections__collection__box'>
-                  <h3 className='overview__collections__collection__h3'>
-                    {collection.name}
-                  </h3>
-                  <button className='shop-now-btn'>shop now</button>
-                </div>
-              </div>
+              <Section
+                key={i}
+                image={collection.image}
+                name={collection.name}
+              />
             );
           })}
-        </div>
+        </section>
       ) : (
         ''
       )}
       {midGroup ? (
-        <div className='overview__mid--group'>
+        <section className='overview__mid--group'>
           <h3 className='overview__mid--group__h3'>{midGroup.name}</h3>
           <div className='overview__mid--group__products'>
             {midGroup.products.map((product, i) => {
               return <Product key={i} product={product} />;
             })}
           </div>
-        </div>
+        </section>
       ) : (
         ''
       )}
-      <h3>hello world!!!!</h3>
-      <h3>hello world!!!!</h3>
-      <h3>hello world!!!!</h3>
-      <h3>hello world!!!!</h3>
+      {thirdCollection ? (
+        <section className='third--collection'>
+          <Section
+            image={thirdCollection.imageHero}
+            name={thirdCollection.name}
+          />
+        </section>
+      ) : (
+        ''
+      )}
     </>
   );
 }
