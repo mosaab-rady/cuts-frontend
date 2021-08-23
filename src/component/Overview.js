@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 import '../css/overview.css';
 import { request } from '../js/axios';
 import { isInViewport } from '../js/viewport';
+import Comparison from './Comparison';
+import Cut from './Cut';
+import Hero from './Hero';
 import Product from './Product';
 import Section from './Section';
 // import Spinner from '../Spinner';
 
 export default function Overview() {
-  const host = 'http://localhost:5000';
+  // const host = 'http://localhost:5000';
   const [mainCollection, setMainCollection] = useState('');
   const [collections, setCollections] = useState([]);
   const [midGroup, setMidGroup] = useState('');
-  // const [secondCollection, setSecondCollection] = useState('');
   const [thirdCollection, setThirdCollection] = useState('');
 
   useEffect(() => {
@@ -76,16 +78,12 @@ export default function Overview() {
   return (
     <>
       {mainCollection ? (
-        <div className='overview__main--collection'>
-          <img
-            className='overview__main--collection__img'
-            src={`${host}/api/v1/images/${mainCollection.imageHero}`}
-            alt=''
+        <div className='overview__hero'>
+          <Hero
+            img={mainCollection.imageHero}
+            name={mainCollection.name}
+            btn={true}
           />
-          <div className='overview__main--collection__box'>
-            <h2>{mainCollection.name}</h2>
-            <button className='shop-now-btn'>shop now</button>
-          </div>
         </div>
       ) : (
         ''
@@ -133,6 +131,57 @@ export default function Overview() {
       ) : (
         ''
       )}
+      <section className='overview__cuts--container'>
+        <h3 className='overview__cuts__h3'>shop by cut</h3>
+        <div className='overview__cuts'>
+          <Cut top={true} name='crew' img='crew.webp' />
+          <Cut top={true} name='v-neck' img='v-neck.webp' />
+          <Cut top={true} name='hanly' img='hanly.webp' />
+          <Cut top={false} name='classic' img='classic.webp' />
+          <Cut top={false} name='split' img='split.webp' />
+          <Cut top={false} name='elongated' img='elongated.webp' />
+        </div>
+      </section>
+      <section className='overview__cuts--comparison'>
+        <div className='overview__cuts--comparison__header'>
+          <h3 className='overview__cuts--comparison__h3'>cuts comparison</h3>
+          <h4 className='overview__cuts--comparison__h4'>
+            Define your look with every Cut. Here’s how each shape can elevate
+            your style.
+          </h4>
+        </div>
+        <div className='overview__cuts--comparison__imgs'>
+          <Comparison
+            img='curve-hem.webp'
+            nb={1}
+            name='classic curve hem'
+            info={[
+              'Elevated regular bottom cut',
+              'Curved hem to eliminate bunching around the waist',
+              'Traditional fitting body',
+            ]}
+          />
+          <Comparison
+            img='split-hem.webp'
+            nb={2}
+            name='split-hem'
+            info={[
+              'Dynamic functionality lends to a casual yet distinctive look',
+              'Split-Hem provides more room throughout the body',
+            ]}
+          />
+          <Comparison
+            img='elongated-hem.webp'
+            nb={3}
+            name='elongated-hem'
+            info={[
+              'Crafted with the modern man in mind',
+              'Longer torso: 1.5” longer than the Curve-Hem',
+              'Extended curve demonstrates true class with urban feel',
+            ]}
+          />
+        </div>
+      </section>
     </>
   );
 }

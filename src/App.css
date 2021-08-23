@@ -12,7 +12,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #dfdfdf;
+  background: #f5f5f5;
   /* margin-top: -60px; */
   /* margin-bottom: 450px; */
 }
@@ -58,5 +58,5 @@ h4 {
 .App {
   font-family: 'Akzidenz-Grotesk BQ', sans-serif;
   line-height: 1.5;
-  letter-spacing: 1px;
+  letter-spacing: 0.2px;
 }

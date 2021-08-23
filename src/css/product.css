@@ -101,12 +101,15 @@
 }
 
 .product__footer__color {
-  opacity: 0.5;
+  opacity: 0.4;
+  font-size: 0.7rem;
+  text-transform: capitalize;
 }
 
 .product__footer__name {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-transform: capitalize;
+  color: var(--gray);
 }
 
 .product__footer__price {

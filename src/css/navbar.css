@@ -20,7 +20,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background-color: var(--main-white);
   width: 100%;
 }
@@ -44,7 +44,7 @@
   /* margin: 0 1.5rem; */
   border: 1px solid white;
   cursor: pointer;
-  /* font-size: 0.7rem; */
+  font-size: 0.7rem;
   text-transform: uppercase;
 }
 
