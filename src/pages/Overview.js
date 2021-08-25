@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../css/overview.css';
 import { request } from '../js/axios';
 import { isInViewport } from '../js/viewport';
-import Comparison from './Comparison';
-import Cut from './Cut';
-import Hero from './Hero';
-import Product from './Product';
-import Section from './Section';
-// import Spinner from '../Spinner';
+import Comparison from '../component/Comparison';
+import Cut from '../component/Cut';
+import Hero from '../component/Hero';
+import Product from '../component/Product';
+import Section from '../component/Section';
 
 export default function Overview() {
-  // const host = 'http://localhost:5000';
   const [mainCollection, setMainCollection] = useState('');
   const [collections, setCollections] = useState([]);
   const [midGroup, setMidGroup] = useState('');
@@ -59,7 +57,6 @@ export default function Overview() {
   }, []);
 
   const myFn = () => {
-    // console.log('hello');
     const div = document.getElementById('our--mission');
     if (div) {
       if (isInViewport(div)) {
@@ -76,12 +73,13 @@ export default function Overview() {
   };
 
   return (
-    <>
+    <section className='overview'>
       {mainCollection ? (
         <div className='overview__hero'>
           <Hero
             img={mainCollection.imageHero}
             name={mainCollection.name}
+            id={mainCollection.id}
             btn={true}
           />
         </div>
@@ -182,6 +180,7 @@ export default function Overview() {
           />
         </div>
       </section>
-    </>
+      <section className='overview__footer'></section>
+    </section>
   );
 }

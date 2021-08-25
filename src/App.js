@@ -1,7 +1,8 @@
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './component/Navbar';
-import Overview from './component/Overview';
+import Overview from './pages/Overview';
+import Collection from './pages/Collection';
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <Overview />
+        </Route>
+        <Route path='/collections/:name'>
+          <Collection />
         </Route>
       </Switch>
     </div>
