@@ -4,6 +4,7 @@ import { request } from '../js/axios';
 import Product from '../component/Product';
 import Hero from '../component/Hero';
 import '../css/collection.css';
+import CollectionBar from '../component/CollectionBar';
 
 export default function Collection() {
   const { state } = useLocation();
@@ -19,7 +20,6 @@ export default function Collection() {
       );
       if (response) {
         if (response.data.status === 'success') {
-          console.log(response);
           setName(response.data.data.collection.name);
           setImgCover(response.data.data.collection.imageCover);
           setProducts(response.data.data.collection.products);
@@ -40,37 +40,7 @@ export default function Collection() {
 
       <section className='collection__body'>
         <div className='collection__body__nav'>
-          <div className='collection__body__nav__collections'>
-            <h4 className='collection__body__nav__header'>collections</h4>
-            <div className='collection__body__nav__collections__names'>
-              <h4>all products</h4>
-              <h4>best sellers</h4>
-              <h4>new releases</h4>
-            </div>
-          </div>
-          <div className='collection__body__nav__filters'>
-            <h4 className='collection__body__nav__header'>filter</h4>
-            <div className='collection__body__nav__filters__filter'>
-              <h4 className='collection__body__nav__filters__filter__header'>
-                cuts
-              </h4>
-            </div>
-            <div className='collection__body__nav__filters__filter'>
-              <h4 className='collection__body__nav__filters__filter__header'>
-                collar
-              </h4>
-            </div>
-            <div className='collection__body__nav__filters__filter'>
-              <h4 className='collection__body__nav__filters__filter__header'>
-                color
-              </h4>
-            </div>
-            <div className='collection__body__nav__filters__filter'>
-              <h4 className='collection__body__nav__filters__filter__header'>
-                size
-              </h4>
-            </div>
-          </div>
+          <CollectionBar />
         </div>
         <div className='collection__body__products'>
           {products
