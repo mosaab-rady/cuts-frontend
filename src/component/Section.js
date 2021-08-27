@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/section.css';
 
-export default function Section({ image, name }) {
+export default function Section({ image, name, id }) {
   const host = 'http://localhost:5000';
 
   return (
@@ -13,7 +14,14 @@ export default function Section({ image, name }) {
       />
       <div className='section__box'>
         <h3 className='section__box__h3'>{name}</h3>
-        <button className='shop-now-btn'>shop now</button>
+        <Link
+          to={{
+            pathname: `/collections/${name}`,
+            state: { id },
+          }}
+        >
+          <button className='shop-now-btn'>shop now</button>
+        </Link>
       </div>
     </div>
   );

@@ -31,6 +31,10 @@
   padding: 0 1rem;
 }
 
+.navbar__logo:hover {
+  transform: scale(1.1);
+}
+
 .navbar__headings {
   display: flex;
   align-items: center;

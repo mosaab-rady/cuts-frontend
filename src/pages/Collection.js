@@ -19,6 +19,7 @@ export default function Collection() {
         `/api/v1/collections/${state.id}/products`
       );
       if (response) {
+        console.log(response);
         if (response.data.status === 'success') {
           setName(response.data.data.collection.name);
           setImgCover(response.data.data.collection.imageCover);

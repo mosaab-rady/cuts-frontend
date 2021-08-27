@@ -100,6 +100,7 @@ export default function Overview() {
                 key={i}
                 image={collection.image}
                 name={collection.name}
+                id={collection.id}
               />
             );
           })}
@@ -124,6 +125,7 @@ export default function Overview() {
           <Section
             image={thirdCollection.imageHero}
             name={thirdCollection.name}
+            id={thirdCollection.id}
           />
         </section>
       ) : (

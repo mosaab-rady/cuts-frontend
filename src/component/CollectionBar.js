@@ -626,50 +626,6 @@ export default function CollectionBar() {
             </div>
           </div>
         </div>
-        <div className='sidebar__filters__filter'>
-          <div className='sidebar__filters__filter__header' onClick={display}>
-            <h4 className='sidebar__filters__filter__h4'>color</h4>{' '}
-            <svg
-              className='up'
-              width='20'
-              height='5'
-              viewBox='0 0 101 55'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M1.5 53.5L53 2.5L99.5 53.5'
-                stroke='black'
-                strokeWidth='20'
-              />
-            </svg>
-          </div>
-          <div className='sidebar__filters__filter__items'>
-            <h3>hello world!!!</h3>
-          </div>
-        </div>
-        <div className='sidebar__filters__filter'>
-          <div className='sidebar__filters__filter__header' onClick={display}>
-            <h4 className='sidebar__filters__filter__h4'>size</h4>
-            <svg
-              className='up'
-              width='20'
-              height='5'
-              viewBox='0 0 101 55'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M1.5 53.5L53 2.5L99.5 53.5'
-                stroke='black'
-                strokeWidth='20'
-              />
-            </svg>
-          </div>
-          <div className='sidebar__filters__filter__items'>
-            <h3>hello world!!!</h3>
-          </div>
-        </div>
       </div>
     </div>
   );
