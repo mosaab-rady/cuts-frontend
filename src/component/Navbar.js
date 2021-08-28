@@ -61,7 +61,18 @@ export default function Navbar() {
         </Link>
         <div className='navbar__headings'>
           <h4>shop</h4>
-          <h4>collections</h4>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/all-product',
+              search: '',
+              state: {
+                name: 'all product',
+              },
+            }}
+          >
+            <h4>collections</h4>
+          </Link>
           <h4>blog</h4>
           <h4>Brand</h4>
         </div>

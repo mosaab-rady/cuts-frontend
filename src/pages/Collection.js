@@ -7,28 +7,40 @@ import '../css/collection.css';
 import CollectionBar from '../component/CollectionBar';
 
 export default function Collection() {
-  const { state } = useLocation();
+  const { state, search } = useLocation();
   const [products, setProducts] = useState('');
   const [name, setName] = useState('');
   const [imgCover, setImgCover] = useState('');
 
   useEffect(() => {
     const getData = async () => {
-      let response = await request(
-        'GET',
-        `/api/v1/collections/${state.id}/products`
-      );
-      if (response) {
-        console.log(response);
-        if (response.data.status === 'success') {
-          setName(response.data.data.collection.name);
-          setImgCover(response.data.data.collection.imageCover);
-          setProducts(response.data.data.collection.products);
+      let response;
+      if (state.id) {
+        response = await request(
+          'GET',
+          `/api/v1/collections/${state.id}/products`
+        );
+        if (response) {
+          if (response.data.status === 'success') {
+            setName(response.data.data.collection.name);
+            setImgCover(response.data.data.collection.imageCover);
+            setProducts(response.data.data.collection.products);
+          }
+        }
+      }
+      if (state.name) {
+        response = await request('GET', `/api/v1/products/${search}`);
+        if (response) {
+          if (response.data.status === 'success') {
+            setName(state.name);
+            setImgCover(`/image/${state.name}/imageCover`);
+            setProducts(response.data.data.products);
+          }
         }
       }
     };
     getData();
-  }, [state]);
+  }, [state, search]);
   return (
     <section className='collection'>
       <div className='collection__hero'>
