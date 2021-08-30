@@ -10,9 +10,9 @@ import Section from '../component/Section';
 
 export default function Overview() {
   const [mainCollection, setMainCollection] = useState('');
-  const [collections, setCollections] = useState([]);
+  const [collections, setCollections] = useState('');
   const [midGroup, setMidGroup] = useState('');
-  const [thirdCollection, setThirdCollection] = useState('');
+  // const [thirdCollection, setThirdCollection] = useState('');
 
   useEffect(() => {
     const getData = async () => {
@@ -28,11 +28,11 @@ export default function Overview() {
 
       const FirstResponse = await request(
         'GET',
-        '/api/v1/collections/display?mode=first&mode=second'
+        '/api/v1/collections/display?mode=second'
       );
       if (FirstResponse) {
         if (FirstResponse.data.status === 'success') {
-          setCollections(FirstResponse.data.data.collection);
+          setCollections(FirstResponse.data.data.collection[0]);
         }
       }
 
@@ -46,12 +46,12 @@ export default function Overview() {
         }
       }
 
-      response = await request('GET', '/api/v1/collections/display?mode=third');
-      if (response) {
-        if (response.data.status === 'success') {
-          setThirdCollection(response.data.data.collection[0]);
-        }
-      }
+      // response = await request('GET', '/api/v1/collections/display?mode=third');
+      // if (response) {
+      //   if (response.data.status === 'success') {
+      //     setThirdCollection(response.data.data.collection[0]);
+      //   }
+      // }
     };
     getData();
   }, []);
@@ -92,22 +92,24 @@ export default function Overview() {
           We're here to outfit the world’s most ambitious people.
         </h3>
       </div>
-      {collections ? (
-        <section className='overview__collections'>
-          {collections.map((collection, i) => {
-            return (
-              <Section
-                key={i}
-                image={collection.image}
-                name={collection.name}
-                id={collection.id}
-              />
-            );
-          })}
-        </section>
-      ) : (
-        ''
-      )}
+
+      <section className='overview__collections'>
+        <Section
+          image='image/best-sellers/image'
+          name='best sellers'
+          collection='best-sellers'
+        />
+        {collections ? (
+          <Section
+            image={collections.image}
+            name={collections.name}
+            id={collections.id}
+          />
+        ) : (
+          ''
+        )}
+      </section>
+
       {midGroup ? (
         <section className='overview__mid--group'>
           <h3 className='overview__mid--group__h3'>{midGroup.name}</h3>
@@ -120,17 +122,15 @@ export default function Overview() {
       ) : (
         ''
       )}
-      {thirdCollection ? (
-        <section className='third--collection'>
-          <Section
-            image={thirdCollection.imageHero}
-            name={thirdCollection.name}
-            id={thirdCollection.id}
-          />
-        </section>
-      ) : (
-        ''
-      )}
+
+      <section className='third--collection'>
+        <Section
+          image='image/new-releases/imageHero'
+          name='new releases'
+          collection='new-releases'
+        />
+      </section>
+
       <section className='overview__cuts--container'>
         <h3 className='overview__cuts__h3'>shop by cut</h3>
         <div className='overview__cuts'>

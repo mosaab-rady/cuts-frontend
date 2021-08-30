@@ -67,7 +67,7 @@ export default function Navbar() {
               pathname: '/collections/all-product',
               search: '',
               state: {
-                name: 'all product',
+                sort: 'all product',
               },
             }}
           >

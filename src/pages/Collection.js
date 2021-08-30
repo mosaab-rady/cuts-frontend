@@ -28,12 +28,23 @@ export default function Collection() {
           }
         }
       }
-      if (state.name) {
+      if (state.sort) {
         response = await request('GET', `/api/v1/products/${search}`);
         if (response) {
           if (response.data.status === 'success') {
-            setName(state.name);
-            setImgCover(`/image/${state.name}/imageCover`);
+            setName(state.sort);
+            setImgCover(`/image/${state.sort}/imageCover`);
+            setProducts(response.data.data.products);
+          }
+        }
+      }
+      if (state.collection) {
+        console.log(state.collection);
+        response = await request('GET', `/api/v1/products/${state.collection}`);
+        if (response) {
+          if (response.data.status === 'success') {
+            setName(state.collection);
+            setImgCover(`/image/${state.collection}/imageCover`);
             setProducts(response.data.data.products);
           }
         }
