@@ -11,8 +11,7 @@ import Section from '../component/Section';
 export default function Overview() {
   const [mainCollection, setMainCollection] = useState('');
   const [collections, setCollections] = useState('');
-  const [midGroup, setMidGroup] = useState('');
-  // const [thirdCollection, setThirdCollection] = useState('');
+  const [bestSellers, setBestSellers] = useState('');
 
   useEffect(() => {
     const getData = async () => {
@@ -36,22 +35,12 @@ export default function Overview() {
         }
       }
 
-      response = await request(
-        'GET',
-        'api/v1/collections/display/products?mode=first&limit=3'
-      );
+      response = await request('GET', 'api/v1/products/best-sellers?limit=3');
       if (response) {
         if (response.data.status === 'success') {
-          setMidGroup(response.data.data.collection);
+          setBestSellers(response.data.data.products);
         }
       }
-
-      // response = await request('GET', '/api/v1/collections/display?mode=third');
-      // if (response) {
-      //   if (response.data.status === 'success') {
-      //     setThirdCollection(response.data.data.collection[0]);
-      //   }
-      // }
     };
     getData();
   }, []);
@@ -110,11 +99,11 @@ export default function Overview() {
         )}
       </section>
 
-      {midGroup ? (
+      {bestSellers ? (
         <section className='overview__mid--group'>
-          <h3 className='overview__mid--group__h3'>{midGroup.name}</h3>
+          <h3 className='overview__mid--group__h3'>best sellers</h3>
           <div className='overview__mid--group__products'>
-            {midGroup.products.map((product, i) => {
+            {bestSellers.map((product, i) => {
               return <Product key={i} product={product} />;
             })}
           </div>
