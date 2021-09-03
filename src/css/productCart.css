@@ -8,10 +8,24 @@
 .product__img {
   position: relative;
   margin-bottom: -1rem;
-  cursor: pointer;
+}
+
+.product__img__status {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.4rem;
+  color: var(--gray);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  background-color: var(--main-white);
+  border-radius: 11px;
+  letter-spacing: 0.5px;
+  border: 1px solid #dadada;
 }
 
 .product__imgCover {
+  cursor: pointer;
   width: 100%;
 }
 
@@ -20,6 +34,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
   display: none;
 }
 
@@ -110,6 +125,7 @@
   font-size: 0.8rem;
   text-transform: capitalize;
   color: var(--gray);
+  cursor: pointer;
 }
 
 .product__footer__price {

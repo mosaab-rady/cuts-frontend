@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { request } from '../js/axios';
-import Product from '../component/Product';
 import Hero from '../component/Hero';
 import '../css/collection.css';
 import CollectionBar from '../component/CollectionBar';
+import ProductCart from '../component/ProductCart';
 
 export default function Collection() {
   const { state, search } = useLocation();
@@ -39,7 +39,6 @@ export default function Collection() {
         }
       }
       if (state.collection) {
-        console.log(state.collection);
         response = await request('GET', `/api/v1/products/${state.collection}`);
         if (response) {
           if (response.data.status === 'success') {
@@ -69,7 +68,7 @@ export default function Collection() {
         <div className='collection__body__products'>
           {products
             ? products.map((item, i) => {
-                return <Product product={item} key={i} />;
+                return <ProductCart product={item} key={i} />;
               })
             : ''}
         </div>

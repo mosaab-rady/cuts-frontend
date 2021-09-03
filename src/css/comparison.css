@@ -56,3 +56,12 @@
   margin-left: -1rem;
   text-transform: initial;
 }
+
+.comparison__link {
+  color: var(--gray);
+  font-size: 1rem;
+  font-weight: normal;
+  margin-top: 4rem;
+  text-transform: capitalize;
+  text-decoration: underline;
+}

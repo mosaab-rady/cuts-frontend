@@ -15,7 +15,8 @@
 .collection__body__products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 3rem;
+  column-gap: 3rem;
+  row-gap: 5rem;
   width: 100%;
   margin-right: 3rem;
 }

@@ -5,8 +5,9 @@ import { isInViewport } from '../js/viewport';
 import Comparison from '../component/Comparison';
 import Cut from '../component/Cut';
 import Hero from '../component/Hero';
-import Product from '../component/Product';
 import Section from '../component/Section';
+import { Link } from 'react-router-dom';
+import ProductCart from '../component/ProductCart';
 
 export default function Overview() {
   const [mainCollection, setMainCollection] = useState('');
@@ -104,7 +105,7 @@ export default function Overview() {
           <h3 className='overview__mid--group__h3'>best sellers</h3>
           <div className='overview__mid--group__products'>
             {bestSellers.map((product, i) => {
-              return <Product key={i} product={product} />;
+              return <ProductCart key={i} product={product} />;
             })}
           </div>
         </section>
@@ -123,12 +124,66 @@ export default function Overview() {
       <section className='overview__cuts--container'>
         <h3 className='overview__cuts__h3'>shop by cut</h3>
         <div className='overview__cuts'>
-          <Cut top={true} name='crew' img='crew.webp' />
-          <Cut top={true} name='v-neck' img='v-neck.webp' />
-          <Cut top={true} name='hanly' img='hanly.webp' />
-          <Cut top={false} name='classic' img='classic.webp' />
-          <Cut top={false} name='split' img='split.webp' />
-          <Cut top={false} name='elongated' img='elongated.webp' />
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/crew',
+              search: 'collar=crew',
+              state: { sort: 'crew' },
+            }}
+          >
+            <Cut top={true} name='crew' img='crew.webp' />
+          </Link>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/v-neck',
+              search: 'collar=v-neck',
+              state: { sort: 'v-neck' },
+            }}
+          >
+            <Cut top={true} name='v-neck' img='v-neck.webp' />
+          </Link>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/henley',
+              search: 'collar=henley',
+              state: { sort: 'henly' },
+            }}
+          >
+            <Cut top={true} name='henley' img='hanly.webp' />
+          </Link>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/classic',
+              search: 'cut=classic',
+              state: { sort: 'classic' },
+            }}
+          >
+            <Cut top={false} name='classic' img='classic.webp' />
+          </Link>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/split',
+              search: 'cut=split',
+              state: { sort: 'split' },
+            }}
+          >
+            <Cut top={false} name='split' img='split.webp' />
+          </Link>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/elongated',
+              search: 'cut=elongated',
+              state: { sort: 'elongated' },
+            }}
+          >
+            <Cut top={false} name='elongated' img='elongated.webp' />
+          </Link>
         </div>
       </section>
       <section className='overview__cuts--comparison'>
@@ -149,6 +204,7 @@ export default function Overview() {
               'Curved hem to eliminate bunching around the waist',
               'Traditional fitting body',
             ]}
+            link='classic'
           />
           <Comparison
             img='split-hem.webp'
@@ -158,6 +214,7 @@ export default function Overview() {
               'Dynamic functionality lends to a casual yet distinctive look',
               'Split-Hem provides more room throughout the body',
             ]}
+            link='split'
           />
           <Comparison
             img='elongated-hem.webp'
@@ -168,6 +225,7 @@ export default function Overview() {
               'Longer torso: 1.5” longer than the Curve-Hem',
               'Extended curve demonstrates true class with urban feel',
             ]}
+            link='elongated'
           />
         </div>
       </section>
