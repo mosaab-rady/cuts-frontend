@@ -27,12 +27,23 @@
 
 .navbar__logo {
   cursor: pointer;
-  width: 10rem;
+  width: 12rem;
   padding: 0 1rem;
 }
 
-.navbar__logo:hover {
-  transform: scale(1.1);
+.navbar__logo:hover .logo__path {
+  animation: rotate 0.3s linear;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
 }
 
 .navbar__headings {

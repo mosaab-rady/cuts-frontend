@@ -1,0 +1,12 @@
+.product__imgs__container {
+  width: 37rem;
+}
+
+.product__imgs__main--img {
+  width: 100%;
+  cursor: grab;
+}
+
+.product__imgs__main--img:active {
+  cursor: grabbing;
+}
