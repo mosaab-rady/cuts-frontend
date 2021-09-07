@@ -10,7 +10,6 @@ export default function ProductCart({ product }) {
         <Link
           to={{
             pathname: `/shirts/${product.name}`,
-            search: `color=${product.color}`,
             state: {
               id: product.id,
             },
