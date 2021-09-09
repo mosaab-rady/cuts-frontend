@@ -24,3 +24,8 @@
   color: var(--main-white);
   text-transform: uppercase;
 }
+
+.hero__box__h2__small {
+  font-weight: normal;
+  font-size: 2.5rem;
+}

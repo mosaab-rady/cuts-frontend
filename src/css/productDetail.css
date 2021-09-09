@@ -91,7 +91,7 @@
   text-transform: capitalize;
   color: var(--gray);
   opacity: 0.8;
-  margin-left: 1rem;
+  margin-left: 0.7rem;
 }
 
 .product__detail__colors__name__h4 {
@@ -104,6 +104,7 @@
 
 .product__detail__colors {
   display: flex;
+  margin-bottom: 1.5rem;
 }
 
 .product__detail__colors__color {
@@ -124,5 +125,54 @@
   border: 5px solid #dadada;
   border-radius: 100%;
   margin-right: 0.4rem;
+  cursor: pointer;
+}
+
+.product__detail__fabric--container {
+  border-bottom: 1px solid #dadada;
+}
+
+.product__detail__fabric--name {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+
+.product__detail__fabric--name span {
+  font-size: 0.7rem;
+  text-transform: capitalize;
+  color: var(--gray);
+  opacity: 0.8;
+  margin-left: 0.7rem;
+}
+
+.product__detail__fabric--box {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.product__detail__fabric--box__h4 {
+  font-size: 0.7rem;
+  color: var(--gray);
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #dadada;
+  width: fit-content;
+  text-transform: capitalize;
+  background-color: #f1f1f1;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.product__detail__fabric--box__h4--one {
+  border: 1px solid var(--gray);
+  font-size: 0.7rem;
+  color: var(--gray);
+  padding: 0.5rem 0.8rem;
+  width: fit-content;
+  text-transform: capitalize;
+  background-color: #f1f1f1;
+  margin-bottom: 1.5rem;
   cursor: pointer;
 }

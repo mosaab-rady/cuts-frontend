@@ -3,14 +3,36 @@ import '../css/productDetail.css';
 import StarRatings from 'react-star-ratings';
 import { request } from '../js/axios';
 
-export default function ProductDetails({ product, colors, setProduct }) {
-  const changeProduct = async (id) => {
-    if (id === product.id) return;
-    let response = await request('GET', `api/v1/products/${id}`);
-    if (response) {
-      console.log(response);
-      if (response.data.status === 'success') {
-        setProduct(response.data.data.product);
+export default function ProductDetails({
+  product,
+  colors,
+  setProduct,
+  setColors,
+  fabrics,
+}) {
+  console.log(product);
+  const changeProduct = async ({ id, fabric }) => {
+    if (id) {
+      if (id === product.id) return;
+      let response = await request('GET', `api/v1/products/${id}`);
+      if (response) {
+        if (response.data.status === 'success') {
+          setProduct(response.data.data.product);
+        }
+      }
+    }
+    if (fabric) {
+      if (fabric === product.fabric) return;
+      let response = await request(
+        'GET',
+        `api/v1/products/product?fabric=${fabric}&model=${product.model}$cut=${product.cut}$collar=${product.collar}`
+      );
+      if (response) {
+        console.log(response);
+        if (response.data.status === 'success') {
+          setProduct(response.data.data.product);
+          setColors(response.data.data.availableColors);
+        }
       }
     }
   };
@@ -55,7 +77,7 @@ export default function ProductDetails({ product, colors, setProduct }) {
           {colors.map((color, i) => {
             return (
               <div
-                onClick={() => changeProduct(color.id)}
+                onClick={() => changeProduct({ id: color.id })}
                 key={i}
                 className={
                   product.color === color.color
@@ -70,6 +92,32 @@ export default function ProductDetails({ product, colors, setProduct }) {
             );
           })}
         </div>
+        {product.fabric ? (
+          <div className='product__detail__fabric--container'>
+            <h4 className='product__detail__fabric--name'>
+              fabric: <span>{product.fabric}</span>
+            </h4>
+            <div className='product__detail__fabric--box'>
+              {fabrics.map((fabric, i) => {
+                return (
+                  <h4
+                    onClick={() => changeProduct({ fabric: fabric._id })}
+                    key={i}
+                    className={
+                      product.fabric === fabric._id
+                        ? 'product__detail__fabric--box__h4--one'
+                        : 'product__detail__fabric--box__h4'
+                    }
+                  >
+                    {fabric._id}
+                  </h4>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </section>
   );

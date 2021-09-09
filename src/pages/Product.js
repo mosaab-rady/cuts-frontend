@@ -10,6 +10,7 @@ export default function Product() {
   const { state } = useLocation();
   const [product, setProduct] = useState('');
   const [colors, setColors] = useState('');
+  const [fabrics, setFabrics] = useState('');
 
   useEffect(() => {
     const getData = async () => {
@@ -18,6 +19,7 @@ export default function Product() {
         if (response.data.status === 'success') {
           setProduct(response.data.data.product);
           setColors(response.data.data.availableColors);
+          setFabrics(response.data.data.fabrics);
         }
       }
     };
@@ -28,11 +30,14 @@ export default function Product() {
     <section className='product--page'>
       <section className='product'>
         <Slider product={product} />
-        {colors ? (
+        {colors && fabrics ? (
           <ProductDetails
             product={product}
             setProduct={setProduct}
             colors={colors}
+            fabrics={fabrics}
+            setColors={setColors}
+            setFabrics={setFabrics}
           />
         ) : (
           ''
