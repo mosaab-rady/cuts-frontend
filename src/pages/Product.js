@@ -14,12 +14,28 @@ export default function Product() {
 
   useEffect(() => {
     const getData = async () => {
-      let response = await request('GET', `api/v1/products/${state.id}`);
-      if (response) {
-        if (response.data.status === 'success') {
-          setProduct(response.data.data.product);
-          setColors(response.data.data.availableColors);
-          setFabrics(response.data.data.fabrics);
+      if (state.id) {
+        let response = await request('GET', `api/v1/products/${state.id}`);
+        if (response) {
+          if (response.data.status === 'success') {
+            setProduct(response.data.data.product);
+            setColors(response.data.data.availableColors);
+            setFabrics(response.data.data.fabrics);
+          }
+        }
+      }
+      if (state.search) {
+        let response = await request(
+          'GET',
+          `api/v1/products/product${state.search}`
+        );
+        if (response) {
+          console.log(response);
+          if (response.data.status === 'success') {
+            setProduct(response.data.data.product);
+            setColors(response.data.data.availableColors);
+            setFabrics(response.data.data.fabrics);
+          }
         }
       }
     };
@@ -37,7 +53,6 @@ export default function Product() {
             colors={colors}
             fabrics={fabrics}
             setColors={setColors}
-            setFabrics={setFabrics}
           />
         ) : (
           ''
