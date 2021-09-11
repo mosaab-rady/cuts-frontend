@@ -44,7 +44,7 @@
 
 .product__btn {
   width: 95%;
-  /* margin: 0 0.5rem; */
+  margin: 0 0.5rem;
   position: relative;
   visibility: hidden;
 }
