@@ -332,6 +332,7 @@
   justify-items: center;
   align-items: center;
   margin-top: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .product__detail__fabric--features__feature {
@@ -350,4 +351,37 @@
   font-size: 0.67rem;
   text-transform: capitalize;
   opacity: 0.5;
+}
+
+.product__detail__product--features--container {
+  border-top: 1px solid #dadada;
+}
+
+.product__detail__product--features__heading {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product__detail__product--features__h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--gray);
+  cursor: pointer;
+  width: 100%;
+}
+
+.product__detail__product--features__svg {
+  width: 1.6rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.minus {
+  display: none;
+}
+
+.product__detail__product--features__content {
+  display: none;
 }
