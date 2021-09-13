@@ -385,3 +385,11 @@
 .product__detail__product--features__content {
   display: none;
 }
+
+.product__detail__product--features__item {
+  margin: 1rem 0;
+  color: #888;
+  font-size: 0.9rem;
+  text-transform: initial;
+  font-weight: normal;
+}

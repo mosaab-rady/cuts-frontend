@@ -13,14 +13,15 @@ export default function ProductDetails({
 }) {
   const [size, setSize] = useState('small');
   const [available, setAvailable] = useState(true);
+  const [modal, setModal] = useState('');
 
   useEffect(() => {
+    setModal(document.getElementById('myModal'));
     if (product.size.small === 0) {
       setAvailable(false);
     } else {
       setAvailable(true);
     }
-    console.log(product);
   }, [product]);
 
   const changeProduct = async ({ id }) => {
@@ -36,33 +37,18 @@ export default function ProductDetails({
   };
 
   const display = (e) => {
-    console.log(e.target.parentElement.childNodes);
-
-    // console.log(e.target.parentElement.parentElement.lastChild.style.display);
     if (
       e.target.parentElement.parentElement.lastChild.style.display === 'block'
     ) {
       e.target.parentElement.children[1].style.display = 'block';
-      // document.getElementById('plus').style.display = 'block';
       e.target.parentElement.children[2].style.display = 'none';
-      // document.getElementById('minus').style.display = 'none';
       e.target.parentElement.parentElement.lastChild.style.display = 'none';
     } else {
       e.target.parentElement.children[1].style.display = 'none';
-      // document.getElementById('plus').style.display = 'block';
       e.target.parentElement.children[2].style.display = 'block';
-      // document.getElementById('minus').style.display = 'none';
-      // document.getElementById('plus').style.display = 'none';
-      // document.getElementById('minus').style.display = 'block';
       e.target.parentElement.parentElement.lastChild.style.display = 'block';
     }
-    // if (e.target.tagName === 'DIV') {
-    //   console.log(e.target.parentElement);
-    //   e.target.parentElement.lastChild.style.display = 'block';
-    // }
   };
-
-  const modal = document.getElementById('myModal');
 
   return (
     <section className='product__detail'>
@@ -143,10 +129,8 @@ export default function ProductDetails({
                       <Link
                         className='link'
                         to={{
-                          pathname: `/shirts/${product.name}`,
-                          state: {
-                            search: `?fabric=${fabric._id}&type=${product.type}&cut=${product.cut}&collar=${product.collar}`,
-                          },
+                          pathname: `/shirts/${product.slug}`,
+                          search: `?fabric=${fabric._id}&type=${product.type}&cut=${product.cut}&collar=${product.collar}`,
                         }}
                       >
                         <h4
@@ -1799,24 +1783,79 @@ export default function ProductDetails({
               <path d='M0 1H20' stroke='black' strokeWidth='4' />
             </svg>
           </div>
-          <div className='product__detail__product--features__content'>
-            <h4>hello!!!!!!!</h4>
-            <h4>hello!!!!!!!</h4>
-            <h4>hello!!!!!!!</h4>
-            <h4>hello!!!!!!!</h4>
-          </div>
+          <ul className='product__detail__product--features__content'>
+            {product.sizeAndFit.map((item, i) => {
+              return (
+                <li
+                  key={i}
+                  className='product__detail__product--features__item'
+                >
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       ) : (
         ''
       )}
-      {product.sizeAndFit ? (
+      {product.materialAndCare ? (
         <div className='product__detail__product--features--container'>
           <div className='product__detail__product--features__heading'>
             <h4
               className='product__detail__product--features__h4'
               onClick={display}
             >
-              {product.name} size & fit
+              material & Care
+            </h4>
+            <svg
+              onClick={display}
+              className='product__detail__product--features__svg'
+              viewBox='0 0 20 20'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path d='M0 10H20' stroke='black' strokeWidth='4' />
+              <path
+                d='M10.0775 19.9996V-0.000365227'
+                stroke='black'
+                strokeWidth='4'
+              />
+            </svg>
+            <svg
+              onClick={display}
+              className='product__detail__product--features__svg minus'
+              viewBox='0 0 20 4'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path d='M0 1H20' stroke='black' strokeWidth='4' />
+            </svg>
+          </div>
+          <ul className='product__detail__product--features__content'>
+            {product.materialAndCare.map((item, i) => {
+              return (
+                <li
+                  key={i}
+                  className='product__detail__product--features__item'
+                >
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ) : (
+        ''
+      )}
+      {product.reason ? (
+        <div className='product__detail__product--features--container'>
+          <div className='product__detail__product--features__heading'>
+            <h4
+              className='product__detail__product--features__h4'
+              onClick={display}
+            >
+              why we made this
             </h4>
             <svg
               onClick={display}
@@ -1843,10 +1882,9 @@ export default function ProductDetails({
             </svg>
           </div>
           <div className='product__detail__product--features__content'>
-            <h4>hello!!!!!!!</h4>
-            <h4>hello!!!!!!!</h4>
-            <h4>hello!!!!!!!</h4>
-            <h4>hello!!!!!!!</h4>
+            <h4 className='product__detail__product--features__item'>
+              {product.reason}
+            </h4>
           </div>
         </div>
       ) : (

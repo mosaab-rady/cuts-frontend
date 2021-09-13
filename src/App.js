@@ -13,7 +13,7 @@ function App() {
         <Route exact path='/'>
           <Overview />
         </Route>
-        <Route path='/shirts/:name'>
+        <Route path='/shirts/:slug'>
           <Product />
         </Route>
         <Route path='/collections/:name'>

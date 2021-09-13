@@ -7,39 +7,53 @@ import ProductDetails from '../component/ProductDetails';
 
 export default function Product() {
   // const host = 'http://localhost:5000';
-  const { state } = useLocation();
+  // const { state } = useLocation();
+  const location = useLocation();
   const [product, setProduct] = useState('');
   const [colors, setColors] = useState('');
   const [fabrics, setFabrics] = useState('');
 
   useEffect(() => {
     const getData = async () => {
-      if (state.id) {
-        let response = await request('GET', `api/v1/products/${state.id}`);
-        if (response) {
-          if (response.data.status === 'success') {
-            setProduct(response.data.data.product);
-            setColors(response.data.data.availableColors);
-            setFabrics(response.data.data.fabrics);
-          }
-        }
-      }
-      if (state.search) {
-        let response = await request(
-          'GET',
-          `api/v1/products/product${state.search}`
-        );
-        if (response) {
-          if (response.data.status === 'success') {
-            setProduct(response.data.data.product);
-            setColors(response.data.data.availableColors);
-            setFabrics(response.data.data.fabrics);
-          }
+      let response = await request(
+        'GET',
+        `api/v1/products/${location.pathname}${location.search}`
+      );
+      if (response) {
+        if (response.data.status === 'success') {
+          setProduct(response.data.data.product);
+          setColors(response.data.data.availableColors);
+          setFabrics(response.data.data.fabrics);
         }
       }
     };
+
+    //   if (state.id) {
+    //     let response = await request('GET', `api/v1/products/${state.id}`);
+    //     if (response) {
+    //       if (response.data.status === 'success') {
+    //         setProduct(response.data.data.product);
+    //         setColors(response.data.data.availableColors);
+    //         setFabrics(response.data.data.fabrics);
+    //       }
+    //     }
+    //   }
+    //   if (state.search) {
+    //     let response = await request(
+    //       'GET',
+    //       `api/v1/products/product${state.search}`
+    //     );
+    //     if (response) {
+    //       if (response.data.status === 'success') {
+    //         setProduct(response.data.data.product);
+    //         setColors(response.data.data.availableColors);
+    //         setFabrics(response.data.data.fabrics);
+    //       }
+    //     }
+    //   }
+    // };
     getData();
-  }, [state]);
+  }, [location]);
 
   return product ? (
     <section className='product--page'>

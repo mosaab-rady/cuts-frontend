@@ -9,7 +9,8 @@ export default function ProductCart({ product }) {
       <section className='product__img'>
         <Link
           to={{
-            pathname: `/shirts/${product.name}`,
+            pathname: `/shirts/${product.slug}`,
+            search: `fabric=${product.fabric}&color=${product.color}`,
             state: {
               id: product.id,
             },
