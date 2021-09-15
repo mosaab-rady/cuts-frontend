@@ -12,7 +12,7 @@
 }
 
 .navbar {
-  padding: 0rem 6.75rem;
+  padding: 0rem 5.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +27,7 @@
 
 .navbar__logo {
   cursor: pointer;
-  width: 11rem;
+  width: 10rem;
   padding: 0 1rem;
 }
 
@@ -53,17 +53,16 @@
   gap: 3.5rem;
 }
 
-.navbar__headings h4 {
+.navbar__headings__h4 {
   color: var(--gray);
   padding: 2rem 0.1rem;
-  /* margin: 0 1.5rem; */
   border: 1px solid white;
   cursor: pointer;
   font-size: 0.7rem;
   text-transform: uppercase;
 }
 
-.navbar__headings h4:hover {
+.navbar__headings__h4:hover {
   border-bottom: 1px solid var(--gray);
 }
 

@@ -17,9 +17,10 @@ export default function Product() {
     const getData = async () => {
       let response = await request(
         'GET',
-        `api/v1/products/${location.pathname}${location.search}`
+        `/api/v1/products${location.pathname}/${location.search}`
       );
       if (response) {
+        console.log(response);
         if (response.data.status === 'success') {
           setProduct(response.data.data.product);
           setColors(response.data.data.availableColors);

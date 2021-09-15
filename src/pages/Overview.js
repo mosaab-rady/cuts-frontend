@@ -69,7 +69,7 @@ export default function Overview() {
           <Hero
             img={mainCollection.imageHero}
             name={mainCollection.name}
-            id={mainCollection.id}
+            slug={mainCollection.slug}
             btn={true}
           />
         </div>
@@ -87,13 +87,13 @@ export default function Overview() {
         <Section
           image='image/best-sellers/image'
           name='best sellers'
-          collection='best-sellers'
+          slug='best-sellers'
         />
         {collections ? (
           <Section
             image={collections.image}
             name={collections.name}
-            id={collections.id}
+            slug={collections.slug}
           />
         ) : (
           ''
@@ -117,7 +117,7 @@ export default function Overview() {
         <Section
           image='image/new-releases/imageHero'
           name='new releases'
-          collection='new-releases'
+          slug='new-releases'
         />
       </section>
 
@@ -127,9 +127,7 @@ export default function Overview() {
           <Link
             className='link'
             to={{
-              pathname: '/collections/crew',
-              search: 'collar=crew',
-              state: { sort: 'crew' },
+              pathname: '/collections/crew-neck',
             }}
           >
             <Cut top={true} name='crew' img='crew.webp' />
@@ -138,8 +136,6 @@ export default function Overview() {
             className='link'
             to={{
               pathname: '/collections/v-neck',
-              search: 'collar=v-neck',
-              state: { sort: 'v-neck' },
             }}
           >
             <Cut top={true} name='v-neck' img='v-neck.webp' />
@@ -148,8 +144,6 @@ export default function Overview() {
             className='link'
             to={{
               pathname: '/collections/henley',
-              search: 'collar=henley',
-              state: { sort: 'henly' },
             }}
           >
             <Cut top={true} name='henley' img='hanly.webp' />
@@ -158,8 +152,6 @@ export default function Overview() {
             className='link'
             to={{
               pathname: '/collections/classic',
-              search: 'cut=classic',
-              state: { sort: 'classic' },
             }}
           >
             <Cut top={false} name='classic' img='classic.webp' />
@@ -168,8 +160,6 @@ export default function Overview() {
             className='link'
             to={{
               pathname: '/collections/split',
-              search: 'cut=split',
-              state: { sort: 'split' },
             }}
           >
             <Cut top={false} name='split' img='split.webp' />
@@ -178,8 +168,6 @@ export default function Overview() {
             className='link'
             to={{
               pathname: '/collections/elongated',
-              search: 'cut=elongated',
-              state: { sort: 'elongated' },
             }}
           >
             <Cut top={false} name='elongated' img='elongated.webp' />

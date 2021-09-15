@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/section.css';
 
-export default function Section({ image, name, id, collection }) {
+export default function Section({ image, name, slug }) {
   const host = 'http://localhost:5000';
 
   return (
@@ -16,8 +16,7 @@ export default function Section({ image, name, id, collection }) {
         <h3 className='section__box__h3'>{name}</h3>
         <Link
           to={{
-            pathname: `/collections/${name}`,
-            state: { id, collection },
+            pathname: `/collections/${slug}`,
           }}
         >
           <button className='shop-now-btn'>shop now</button>

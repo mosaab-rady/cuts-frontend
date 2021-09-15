@@ -22,10 +22,6 @@ export default function Comparison({ img, nb, name, info, link }) {
           className='link'
           to={{
             pathname: `/collections/${link}`,
-            search: `cut=${link}`,
-            state: {
-              sort: link,
-            },
           }}
         >
           <h4 className='comparison__link'>shop {name}</h4>

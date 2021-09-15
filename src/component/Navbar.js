@@ -60,21 +60,19 @@ export default function Navbar() {
           </svg>
         </Link>
         <div className='navbar__headings'>
-          <h4>shop</h4>
+          <h4 className='navbar__headings__h4'>shop</h4>
           <Link
-            className='link'
+            className=' link '
             to={{
-              pathname: '/collections/all-product',
-              search: '',
-              state: {
-                sort: 'all product',
-              },
+              pathname: '/collections/all-products',
             }}
           >
-            <h4>collections</h4>
+            <h4 className='navbar__headings__h4 navbar__headings__collections'>
+              collections
+            </h4>
           </Link>
-          <h4>blog</h4>
-          <h4>Brand</h4>
+          <h4 className='navbar__headings__h4'>blog</h4>
+          <h4 className='navbar__headings__h4'>Brand</h4>
         </div>
         <div className='navbar__icons'>
           <svg

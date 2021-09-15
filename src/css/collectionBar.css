@@ -1,13 +1,11 @@
 .sidebar {
-  width: 15rem;
+  width: 12rem;
   height: 100vh;
   margin-right: 3rem;
   display: flex;
   flex-direction: column;
   margin-left: 3rem;
- 
 }
-
 
 .sidebar__header {
   font-size: 0.8rem;

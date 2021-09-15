@@ -7,55 +7,72 @@ import CollectionBar from '../component/CollectionBar';
 import ProductCart from '../component/ProductCart';
 
 export default function Collection() {
-  const { state, search } = useLocation();
-  const [products, setProducts] = useState('');
-  const [name, setName] = useState('');
-  const [imgCover, setImgCover] = useState('');
+  // const { state, search } = useLocation();
+  const location = useLocation();
+  const [collection, setCollection] = useState();
+  // const [products, setProducts] = useState('');
+  // const [name, setName] = useState('');
+  // const [imgCover, setImgCover] = useState('');
 
   useEffect(() => {
     const getData = async () => {
-      let response;
-      if (state.id) {
-        response = await request(
-          'GET',
-          `/api/v1/collections/${state.id}/products`
-        );
-        if (response) {
-          if (response.data.status === 'success') {
-            setName(response.data.data.collection.name);
-            setImgCover(response.data.data.collection.imageCover);
-            setProducts(response.data.data.collection.products);
-          }
+      const response = await request(
+        'GET',
+        `/api/v1/collections${location.pathname}`
+      );
+      if (response) {
+        console.log(response);
+        if (response.data.status === 'success') {
+          setCollection(response.data.data.collection);
         }
       }
-      if (state.sort) {
-        response = await request('GET', `/api/v1/products/${search}`);
-        if (response) {
-          if (response.data.status === 'success') {
-            setName(state.sort);
-            setImgCover(`/image/${state.sort}/imageCover`);
-            setProducts(response.data.data.products);
-          }
-        }
-      }
-      if (state.collection) {
-        response = await request('GET', `/api/v1/products/${state.collection}`);
-        if (response) {
-          if (response.data.status === 'success') {
-            setName(state.collection);
-            setImgCover(`/image/${state.collection}/imageCover`);
-            setProducts(response.data.data.products);
-          }
-        }
-      }
+      // let response;
+      // if (state.id) {
+      //   response = await request(
+      //     'GET',
+      //     `/api/v1/collections/${state.id}/products`
+      //   );
+      //   if (response) {
+      //     if (response.data.status === 'success') {
+      //       setName(response.data.data.collection.name);
+      //       setImgCover(response.data.data.collection.imageCover);
+      //       setProducts(response.data.data.collection.products);
+      //     }
+      //   }
+      // }
+      // if (state.sort) {
+      //   response = await request('GET', `/api/v1/products/${search}`);
+      //   if (response) {
+      //     if (response.data.status === 'success') {
+      //       setName(state.sort);
+      //       setImgCover(`/image/${state.sort}/imageCover`);
+      //       setProducts(response.data.data.products);
+      //     }
+      //   }
+      // }
+      // if (state.collection) {
+      //   response = await request('GET', `/api/v1/products/${state.collection}`);
+      //   if (response) {
+      //     if (response.data.status === 'success') {
+      //       setName(state.collection);
+      //       setImgCover(`/image/${state.collection}/imageCover`);
+      //       setProducts(response.data.data.products);
+      //     }
+      //   }
+      // }
     };
     getData();
-  }, [state, search]);
-  return (
+  }, [location]);
+
+  return collection ? (
     <section className='collection'>
       <div className='collection__hero'>
-        {imgCover && name ? (
-          <Hero img={imgCover} name={name} btn={false} />
+        {collection.imageCover && collection.name ? (
+          <Hero
+            img={collection.imageCover}
+            name={collection.name}
+            btn={false}
+          />
         ) : (
           ''
         )}
@@ -66,13 +83,15 @@ export default function Collection() {
           <CollectionBar />
         </div>
         <div className='collection__body__products'>
-          {products
-            ? products.map((item, i) => {
+          {collection.products
+            ? collection.products.map((item, i) => {
                 return <ProductCart product={item} key={i} />;
               })
             : ''}
         </div>
       </section>
     </section>
+  ) : (
+    ''
   );
 }
