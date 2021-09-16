@@ -21,7 +21,6 @@ export default function Collection() {
         `/api/v1/collections${location.pathname}`
       );
       if (response) {
-        console.log(response);
         if (response.data.status === 'success') {
           setCollection(response.data.data.collection);
         }

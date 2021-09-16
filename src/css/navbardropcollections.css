@@ -1,0 +1,5 @@
+.navbar__drop__collections--container {
+  display: flex;
+  padding: 4rem 8rem;
+  gap: 2rem;
+}
