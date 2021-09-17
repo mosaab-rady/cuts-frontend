@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/navbar.css';
+import DropShop from './DropShop';
 import NavbarDropCollections from './NavbarDropCollections';
 
 export default function Navbar() {
@@ -63,14 +64,16 @@ export default function Navbar() {
           </Link>
           <div className='navbar__headings'>
             <div className='navbar__headings__group'>
-              <Link className='link navbar__headings__shop'>
+              <Link
+                to={{
+                  pathname: '/shop-all',
+                }}
+                className='link navbar__headings__shop'
+              >
                 <h4 className='navbar__headings__h4'>shop</h4>
               </Link>
               <div className='navbar__drop navbar__drop__shop '>
-                <h1>shop</h1>
-                <h1>shop</h1>
-                <h1>shop</h1>
-                <h1>shop</h1>
+                <DropShop />
               </div>
             </div>
             <div className='navbar__headings__group'>

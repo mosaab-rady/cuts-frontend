@@ -1,0 +1,51 @@
+.drop--shop {
+  padding: 2rem 15rem;
+  display: flex;
+}
+
+.drop--shop__sidebar {
+  border-right: 1px solid #d4d4d4;
+  width: 15rem;
+}
+
+.drop--shop__sidebar__group {
+  margin-bottom: 3rem;
+}
+
+.drop--shop__sidebar__group__h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  width: fit-content;
+  border: 1px solid white;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.drop--shop__sidebar__group__h4 {
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+  width: fit-content;
+  border: 1px solid white;
+  color: var(--gray);
+  cursor: pointer;
+}
+
+.drop--shop__sidebar__group__h3:hover,
+.drop--shop__sidebar__group__h4:hover {
+  border-bottom: 1px solid var(--gray);
+}
+
+.drop--shop__overview {
+  margin-left: 5rem;
+}
+
+.drop--shop__shirts--imgs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(5rem, 15rem));
+  /* justify-content: space-between; */
+  gap: 2rem;
+}
