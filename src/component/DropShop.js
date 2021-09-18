@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/dropshop.css';
 import Cut from '../component/Cut';
+import NavbarCollection from './NavbarCollection';
 
 export default function DropShop() {
+  const [display, setDisplay] = useState('shirts');
+
   return (
     <section className='drop--shop'>
       <div className='drop--shop__sidebar'>
-        <div className='drop--shop__sidebar__group'>
+        <div
+          className='drop--shop__sidebar__group'
+          onMouseEnter={() => {
+            setDisplay('shirts');
+          }}
+        >
           <Link
             className='link'
             to={{
               pathname: '/collections/all-products',
             }}
           >
-            <h3 className='drop--shop__sidebar__group__h3'>shop shirts</h3>
+            <h3
+              className={
+                display === 'shirts'
+                  ? 'drop--shop__sidebar__group__h3 active'
+                  : 'drop--shop__sidebar__group__h3'
+              }
+            >
+              shop shirts
+            </h3>
           </Link>
           <Link
             className='link'
@@ -41,14 +57,25 @@ export default function DropShop() {
             <h4 className='drop--shop__sidebar__group__h4'>long sleeves</h4>
           </Link>
         </div>
-        <div className='drop--shop__sidebar__group'>
+        <div
+          className='drop--shop__sidebar__group'
+          onMouseEnter={() => setDisplay('layers')}
+        >
           <Link
             className='link'
             to={{
               pathname: '/collections/sweat-shirt',
             }}
           >
-            <h3 className='drop--shop__sidebar__group__h3'>shop layers</h3>
+            <h3
+              className={
+                display === 'layers'
+                  ? 'drop--shop__sidebar__group__h3 active'
+                  : 'drop--shop__sidebar__group__h3'
+              }
+            >
+              shop layers
+            </h3>
           </Link>
           <Link
             className='link'
@@ -69,56 +96,76 @@ export default function DropShop() {
         </div>
       </div>
       <section className='drop--shop__overview'>
-        <div className='drop--shop__shirts--imgs'>
-          <Link
-            className='link'
-            to={{
-              pathname: '/collections/crew-neck',
-            }}
-          >
-            <Cut top={true} name='crew' img='crew.webp' />
-          </Link>
-          <Link
-            className='link'
-            to={{
-              pathname: '/collections/v-neck',
-            }}
-          >
-            <Cut top={true} name='v-neck' img='v-neck.webp' />
-          </Link>
-          <Link
-            className='link'
-            to={{
-              pathname: '/collections/henley',
-            }}
-          >
-            <Cut top={true} name='henley' img='hanly.webp' />
-          </Link>
-          <Link
-            className='link'
-            to={{
-              pathname: '/collections/classic',
-            }}
-          >
-            <Cut top={false} name='classic' img='classic.webp' />
-          </Link>
-          <Link
-            className='link'
-            to={{
-              pathname: '/collections/split',
-            }}
-          >
-            <Cut top={false} name='split' img='split.webp' />
-          </Link>
-          <Link
-            className='link'
-            to={{
-              pathname: '/collections/elongated',
-            }}
-          >
-            <Cut top={false} name='elongated' img='elongated.webp' />
-          </Link>
-        </div>
+        {display === 'shirts' ? (
+          <div className='drop--shop__shirts--imgs'>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/crew-neck',
+              }}
+            >
+              <Cut top={true} name='crew' img='crew.webp' />
+            </Link>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/v-neck',
+              }}
+            >
+              <Cut top={true} name='v-neck' img='v-neck.webp' />
+            </Link>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/henley',
+              }}
+            >
+              <Cut top={true} name='henley' img='hanly.webp' />
+            </Link>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/classic',
+              }}
+            >
+              <Cut top={false} name='classic' img='classic.webp' />
+            </Link>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/split',
+              }}
+            >
+              <Cut top={false} name='split' img='split.webp' />
+            </Link>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/elongated',
+              }}
+            >
+              <Cut top={false} name='elongated' img='elongated.webp' />
+            </Link>
+          </div>
+        ) : (
+          ''
+        )}
+        {display === 'layers' ? (
+          <div className='drop--shop__collections'>
+            <NavbarCollection
+              name='sweatshirts'
+              slug='sweat-shirt'
+              img='image/sweat-shirt/imageDetail'
+            />
+            <NavbarCollection
+              name='hooded shirts'
+              slug='hooded-shirt'
+              img='image/hooded-shirt/imageDetail'
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </section>
     </section>
   );

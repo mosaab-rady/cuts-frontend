@@ -6,7 +6,7 @@ export default function Cut({ top, name, img }) {
       {top ? <h5 className='cut__h5'>{name}</h5> : ''}
       <img
         className={top ? 'cut__img' : 'cut__img--top'}
-        src={`img/${img}`}
+        src={`../img/${img}`}
         alt=''
       />
       {top ? '' : <h5 className='cut__h5'>{name}</h5>}

@@ -5,6 +5,7 @@ import Overview from './pages/Overview';
 import Collection from './pages/Collection';
 import Product from './pages/Product';
 import Shop from './pages/Shop';
+import Account from './pages/Account';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path='/collections/:name'>
           <Collection />
+        </Route>
+        <Route path='/account'>
+          <Account />
         </Route>
       </Switch>
     </div>

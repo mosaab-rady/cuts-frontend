@@ -39,6 +39,10 @@
   border-bottom: 1px solid var(--gray);
 }
 
+.active {
+  border-bottom: 1px solid var(--gray);
+}
+
 .drop--shop__overview {
   margin-left: 5rem;
 }
@@ -48,4 +52,10 @@
   grid-template-columns: repeat(3, minmax(5rem, 15rem));
   /* justify-content: space-between; */
   gap: 2rem;
+}
+
+.drop--shop__collections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(10rem, 15rem));
+  gap: 3rem;
 }

@@ -93,26 +93,33 @@ export default function Navbar() {
             <h4 className='navbar__headings__h4'>Brand</h4>
           </div>
           <div className='navbar__icons'>
-            <svg
-              className='navbar__icons__icon'
-              viewBox='0 0 20 20'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-              width='15px'
-              height='15px'
+            <Link
+              className='link'
+              to={{
+                pathname: '/account',
+              }}
             >
-              <ellipse
-                cx='9.99998'
-                cy='3.91933'
-                rx='4.54546'
-                ry='3.91933'
-                fill='black'
-              />
-              <path
-                d='M20 15.6773C20 20.4394 15.5228 19.9886 10 19.9886C4.47715 19.9886 0 20.4394 0 15.6773C0 10.9152 4.47715 8.62253 10 8.62253C15.5228 8.62253 20 10.9152 20 15.6773Z'
-                fill='black'
-              />
-            </svg>
+              <svg
+                className='navbar__icons__icon'
+                viewBox='0 0 20 20'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+                width='15px'
+                height='15px'
+              >
+                <ellipse
+                  cx='9.99998'
+                  cy='3.91933'
+                  rx='4.54546'
+                  ry='3.91933'
+                  fill='black'
+                />
+                <path
+                  d='M20 15.6773C20 20.4394 15.5228 19.9886 10 19.9886C4.47715 19.9886 0 20.4394 0 15.6773C0 10.9152 4.47715 8.62253 10 8.62253C15.5228 8.62253 20 10.9152 20 15.6773Z'
+                  fill='black'
+                />
+              </svg>
+            </Link>
             <svg
               className='navbar__icons__icon'
               width='15'

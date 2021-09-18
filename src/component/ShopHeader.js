@@ -15,7 +15,7 @@ export default function ShopHeader() {
           }}
         >
           <img
-            src={`${host}/api/v1/images/image/t-shirt/imageDetail`}
+            src={`${host}/api/v1/images/image/t-shirt/imageOverview`}
             className='shop--header__collection__img'
             alt=''
           />
@@ -30,7 +30,7 @@ export default function ShopHeader() {
           }}
         >
           <img
-            src={`${host}/api/v1/images/image/sweat-shirt/imageDetail`}
+            src={`${host}/api/v1/images/image/sweat-shirt/imageOverview`}
             className='shop--header__collection__img'
             alt=''
           />
@@ -45,7 +45,7 @@ export default function ShopHeader() {
           }}
         >
           <img
-            src={`${host}/api/v1/images/image/long-sleeve/imageDetail`}
+            src={`${host}/api/v1/images/image/long-sleeve/imageOverview`}
             className='shop--header__collection__img'
             alt=''
           />
@@ -60,7 +60,7 @@ export default function ShopHeader() {
           }}
         >
           <img
-            src={`${host}/api/v1/images/image/polo/imageDetail`}
+            src={`${host}/api/v1/images/image/polo/imageOverview`}
             className='shop--header__collection__img'
             alt=''
           />
