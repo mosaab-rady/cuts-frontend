@@ -1,6 +1,6 @@
 import { request } from './axios';
 
-export const signup = async (e) => {
+export const signup = async (e, dispatch) => {
   e.preventDefault();
 
   const errDiv = document.getElementById('signup--err');
@@ -13,7 +13,7 @@ export const signup = async (e) => {
 
   if (res) {
     if (res.data.status === 'success') {
-      window.location.reload();
+      dispatch({ type: 'LOG_IN', payload: res.data.data.user });
     } else if (res.data.status === 'fail' || res.data.status === 'error') {
       errDiv.insertAdjacentHTML(
         'afterbegin',
@@ -23,7 +23,7 @@ export const signup = async (e) => {
   }
 };
 
-export const loginFn = async (e) => {
+export const loginFn = async (e, dispatch) => {
   e.preventDefault();
 
   const errDiv = document.getElementById('login--err');
@@ -35,7 +35,7 @@ export const loginFn = async (e) => {
 
   if (res) {
     if (res.data.status === 'success') {
-      window.location.reload();
+      dispatch({ type: 'LOG_IN', payload: res.data.data.user });
     } else if (res.data.status === 'fail' || res.data.status === 'error') {
       errDiv.insertAdjacentHTML(
         'afterbegin',

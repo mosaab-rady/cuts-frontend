@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { myContext } from '../Context';
 import { loginFn } from '../js/authentication';
 
 export default function Login() {
+  const { dispatch } = useContext(myContext);
+
   return (
     <div className='login'>
       <h3 className='form__header'>sign in</h3>
-      <form className='form' onSubmit={(e) => loginFn(e)}>
+      <form className='form' onSubmit={(e) => loginFn(e, dispatch)}>
         <div className='form__group'>
           <label htmlFor='email' className='form__group__label'>
             email
