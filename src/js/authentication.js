@@ -44,3 +44,12 @@ export const loginFn = async (e, dispatch) => {
     }
   }
 };
+
+export const logout = async (dispatch) => {
+  const res = await request('GET', '/api/v1/users/logout');
+  if (res) {
+    if (res.data.status === 'success') {
+      setTimeout(() => dispatch({ type: 'LOG_OUT' }), 1500);
+    }
+  }
+};

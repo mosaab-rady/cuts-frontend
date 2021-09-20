@@ -1,13 +1,22 @@
-import React, { useContext } from 'react';
-import { myContext } from '../Context';
+import React from 'react';
+import { Route, Switch } from 'react-router';
 import '../css/myaccount.css';
+import Addresses from './Addresses';
+import AccountBar from './AccountBar';
+import OrderHistory from './OrderHistory';
 
 export default function MyAccount() {
-  const { currentUser } = useContext(myContext);
-
   return (
     <div className='my--account'>
-      <h1>hey {currentUser.name}</h1>
+      <AccountBar />
+      <Switch>
+        <Route exact path='/account'>
+          <OrderHistory />
+        </Route>
+        <Route path='/account/addresses'>
+          <Addresses />
+        </Route>
+      </Switch>
     </div>
   );
 }

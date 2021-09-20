@@ -7,6 +7,9 @@ const reducer = (state, action) => {
   if (action.type === 'LOG_IN') {
     return { ...state, currentUser: action.payload };
   }
+  if (action.type === 'LOG_OUT') {
+    return { ...state, currentUser: null };
+  }
 };
 
 const initialState = {

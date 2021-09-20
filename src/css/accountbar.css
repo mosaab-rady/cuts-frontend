@@ -1,0 +1,42 @@
+.account--bar {
+  width: 18rem;
+  margin-right: 5rem;
+}
+
+.account--bar__user {
+  margin-bottom: 4rem;
+}
+
+.account--bar__user__name {
+  font-size: 1.5rem;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+.account--bar__user__email {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  color: var(--gray);
+  font-weight: normal;
+}
+
+.account--bar__Links__link {
+  font-size: 0.8rem;
+  color: var(--gray);
+  text-transform: capitalize;
+  padding: 1rem 0;
+  border-bottom: 1px solid #dadada;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.account--bar__links__svg {
+  width: 1rem;
+}
+
+.account--bar__links__active {
+  border-bottom: 2px solid var(--main-black);
+}
