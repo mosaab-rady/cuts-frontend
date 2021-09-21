@@ -1,10 +1,10 @@
 .account--bar {
-  width: 18rem;
+  width: 25rem;
   margin-right: 5rem;
 }
 
 .account--bar__user {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .account--bar__user__name {
