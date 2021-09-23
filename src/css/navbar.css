@@ -104,3 +104,12 @@
 .navbar__headings__shop:hover + .navbar__drop__shop {
   display: block;
 }
+
+.cart--page {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}

@@ -10,10 +10,30 @@ const reducer = (state, action) => {
   if (action.type === 'LOG_OUT') {
     return { ...state, currentUser: null };
   }
+  if (action.type === 'ADD_TO_CART') {
+    const order = action.payload;
+    let orders = [...state.shoppings];
+
+    for (let i = 0; i < state.shoppings.length; i++) {
+      if (order.id === orders[i].id && order.size === orders[i].size) {
+        orders[i] = { ...orders[i], quantity: orders[i].quantity++ };
+        orders[i] = {
+          ...orders[i],
+          total: orders[i].price * orders[i].quantity,
+        };
+        return {
+          ...state,
+          shoppings: [...orders],
+        };
+      }
+    }
+    return { ...state, shoppings: [...state.shoppings, action.payload] };
+  }
 };
 
 const initialState = {
   currentUser: null,
+  shoppings: [],
 };
 
 export default function Context({ children }) {

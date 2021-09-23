@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/productCart.css';
+import { myContext } from '../Context';
 
 export default function ProductCart({ product }) {
   const host = 'http://localhost:5000';
+  const { dispatch } = useContext(myContext);
+
+  const addToCart = (e, order) => {
+    e.preventDefault();
+    dispatch({ type: 'ADD_TO_CART', payload: order });
+  };
+
   return (
     <div className='product'>
       <section className='product__img'>
@@ -34,19 +42,109 @@ export default function ProductCart({ product }) {
           <h4>+ quick add</h4>
         </div>
         <div className='product__btn__sizes'>
-          <div className='product__btn__sizes__size'>
+          <div
+            onClick={(e) => {
+              addToCart(e, {
+                id: product._id,
+                size: 's',
+                image: product.imageCover,
+                name: product.name,
+                color: product.color,
+                price: product.price,
+                total: product.price,
+                quantity: 1,
+              });
+            }}
+            className={
+              product.size.small === 0
+                ? 'not--available'
+                : 'product__btn__sizes__size'
+            }
+          >
             <h4>s</h4>
           </div>
-          <div className='product__btn__sizes__size'>
+          <div
+            onClick={(e) => {
+              addToCart(e, {
+                id: product._id,
+                size: 'm',
+                image: product.imageCover,
+                price: product.price,
+                name: product.name,
+                total: product.price,
+                color: product.color,
+                quantity: 1,
+              });
+            }}
+            className={
+              product.size.medium === 0
+                ? ' not--available'
+                : 'product__btn__sizes__size'
+            }
+          >
             <h4>m</h4>
           </div>
-          <div className='product__btn__sizes__size'>
+          <div
+            onClick={(e) => {
+              addToCart(e, {
+                id: product._id,
+                size: 'l',
+                image: product.imageCover,
+                name: product.name,
+                price: product.price,
+                total: product.price,
+                color: product.color,
+                quantity: 1,
+              });
+            }}
+            className={
+              product.size.large === 0
+                ? ' not--available'
+                : 'product__btn__sizes__size'
+            }
+          >
             <h4>l</h4>
           </div>
-          <div className='product__btn__sizes__size'>
+          <div
+            onClick={(e) => {
+              addToCart(e, {
+                id: product._id,
+                size: 'xl',
+                name: product.name,
+                image: product.imageCover,
+                price: product.price,
+                total: product.price,
+                color: product.color,
+                quantity: 1,
+              });
+            }}
+            className={
+              product.size.xLarge === 0
+                ? ' not--available'
+                : 'product__btn__sizes__size'
+            }
+          >
             <h4>xl</h4>
           </div>
-          <div className='product__btn__sizes__size'>
+          <div
+            onClick={(e) => {
+              addToCart(e, {
+                id: product._id,
+                size: 'xxl',
+                name: product.name,
+                image: product.imageCover,
+                price: product.price,
+                total: product.price,
+                color: product.color,
+                quantity: 1,
+              });
+            }}
+            className={
+              product.size.xxLarge === 0
+                ? ' not--available'
+                : 'product__btn__sizes__size'
+            }
+          >
             <h4>xxl</h4>
           </div>
         </div>

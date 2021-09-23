@@ -8,7 +8,6 @@ export default function OrderHistory() {
     const getData = async () => {
       const res = await request('GET', '/api/v1/shopping/myshoppings');
       if (res) {
-        console.log(res);
         if (res.data.status === 'success') {
           setOrders(res.data.data.shoppings);
         }

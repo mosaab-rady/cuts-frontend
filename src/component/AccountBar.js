@@ -11,7 +11,9 @@ export default function AccountBar() {
   return (
     <div className='account--bar'>
       <div className='account--bar__user'>
-        <h2 className='account--bar__user__name'>Hey {currentUser.name}</h2>
+        <h2 className='account--bar__user__name'>
+          Hey {currentUser.name.split(' ')[0]}
+        </h2>
         <h4 className='account--bar__user__email'>{currentUser.email}</h4>
       </div>
       <div className='account--bar__links'>

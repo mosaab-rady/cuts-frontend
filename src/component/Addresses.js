@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { myContext } from '../Context';
+import { request } from '../js/axios';
 
 export default function Addresses() {
+  const { currentUser } = useContext(myContext);
+
+  const addAddress = async (e) => {
+    e.preventDefault();
+    const name = e.target.firstname.value + ' ' + e.target.lastname.value;
+    const address_1 = e.target.address1.value;
+    const address_2 = e.target.address2.value;
+    const city = e.target.city.value;
+    const country = e.target.country.value;
+    const zip = e.target.zip.value;
+
+    const res = await request('PATCH', `/api/v1/users/${currentUser._id}`, {
+      address: { name, address_1, address_2, city, country, zip },
+    });
+    if (res) {
+      if (res.data.status === 'success') {
+        console.log(res);
+      }
+    }
+  };
+
   return (
     <div className='account--body addresses'>
       <h2 className='account--body__header'>address book</h2>
       <div className='account--body__addresses'>
         <h2 className='account--body__addresses__header'>add address</h2>
-        <form className='form'>
+        <form className='form' onSubmit={(e) => addAddress(e)}>
           <div className='addresses__form'>
             <div className='form__group'>
               <label htmlFor='firstname' className='form__group__label'>

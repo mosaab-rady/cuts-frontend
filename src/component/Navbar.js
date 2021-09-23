@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/navbar.css';
+import Cart from './Cart';
 import DropShop from './DropShop';
 import NavbarDropCollections from './NavbarDropCollections';
 
@@ -146,6 +147,9 @@ export default function Navbar() {
               />
             </svg>
             <svg
+              onClick={() => {
+                document.getElementById('cart').style.display = 'block';
+              }}
               className='navbar__icons__icon'
               viewBox='0 0 22 21'
               fill='none'
@@ -167,6 +171,9 @@ export default function Navbar() {
               />
               <ellipse cx='17.3433' cy='16' rx='1.36498' ry='2' fill='black' />
             </svg>
+            <div className='cart--page' id='cart'>
+              <Cart />
+            </div>
           </div>
         </div>
       </div>

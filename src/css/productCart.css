@@ -98,10 +98,25 @@
   color: var(--main-white);
 }
 
-.product__btn__sizes__size h4 {
+.product__btn__sizes__size h4,
+.not--available h4 {
   font-size: 0.8rem;
   text-transform: uppercase;
   font-weight: normal;
+}
+
+.not--available {
+  color: #dadada;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #999999;
+  pointer-events: none;
+  cursor: pointer;
 }
 
 .product__btn:hover .product__btn__sizes {
