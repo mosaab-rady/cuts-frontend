@@ -20,7 +20,6 @@ export default function Product() {
         `/api/v1/products${location.pathname}/${location.search}`
       );
       if (response) {
-        console.log(response);
         if (response.data.status === 'success') {
           setProduct(response.data.data.product);
           setColors(response.data.data.availableColors);

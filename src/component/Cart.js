@@ -4,7 +4,7 @@ import { myContext } from '../Context';
 import '../css/cart.css';
 
 export default function Cart() {
-  const { shoppings } = useContext(myContext);
+  const { shoppings, dispatch } = useContext(myContext);
   const host = 'http://localhost:5000';
   let quantity = 0;
   for (let i = 0; i < shoppings.length; i++) {
@@ -12,6 +12,21 @@ export default function Cart() {
   }
 
   console.log(shoppings);
+
+  const addToCart = (e, order) => {
+    e.preventDefault();
+    dispatch({ type: 'ADD_TO_CART', payload: order });
+  };
+
+  const decrease = (e, order) => {
+    e.preventDefault();
+    dispatch({ type: 'DECREASE_ONE', payload: order });
+  };
+
+  const remove = (e, order) => {
+    e.preventDefault();
+    dispatch({ type: 'REMOVE_FROM_CART', payload: order });
+  };
 
   return (
     <div className='cart'>
@@ -69,11 +84,64 @@ export default function Cart() {
                       />
                     </div>
                     <div className='cart__body__order__detail'>
-                      <h5>size / {item.size} </h5>
-                      <h4>
+                      <h5 className='cart__body__order__detail__size'>
+                        size / {item.size}{' '}
+                      </h5>
+                      <h4 className='cart__body__order__detail__name'>
                         {item.color} {item.name}
                       </h4>
-                      <h4>{item.quantity}</h4>
+                      <div className='cart__body__order__detail__qnt'>
+                        <svg
+                          onClick={(e) =>
+                            decrease(e, { id: item.id, size: item.size })
+                          }
+                          className='cart__body__order__detail__qnt__minus'
+                          viewBox='0 0 20 6'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path d='M0 1H20' stroke='black' strokeWidth='6' />
+                        </svg>
+
+                        <input
+                          id='order__num'
+                          className='cart__body__order__detail__qnt__inp'
+                          type='number'
+                          value={item.quantity}
+                          readOnly
+                        />
+
+                        <svg
+                          onClick={(e) =>
+                            addToCart(e, { id: item.id, size: item.size })
+                          }
+                          className='cart__body__order__detail__qnt__plus'
+                          viewBox='0 0 20 20'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M10 20V9.83477e-07'
+                            stroke='black'
+                            strokeWidth='3'
+                          />
+                          <path d='M0 10H20' stroke='black' strokeWidth='3' />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className='cart__body__order__close--container'>
+                      <p
+                        onClick={(e) =>
+                          remove(e, { id: item.id, size: item.size })
+                        }
+                        className='cart__body__order__close'
+                      >
+                        {' '}
+                        &times;
+                      </p>
+                      <h4 className='cart__body__order__close__price'>
+                        ${item.price}
+                      </h4>
                     </div>
                   </div>
                 );
