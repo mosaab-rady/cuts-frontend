@@ -21,12 +21,17 @@ const reducer = (state, action) => {
           ...orders[i],
           total: orders[i].price * orders[i].quantity,
         };
+        localStorage.setItem('shoppings', JSON.stringify(orders));
         return {
           ...state,
           shoppings: [...orders],
         };
       }
     }
+    localStorage.setItem(
+      'shoppings',
+      JSON.stringify([...state.shoppings, action.payload])
+    );
     return { ...state, shoppings: [...state.shoppings, action.payload] };
   }
   if (action.type === 'DECREASE_ONE') {
@@ -39,6 +44,8 @@ const reducer = (state, action) => {
           const newOrders = orders.filter(
             (item) => item.id !== order.id || item.size !== order.size
           );
+          localStorage.setItem('shoppings', JSON.stringify(newOrders));
+
           return {
             ...state,
             shoppings: [...newOrders],
@@ -49,6 +56,8 @@ const reducer = (state, action) => {
           ...orders[i],
           total: orders[i].price * orders[i].quantity,
         };
+        localStorage.setItem('shoppings', JSON.stringify(orders));
+
         return {
           ...state,
           shoppings: [...orders],
@@ -63,6 +72,8 @@ const reducer = (state, action) => {
     const newOrders = orders.filter(
       (item) => item.id !== order.id || item.size !== order.size
     );
+    localStorage.setItem('shoppings', JSON.stringify(newOrders));
+
     return {
       ...state,
       shoppings: [...newOrders],
@@ -94,6 +105,7 @@ export default function Context({ children }) {
       }
     };
     getMe();
+    localStorage.setItem('shoppings', JSON.stringify([]));
   }, []);
 
   return (

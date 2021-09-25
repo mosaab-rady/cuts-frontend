@@ -4,11 +4,19 @@ import { myContext } from '../Context';
 import '../css/cart.css';
 
 export default function Cart() {
-  const { shoppings, dispatch } = useContext(myContext);
+  const { dispatch } = useContext(myContext);
   const host = 'http://localhost:5000';
+
+  const shoppings = JSON.parse(localStorage.getItem('shoppings'));
+
   let quantity = 0;
   for (let i = 0; i < shoppings.length; i++) {
     quantity += shoppings[i].quantity;
+  }
+
+  let totalPrice = 0;
+  for (let i = 0; i < shoppings.length; i++) {
+    totalPrice += shoppings[i].total;
   }
 
   console.log(shoppings);
@@ -146,6 +154,16 @@ export default function Cart() {
                   </div>
                 );
               })}
+            </div>
+            <div className='cart__body__footer'>
+              <div className='cart__body__footer__price'>
+                <h3 className='cart__body__footer__header'>subtotal</h3>
+                <h4 className='cart__body__footer__total'>${totalPrice}</h4>
+              </div>
+              <h4 className='cart__body__footer__info'>
+                Shipping, taxes, and discounts calculated at checkout.
+              </h4>
+              <button className='cart__body__footer__btn'>checkout</button>
             </div>
           </div>
         )}
