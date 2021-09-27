@@ -19,8 +19,6 @@ export default function Cart() {
     totalPrice += shoppings[i].total;
   }
 
-  console.log(shoppings);
-
   const addToCart = (e, order) => {
     e.preventDefault();
     dispatch({ type: 'ADD_TO_CART', payload: order });

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../css/productDetail.css';
 import StarRatings from 'react-star-ratings';
 import { request } from '../js/axios';
 import { useEffect } from 'react/cjs/react.development';
 import { Link } from 'react-router-dom';
+import { myContext } from '../Context';
 
 export default function ProductDetails({
   product,
@@ -11,7 +12,8 @@ export default function ProductDetails({
   setProduct,
   fabrics,
 }) {
-  const [size, setSize] = useState('small');
+  const { dispatch } = useContext(myContext);
+  const [size, setSize] = useState('s');
   const [available, setAvailable] = useState(true);
   const [modal, setModal] = useState('');
 
@@ -34,6 +36,11 @@ export default function ProductDetails({
         }
       }
     }
+  };
+
+  const addToCart = (e, order) => {
+    e.preventDefault();
+    dispatch({ type: 'ADD_TO_CART', payload: order });
   };
 
   const display = (e) => {
@@ -190,15 +197,15 @@ export default function ProductDetails({
         <div className='product__detail__sizes'>
           <h4
             onClick={() => {
-              setSize('small');
+              setSize('s');
               product.size.small > 0 ? setAvailable(true) : setAvailable(false);
             }}
             className={
               product.size.small > 0
-                ? size === 'small'
+                ? size === 's'
                   ? 'product__detail__sizes__size--h4 selected'
                   : 'product__detail__sizes__size--h4'
-                : size === 'small'
+                : size === 's'
                 ? 'product__detail__sizes__size--h4--not selected'
                 : 'product__detail__sizes__size--h4--not'
             }
@@ -207,17 +214,17 @@ export default function ProductDetails({
           </h4>
           <h4
             onClick={() => {
-              setSize('medium');
+              setSize('m');
               product.size.medium > 0
                 ? setAvailable(true)
                 : setAvailable(false);
             }}
             className={
               product.size.medium > 0
-                ? size === 'medium'
+                ? size === 'm'
                   ? 'product__detail__sizes__size--h4 selected'
                   : 'product__detail__sizes__size--h4'
-                : size === 'medium'
+                : size === 'm'
                 ? 'product__detail__sizes__size--h4--not selected'
                 : 'product__detail__sizes__size--h4--not'
             }
@@ -226,15 +233,15 @@ export default function ProductDetails({
           </h4>
           <h4
             onClick={() => {
-              setSize('large');
+              setSize('l');
               product.size.large > 0 ? setAvailable(true) : setAvailable(false);
             }}
             className={
               product.size.large > 0
-                ? size === 'large'
+                ? size === 'l'
                   ? 'product__detail__sizes__size--h4 selected'
                   : 'product__detail__sizes__size--h4'
-                : size === 'large'
+                : size === 'l'
                 ? 'product__detail__sizes__size--h4--not selected'
                 : 'product__detail__sizes__size--h4--not'
             }
@@ -243,17 +250,17 @@ export default function ProductDetails({
           </h4>
           <h4
             onClick={() => {
-              setSize('x-large');
+              setSize('xl');
               product.size.xLarge > 0
                 ? setAvailable(true)
                 : setAvailable(false);
             }}
             className={
               product.size.xLarge > 0
-                ? size === 'x-large'
+                ? size === 'xl'
                   ? 'product__detail__sizes__size--h4 selected'
                   : 'product__detail__sizes__size--h4'
-                : size === 'x-large'
+                : size === 'xl'
                 ? 'product__detail__sizes__size--h4--not selected'
                 : 'product__detail__sizes__size--h4--not'
             }
@@ -262,17 +269,17 @@ export default function ProductDetails({
           </h4>
           <h4
             onClick={() => {
-              setSize('XX-large');
+              setSize('xxl');
               product.size.xxLarge > 0
                 ? setAvailable(true)
                 : setAvailable(false);
             }}
             className={
               product.size.xxLarge > 0
-                ? size === 'XX-large'
+                ? size === 'xxl'
                   ? 'product__detail__sizes__size--h4 selected'
                   : 'product__detail__sizes__size--h4'
-                : size === 'XX-large'
+                : size === 'xxl'
                 ? 'product__detail__sizes__size--h4--not selected'
                 : 'product__detail__sizes__size--h4--not'
             }
@@ -283,7 +290,21 @@ export default function ProductDetails({
       </div>
       <div className='product__detail__btn--container'>
         {available ? (
-          <button className='product__detail__btn__addToCart'>
+          <button
+            className='product__detail__btn__addToCart'
+            onClick={(e) => {
+              addToCart(e, {
+                id: product._id,
+                size,
+                image: product.imageCover,
+                price: product.price,
+                name: product.name,
+                total: product.price,
+                color: product.color,
+                quantity: 1,
+              });
+            }}
+          >
             add to cart
           </button>
         ) : (

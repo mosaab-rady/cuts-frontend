@@ -4,7 +4,7 @@ import '../css/comparison.css';
 export default function Comparison({ img, nb, name, info, link }) {
   return (
     <div className='comparison'>
-      <img className={`comparison__img${nb}`} src={`img/${img}`} alt='' />
+      <img className={`comparison__img${nb}`} src={`../img/${img}`} alt='' />
       <div className='comparison__info'>
         <h3 className='comparison__info__h3'>
           <span>{nb}</span> {name}

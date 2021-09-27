@@ -1,5 +1,6 @@
 .product__imgs__container {
-  width: 37rem;
+  /* width: 37rem; */
+  width: 100%;
 }
 
 .product__imgs__main--img {

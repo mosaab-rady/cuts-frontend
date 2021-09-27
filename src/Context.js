@@ -21,13 +21,18 @@ const reducer = (state, action) => {
           ...orders[i],
           total: orders[i].price * orders[i].quantity,
         };
+
+        document.getElementById('cart').style.display = 'block';
         localStorage.setItem('shoppings', JSON.stringify(orders));
+
         return {
           ...state,
           shoppings: [...orders],
         };
       }
     }
+    document.getElementById('cart').style.display = 'block';
+
     localStorage.setItem(
       'shoppings',
       JSON.stringify([...state.shoppings, action.payload])

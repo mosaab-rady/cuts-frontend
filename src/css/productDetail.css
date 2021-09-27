@@ -1,6 +1,7 @@
 .product__detail {
   margin-left: 3rem;
-  width: 22rem;
+  /* width: 22rem; */
+  width: 65%;
 }
 
 .product__detail__heading {

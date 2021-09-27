@@ -4,6 +4,9 @@ import '../css/productPage.css';
 import { request } from '../js/axios';
 import Slider from '../component/Slider';
 import ProductDetails from '../component/ProductDetails';
+import RelatedCuts from '../component/RelatedCuts';
+import ComparisonPage from '../component/ComparisonPage';
+import MidSection from '../component/MidSection';
 
 export default function Product() {
   // const host = 'http://localhost:5000';
@@ -56,8 +59,8 @@ export default function Product() {
   }, [location]);
 
   return product ? (
-    <section className='product--page'>
-      <section className='product'>
+    <section className='product--page--container'>
+      <section className='product--page'>
         <Slider product={product} />
         {colors && fabrics ? (
           <ProductDetails
@@ -71,6 +74,11 @@ export default function Product() {
           ''
         )}
       </section>
+      <RelatedCuts collar={product.collar} cut={product.cut} />
+      <ComparisonPage />
+      <div className='product--page__collections'>
+        <MidSection />
+      </div>
     </section>
   ) : (
     ''
