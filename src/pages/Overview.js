@@ -151,7 +151,6 @@ export default function Overview() {
         </div>
       </section>
       <ComparisonPage />
-      <section className='overview__footer'></section>
     </section>
   );
 }

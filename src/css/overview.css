@@ -132,7 +132,7 @@
   position: relative;
   padding: 5rem;
   padding-bottom: 10rem;
-  margin-bottom: 5rem;
+  /* margin-bottom: 5rem; */
 }
 
 .overview__cuts--comparison__header {

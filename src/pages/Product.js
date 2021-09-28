@@ -7,6 +7,7 @@ import ProductDetails from '../component/ProductDetails';
 import RelatedCuts from '../component/RelatedCuts';
 import ComparisonPage from '../component/ComparisonPage';
 import MidSection from '../component/MidSection';
+import ProductReviews from '../component/ProductReviews';
 
 export default function Product() {
   // const host = 'http://localhost:5000';
@@ -76,6 +77,11 @@ export default function Product() {
       </section>
       <RelatedCuts collar={product.collar} cut={product.cut} />
       <ComparisonPage />
+      <ProductReviews
+        id={product.id}
+        ratingAvg={product.ratingsAverage}
+        ratingQnt={product.ratingsQuantity}
+      />
       <div className='product--page__collections'>
         <MidSection />
       </div>

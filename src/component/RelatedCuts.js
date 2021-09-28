@@ -15,7 +15,6 @@ export default function RelatedCuts({ collar, cut }) {
       );
 
       if (res) {
-        console.log(res);
         if (res.data.status === 'success') {
           setRelatedcuts(res.data.data.products);
         }
