@@ -1,13 +1,33 @@
 .product__imgs__container {
-  /* width: 37rem; */
   width: 100%;
+  position: relative;
 }
 
 .product__imgs__main--img {
   width: 100%;
-  cursor: grab;
 }
 
-.product__imgs__main--img:active {
-  cursor: grabbing;
+.product__imgs__btn {
+  position: absolute;
+  background-color: transparent;
+  border: 1px solid #dadada;
+  color: var(--main-black);
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.product__imgs__btn:hover {
+  background-color: var(--main-black);
+  color: var(--main-white);
+}
+
+.left {
+  top: 50%;
+  left: 0;
+}
+
+.right {
+  top: 50%;
+  right: 0;
 }

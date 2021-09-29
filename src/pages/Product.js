@@ -18,6 +18,11 @@ export default function Product() {
   const [fabrics, setFabrics] = useState('');
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+
     const getData = async () => {
       let response = await request(
         'GET',

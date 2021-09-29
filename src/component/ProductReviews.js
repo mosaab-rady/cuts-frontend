@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import { request } from '../js/axios';
+import Review from './Review';
 
 export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
   const [reviews, setReviews] = useState([]);
@@ -16,8 +17,6 @@ export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
     };
     getData();
   }, [id]);
-
-  console.log(reviews);
 
   return (
     <div className='product__reviews'>
@@ -42,8 +41,27 @@ export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
           {ratingQnt} reviews
         </h3>
         <h3 className='product__reviews__body__header__addreview'>
+          <svg viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'>
+            <path
+              d='M1 8H2L6 4L5.5 3.5M1 8V7L5 3L5.5 3.5M1 8L5.5 3.5'
+              stroke='black'
+            />
+            <rect
+              x='6.57582'
+              y='0.858204'
+              width='2.29474'
+              height='1.325'
+              transform='rotate(44.2886 6.57582 0.858204)'
+              fill='black'
+            />
+          </svg>
           write a review
         </h3>
+      </div>
+      <div className='product__reviews__body'>
+        {reviews.map((item, i) => {
+          return <Review key={i} review={item} />;
+        })}
       </div>
     </div>
   );
