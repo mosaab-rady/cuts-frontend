@@ -15,6 +15,11 @@ export default function Collection() {
   // const [imgCover, setImgCover] = useState('');
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+
     const getData = async () => {
       const response = await request(
         'GET',

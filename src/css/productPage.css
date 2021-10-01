@@ -61,7 +61,7 @@
   font-weight: bold;
   text-transform: capitalize;
   color: var(--gray);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .product__reviews__header__stars {
@@ -86,6 +86,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
 .product__reviews__body__header__h3 {

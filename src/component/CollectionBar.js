@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/collectionBar.css';
 
 export default function CollectionBar() {
@@ -20,9 +21,30 @@ export default function CollectionBar() {
       <div className='sidebar__collections'>
         <h4 className='sidebar__header'>collections</h4>
         <div className='sidebar__collections__names'>
-          <h4>all products</h4>
-          <h4>best sellers</h4>
-          <h4>new releases</h4>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/all-products',
+            }}
+          >
+            <h4>all products</h4>
+          </Link>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/best-sellers',
+            }}
+          >
+            <h4>best sellers</h4>
+          </Link>
+          <Link
+            className='link'
+            to={{
+              pathname: '/collections/new-releases',
+            }}
+          >
+            <h4>new releases</h4>
+          </Link>
         </div>
       </div>
       <div className='sidebar__filters'>

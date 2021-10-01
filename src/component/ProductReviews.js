@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import { request } from '../js/axios';
 import Review from './Review';
+import WriteReview from './WriteReview';
 
 export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
   const [reviews, setReviews] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -19,7 +21,7 @@ export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
   }, [id]);
 
   return (
-    <div className='product__reviews'>
+    <div className='product__reviews' id='product__reviews'>
       <div className='product__reviews__header'>
         <h2 className='product__reviews__header__h2'>reviews</h2>
         <div className='product__reviews__header__stars'>
@@ -40,7 +42,10 @@ export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
         <h3 className='product__reviews__body__header__h3'>
           {ratingQnt} reviews
         </h3>
-        <h3 className='product__reviews__body__header__addreview'>
+        <h3
+          className='product__reviews__body__header__addreview'
+          onClick={() => setShowForm(true)}
+        >
           <svg viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <path
               d='M1 8H2L6 4L5.5 3.5M1 8V7L5 3L5.5 3.5M1 8L5.5 3.5'
@@ -58,7 +63,8 @@ export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
           write a review
         </h3>
       </div>
-      <div className='product__reviews__body'>
+      {showForm ? <WriteReview id={id} /> : ''}
+      <div className='product__reviews__body' id='reviews__body'>
         {reviews.map((item, i) => {
           return <Review key={i} review={item} />;
         })}

@@ -16,6 +16,11 @@ export default function Overview() {
   const [bestSellers, setBestSellers] = useState('');
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+
     const getData = async () => {
       let response = await request(
         'GET',
