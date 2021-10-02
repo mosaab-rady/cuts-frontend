@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Auth from '../component/Auth';
 import MyAccount from '../component/MyAccount';
 import { myContext } from '../Context';
@@ -6,6 +6,13 @@ import '../css/account.css';
 
 export default function Account() {
   const { currentUser } = useContext(myContext);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  }, []);
 
   return (
     <section className='account'>

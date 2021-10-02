@@ -6,6 +6,7 @@ import Collection from './pages/Collection';
 import Product from './pages/Product';
 import Shop from './pages/Shop';
 import Account from './pages/Account';
+import Footer from './component/Footer';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Account />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

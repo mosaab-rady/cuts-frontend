@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ShopHeader from '../component/ShopHeader';
 import ShopSection from '../component/ShopSection';
 import '../css/shop.css';
 
 export default function Shop() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  }, []);
   return (
     <div className='shop'>
       <ShopHeader />
