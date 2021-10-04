@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { myContext } from '../Context';
 import '../css/cart.css';
+import { request } from '../js/axios';
 
 export default function Cart() {
   const { dispatch } = useContext(myContext);
@@ -32,6 +33,17 @@ export default function Cart() {
   const remove = (e, order) => {
     e.preventDefault();
     dispatch({ type: 'REMOVE_FROM_CART', payload: order });
+  };
+
+  const handleCheckout = async () => {
+    const res = await request('POST', '/api/v1/shopping/checkout-session', {
+      products: shoppings,
+    });
+    if (res) {
+      if (res.data.status === 'success') {
+        window.location.href = res.data.session.url;
+      }
+    }
   };
 
   return (
@@ -161,7 +173,12 @@ export default function Cart() {
               <h4 className='cart__body__footer__info'>
                 Shipping, taxes, and discounts calculated at checkout.
               </h4>
-              <button className='cart__body__footer__btn'>checkout</button>
+              <button
+                className='cart__body__footer__btn'
+                onClick={() => handleCheckout()}
+              >
+                checkout
+              </button>
             </div>
           </div>
         )}
