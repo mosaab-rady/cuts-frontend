@@ -222,3 +222,42 @@
   font-weight: normal;
   color: #0000008e;
 }
+
+.product__reviews__skips {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  gap: 1rem;
+  width: 15rem;
+  overflow: scroll;
+  padding: 0 2rem;
+  /* margin: 0rem auto 0rem auto; */
+}
+
+.product__reviews__skips::-webkit-scrollbar {
+  display: none;
+}
+
+.product__reviews__skips--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+.product__reviews__skips__arrow {
+  width: 0.5rem;
+  cursor: pointer;
+}
+
+.product__reviews__skips__nb {
+  font-size: 1rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: 900;
+}

@@ -11,6 +11,11 @@
   background-color: var(--main-white);
   height: 100%;
   width: 24.4rem;
+  overflow: scroll;
+}
+
+.cart--container::-webkit-scrollbar {
+  display: none;
 }
 
 .cart__header {

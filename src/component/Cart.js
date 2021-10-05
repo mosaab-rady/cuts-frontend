@@ -42,6 +42,12 @@ export default function Cart() {
     if (res) {
       if (res.data.status === 'success') {
         window.location.href = res.data.session.url;
+      } else {
+        const errDiv = document.getElementById('checkout--err');
+        errDiv.insertAdjacentHTML(
+          'afterbegin',
+          `<h4 class='err--div__h4' >the following error occur :<li> ${res.data.message}</li> </h4>`
+        );
       }
     }
   };
@@ -165,6 +171,7 @@ export default function Cart() {
                 );
               })}
             </div>
+            <div className='err--div' id='checkout--err'></div>
             <div className='cart__body__footer'>
               <div className='cart__body__footer__price'>
                 <h3 className='cart__body__footer__header'>subtotal</h3>

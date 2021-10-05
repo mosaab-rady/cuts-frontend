@@ -7,10 +7,15 @@ import WriteReview from './WriteReview';
 export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
   const [reviews, setReviews] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [skip, setSkip] = useState(1);
+  const [nbs, setNbs] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      const res = await request('GET', `/api/v1/products/${id}/reviews`);
+      const res = await request(
+        'GET',
+        `/api/v1/products/${id}/reviews?limit=5&skip=${skip}`
+      );
       if (res) {
         if (res.data.status === 'success') {
           setReviews(res.data.data.reviews);
@@ -18,7 +23,29 @@ export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
       }
     };
     getData();
-  }, [id]);
+    const nbs = [];
+    for (let i = 0; i < Math.ceil(ratingQnt / 5); i++) {
+      nbs.push(i + 1);
+    }
+    setNbs(nbs);
+  }, [id, skip, ratingQnt]);
+
+  const changeSkip = (newSkip) => {
+    if (newSkip === -1) {
+      if (skip === 1) {
+        return;
+      } else {
+        setSkip(skip - 1);
+      }
+    }
+    if (newSkip === +1) {
+      if (skip === Math.ceil(ratingQnt / 5)) {
+        return;
+      } else {
+        setSkip(skip + 1);
+      }
+    }
+  };
 
   return (
     <div className='product__reviews' id='product__reviews'>
@@ -68,6 +95,43 @@ export default function ProductReviews({ id, ratingAvg, ratingQnt }) {
         {reviews.map((item, i) => {
           return <Review key={i} review={item} />;
         })}
+      </div>
+      <div className='product__reviews__skips--container'>
+        <svg
+          onClick={() => changeSkip(-1)}
+          className='product__reviews__skips__arrow'
+          viewBox='0 0 12 18'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M11 1L1 9.5L11 17' stroke='black' strokeWidth='3' />
+        </svg>
+        <div className='product__reviews__skips'>
+          {nbs.map((item, i) => {
+            return (
+              <h3
+                className={
+                  skip === item
+                    ? 'product__reviews__skips__nb bold'
+                    : 'product__reviews__skips__nb'
+                }
+                key={i}
+                onClick={() => setSkip(item)}
+              >
+                {item}
+              </h3>
+            );
+          })}
+        </div>
+        <svg
+          onClick={() => changeSkip(+1)}
+          className='product__reviews__skips__arrow'
+          viewBox='0 0 12 18'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M1 1L11 9.5L1 17' stroke='black' strokeWidth='3' />
+        </svg>
       </div>
     </div>
   );
