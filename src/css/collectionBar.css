@@ -1,18 +1,38 @@
 .sidebar {
   width: 12rem;
-  height: 100vh;
+  height: 80vh;
   margin-right: 3rem;
   display: flex;
   flex-direction: column;
   margin-left: 3rem;
+  position: sticky;
+  top: 6rem;
+  overflow: scroll;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sidebar__header__close {
+  color: rgb(148, 21, 21);
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: none;
+}
+
+.sidebar__header__h4 {
   font-size: 0.8rem;
   text-transform: capitalize;
   color: var(--main-black);
   opacity: 0.5;
-  margin-bottom: 1rem;
 }
 
 .sidebar__collections__names h4 {

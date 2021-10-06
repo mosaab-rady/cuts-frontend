@@ -5,11 +5,14 @@ import Hero from '../component/Hero';
 import '../css/collection.css';
 import CollectionBar from '../component/CollectionBar';
 import ProductCart from '../component/ProductCart';
+import MidSection from '../component/MidSection';
 
 export default function Collection() {
   // const { state, search } = useLocation();
   const location = useLocation();
   const [collection, setCollection] = useState();
+  const [products, setProducts] = useState([]);
+  const [productscopy, setProductscopy] = useState([]);
   // const [products, setProducts] = useState('');
   // const [name, setName] = useState('');
   // const [imgCover, setImgCover] = useState('');
@@ -28,6 +31,8 @@ export default function Collection() {
       if (response) {
         if (response.data.status === 'success') {
           setCollection(response.data.data.collection);
+          setProducts(response.data.data.collection.products);
+          setProductscopy(response.data.data.collection.products);
         }
       }
       // let response;
@@ -84,16 +89,23 @@ export default function Collection() {
 
       <section className='collection__body'>
         <div className='collection__body__nav'>
-          <CollectionBar />
+          <CollectionBar
+            products={products}
+            setProducts={setProducts}
+            setProductscopy={setProductscopy}
+          />
         </div>
         <div className='collection__body__products'>
-          {collection.products
-            ? collection.products.map((item, i) => {
+          {productscopy
+            ? productscopy.map((item, i) => {
                 return <ProductCart product={item} key={i} />;
               })
             : ''}
         </div>
       </section>
+      <div className='collection__midsection'>
+        <MidSection />
+      </div>
     </section>
   ) : (
     ''

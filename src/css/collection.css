@@ -10,6 +10,7 @@
 .collection__body {
   display: flex;
   position: relative;
+  margin-bottom: 8rem;
 }
 
 .collection__body__products {
@@ -20,4 +21,9 @@
   row-gap: 6rem;
   width: 100%;
   margin-right: 3rem;
+}
+
+.collection__midsection {
+  width: 90%;
+  margin: 0 auto;
 }
