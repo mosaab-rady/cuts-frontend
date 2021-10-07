@@ -91,7 +91,6 @@ export default function Collection() {
         <div className='collection__body__nav'>
           <CollectionBar
             products={products}
-            setProducts={setProducts}
             setProductscopy={setProductscopy}
           />
         </div>

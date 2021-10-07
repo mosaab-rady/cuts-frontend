@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/collectionBar.css';
 
-export default function CollectionBar({
-  products,
-  setProducts,
-  setProductscopy,
-}) {
+export default function CollectionBar({ products, setProductscopy }) {
   const [classic, setClassic] = useState(false);
   const [elongated, setElongated] = useState(false);
   const [split, setSplit] = useState(false);
@@ -16,42 +12,45 @@ export default function CollectionBar({
   const [hooded, setHooded] = useState(false);
   const [polo, setPolo] = useState(false);
   const [vneck, setVneck] = useState(false);
+  const [cut, setCut] = useState('');
+  const [collar, setCollar] = useState('');
 
   useEffect(() => {
-    let found = products.some((item) => item.cut === 'classic');
+    let found;
+    found = products.some((item) => item.cut === 'classic');
     if (found) {
       setClassic(true);
-    }
+    } else setClassic(false);
 
     found = products.some((item) => item.cut === 'elongated');
     if (found) {
       setElongated(true);
-    }
+    } else setElongated(false);
 
     found = products.some((item) => item.cut === 'split');
     if (found) {
       setSplit(true);
-    }
+    } else setSplit(false);
 
     found = products.some((item) => item.collar === 'crew');
     if (found) {
       setCrew(true);
-    }
+    } else setCrew(false);
 
     found = products.some((item) => item.collar === 'hoodie');
     if (found) {
       setHoodie(true);
-    }
+    } else setHoodie(false);
 
     found = products.some((item) => item.collar === 'henley');
     if (found) {
       setHenley(true);
-    }
+    } else setHenley(false);
 
     found = products.some((item) => item.collar === 'hooded');
     if (found) {
       setHooded(true);
-    }
+    } else setHooded(false);
 
     found = products.some((item) => item.collar === 'v-neck');
     if (found) {
@@ -61,7 +60,7 @@ export default function CollectionBar({
     found = products.some((item) => item.collar === 'polo');
     if (found) {
       setPolo(true);
-    }
+    } else setPolo(false);
   }, [products]);
 
   const display = (e) => {
@@ -78,18 +77,56 @@ export default function CollectionBar({
     }
   };
 
-  const filterProduct = (filter) => {
-    const filterdProducts = products.filter(
-      (item) => item.cut === filter || item.collar === filter
+  const filterProducts = (cut, collar) => {
+    let newProducts;
+    if (!cut && !collar) {
+      setProductscopy(products);
+      document.getElementById('close').style.display = 'none';
+      return;
+    }
+    if (!cut) {
+      newProducts = products.filter((item) => item.collar === collar);
+      setProductscopy(newProducts);
+      document.getElementById('close').style.display = 'block';
+      return;
+    }
+    if (!collar) {
+      newProducts = products.filter((item) => item.cut === cut);
+      setProductscopy(newProducts);
+      document.getElementById('close').style.display = 'block';
+      return;
+    }
+    newProducts = products.filter(
+      (item) => item.cut === cut && item.collar === collar
     );
-    setProductscopy(filterdProducts);
+    setProductscopy(newProducts);
     document.getElementById('close').style.display = 'block';
+  };
+
+  const changeCut = (name) => {
+    if (cut === name) {
+      setCut('');
+      filterProducts('', collar);
+    } else {
+      setCut(name);
+      filterProducts(name, collar);
+    }
+  };
+
+  const changeCollar = (name) => {
+    if (collar === name) {
+      setCollar('');
+      filterProducts(cut, '');
+    } else {
+      setCollar(name);
+      filterProducts(cut, name);
+    }
   };
 
   return (
     <div className='sidebar'>
       <div className='sidebar__collections'>
-        <h4 className='sidebar__header'>collections</h4>
+        <h4 className='sidebar__header__h4'>collections</h4>
         <div className='sidebar__collections__names'>
           <Link
             className='link'
@@ -125,6 +162,8 @@ export default function CollectionBar({
             id='close'
             onClick={() => {
               setProductscopy(products);
+              setCut('');
+              setCollar('');
               document.getElementById('close').style.display = 'none';
             }}
           >
@@ -153,8 +192,14 @@ export default function CollectionBar({
             <div className='sidebar__filters__filter__items'>
               {classic ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('classic')}
+                  className={
+                    cut === 'classic'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCut('classic');
+                  }}
                 >
                   <svg
                     width='100%'
@@ -185,8 +230,14 @@ export default function CollectionBar({
               )}
               {elongated ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('elongated')}
+                  className={
+                    cut === 'elongated'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCut('elongated');
+                  }}
                 >
                   <svg
                     width='100%'
@@ -216,8 +267,14 @@ export default function CollectionBar({
               )}
               {split ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('split')}
+                  className={
+                    cut === 'split'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCut('split');
+                  }}
                 >
                   <svg
                     width='100%'
@@ -273,8 +330,14 @@ export default function CollectionBar({
             <div className='sidebar__filters__filter__items'>
               {crew ? (
                 <div
-                  className='sidebar__filters__filter__items__item '
-                  onClick={() => filterProduct('crew')}
+                  className={
+                    collar === 'crew'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCollar('crew');
+                  }}
                 >
                   <svg
                     width='100%'
@@ -353,8 +416,14 @@ export default function CollectionBar({
               )}
               {hoodie ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('hoodie')}
+                  className={
+                    collar === 'hoodie'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCollar('hoodie');
+                  }}
                 >
                   <svg
                     viewBox='0 0 200 200'
@@ -436,8 +505,14 @@ export default function CollectionBar({
               )}
               {henley ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('henley')}
+                  className={
+                    collar === 'henley'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCollar('henley');
+                  }}
                 >
                   <svg
                     width='100%'
@@ -554,8 +629,14 @@ export default function CollectionBar({
               )}
               {hooded ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('hooded')}
+                  className={
+                    collar === 'hooded'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCollar('hooded');
+                  }}
                 >
                   <svg
                     viewBox='0 0 47 47'
@@ -614,8 +695,14 @@ export default function CollectionBar({
               )}
               {polo ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('polo')}
+                  className={
+                    collar === 'polo'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCollar('polo');
+                  }}
                 >
                   <svg
                     viewBox='0 0 35 35'
@@ -700,8 +787,14 @@ export default function CollectionBar({
               )}
               {vneck ? (
                 <div
-                  className='sidebar__filters__filter__items__item'
-                  onClick={() => filterProduct('v-neck')}
+                  className={
+                    collar === 'v-neck'
+                      ? 'sidebar__filters__filter__items__item active--filter'
+                      : 'sidebar__filters__filter__items__item'
+                  }
+                  onClick={() => {
+                    changeCollar('v-neck');
+                  }}
                 >
                   <svg
                     viewBox='0 0 26 26'

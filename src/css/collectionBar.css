@@ -34,6 +34,9 @@
   color: var(--main-black);
   opacity: 0.5;
 }
+.sidebar__collections__names {
+  margin-top: 1rem;
+}
 
 .sidebar__collections__names h4 {
   font-size: 0.75rem;
@@ -98,4 +101,12 @@
   font-size: 0.7rem;
   text-transform: capitalize;
   color: var(--gray);
+}
+
+.active--filter svg {
+  background-color: var(--main-black);
+}
+
+.active--filter .icon__path {
+  stroke: var(--main-white);
 }
