@@ -6,6 +6,30 @@ import DropShop from './DropShop';
 import NavbarDropCollections from './NavbarDropCollections';
 
 export default function Navbar() {
+  const hide = (name) => {
+    const collections = document.getElementById('navbar__drop__collections');
+    const shop = document.getElementById('navbar__drop__shop');
+
+    if (name === 'collections') {
+      collections.style.display = 'none';
+    } else if (name === 'shop') {
+      shop.style.display = 'none';
+    }
+  };
+
+  const display = (name) => {
+    const collections = document.getElementById('navbar__drop__collections');
+    const shop = document.getElementById('navbar__drop__shop');
+
+    if (name === 'collections') {
+      collections.style.display = 'block';
+      shop.style.display = 'none';
+    } else if (name === 'shop') {
+      collections.style.display = 'none';
+      shop.style.display = 'block';
+    }
+  };
+
   return (
     <>
       <div className='navbar_notification'>
@@ -68,6 +92,9 @@ export default function Navbar() {
           <div className='navbar__headings'>
             <div className='navbar__headings__group'>
               <Link
+                onMouseEnter={() => display('shop')}
+                onMouseLeave={() => hide('shop')}
+                onClick={() => hide('shop')}
                 to={{
                   pathname: '/shop-all',
                 }}
@@ -75,12 +102,20 @@ export default function Navbar() {
               >
                 <h4 className='navbar__headings__h4'>shop</h4>
               </Link>
-              <div className='navbar__drop navbar__drop__shop '>
+              <div
+                onMouseEnter={() => display('shop')}
+                onMouseLeave={() => hide('shop')}
+                className='navbar__drop navbar__drop__shop '
+                id='navbar__drop__shop'
+              >
                 <DropShop />
               </div>
             </div>
             <div className='navbar__headings__group'>
               <Link
+                onMouseEnter={() => display('collections')}
+                onMouseLeave={() => hide('collections')}
+                onClick={() => hide('collections')}
                 className=' link navbar__headings__collections'
                 to={{
                   pathname: '/collections/all-products',
@@ -88,12 +123,31 @@ export default function Navbar() {
               >
                 <h4 className='navbar__headings__h4 '>collections</h4>
               </Link>
-              <div className='navbar__drop navbar__drop__collections'>
+              <div
+                onMouseEnter={() => display('collections')}
+                onMouseLeave={() => hide('collections')}
+                className='navbar__drop navbar__drop__collections'
+                id='navbar__drop__collections'
+              >
                 <NavbarDropCollections />
               </div>
             </div>
-            <h4 className='navbar__headings__h4'>blog</h4>
-            <h4 className='navbar__headings__h4'>Brand</h4>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/t-shirt',
+              }}
+            >
+              <h4 className='navbar__headings__h4'>shirts</h4>
+            </Link>
+            <Link
+              className='link'
+              to={{
+                pathname: '/collections/sweat-shirt',
+              }}
+            >
+              <h4 className='navbar__headings__h4'>sweatshirts</h4>
+            </Link>
           </div>
           <div className='navbar__icons'>
             <Link

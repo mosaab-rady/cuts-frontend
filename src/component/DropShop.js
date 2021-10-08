@@ -7,6 +7,11 @@ import NavbarCollection from './NavbarCollection';
 export default function DropShop() {
   const [display, setDisplay] = useState('shirts');
 
+  const hideShop = () => {
+    const shop = document.getElementById('navbar__drop__shop');
+    shop.style.display = 'none';
+  };
+
   return (
     <section className='drop--shop'>
       <div className='drop--shop__sidebar'>
@@ -17,6 +22,7 @@ export default function DropShop() {
           }}
         >
           <Link
+            onClick={hideShop}
             className='link'
             to={{
               pathname: '/collections/all-products',
@@ -33,6 +39,7 @@ export default function DropShop() {
             </h3>
           </Link>
           <Link
+            onClick={hideShop}
             className='link'
             to={{
               pathname: '/collections/t-shirt',
@@ -41,6 +48,7 @@ export default function DropShop() {
             <h4 className='drop--shop__sidebar__group__h4'>t-shirts</h4>
           </Link>
           <Link
+            onClick={hideShop}
             className='link'
             to={{
               pathname: '/collections/polo',
@@ -49,6 +57,7 @@ export default function DropShop() {
             <h4 className='drop--shop__sidebar__group__h4'>polos</h4>
           </Link>
           <Link
+            onClick={hideShop}
             className='link'
             to={{
               pathname: '/collections/long-sleeve',
@@ -62,6 +71,7 @@ export default function DropShop() {
           onMouseEnter={() => setDisplay('layers')}
         >
           <Link
+            onClick={hideShop}
             className='link'
             to={{
               pathname: '/collections/sweat-shirt',
@@ -78,6 +88,7 @@ export default function DropShop() {
             </h3>
           </Link>
           <Link
+            onClick={hideShop}
             className='link'
             to={{
               pathname: '/collections/sweat-shirt',
@@ -86,6 +97,7 @@ export default function DropShop() {
             <h4 className='drop--shop__sidebar__group__h4'>sweatshirts</h4>
           </Link>
           <Link
+            onClick={hideShop}
             className='link'
             to={{
               pathname: '/collections/hooded-shirt',
@@ -99,6 +111,7 @@ export default function DropShop() {
         {display === 'shirts' ? (
           <div className='drop--shop__shirts--imgs'>
             <Link
+              onClick={hideShop}
               className='link'
               to={{
                 pathname: '/collections/crew-neck',
@@ -107,6 +120,7 @@ export default function DropShop() {
               <Cut top={true} name='crew' img='crew.webp' />
             </Link>
             <Link
+              onClick={hideShop}
               className='link'
               to={{
                 pathname: '/collections/v-neck',
@@ -115,6 +129,7 @@ export default function DropShop() {
               <Cut top={true} name='v-neck' img='v-neck.webp' />
             </Link>
             <Link
+              onClick={hideShop}
               className='link'
               to={{
                 pathname: '/collections/henley',
@@ -123,6 +138,7 @@ export default function DropShop() {
               <Cut top={true} name='henley' img='hanly.webp' />
             </Link>
             <Link
+              onClick={hideShop}
               className='link'
               to={{
                 pathname: '/collections/classic',
@@ -131,6 +147,7 @@ export default function DropShop() {
               <Cut top={false} name='classic' img='classic.webp' />
             </Link>
             <Link
+              onClick={hideShop}
               className='link'
               to={{
                 pathname: '/collections/split',
@@ -139,6 +156,7 @@ export default function DropShop() {
               <Cut top={false} name='split' img='split.webp' />
             </Link>
             <Link
+              onClick={hideShop}
               className='link'
               to={{
                 pathname: '/collections/elongated',

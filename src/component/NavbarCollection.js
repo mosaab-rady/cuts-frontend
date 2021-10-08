@@ -7,6 +7,11 @@ export default function NavbarCollection({ name, slug, img }) {
 
   return (
     <Link
+      onClick={() => {
+        document.getElementById('navbar__drop__collections').style.display =
+          'none';
+        document.getElementById('navbar__drop__shop').style.display = 'none';
+      }}
       className='link navbar--collection'
       to={{
         pathname: `/collections/${slug}`,
