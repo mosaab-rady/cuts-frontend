@@ -4,6 +4,7 @@ import '../css/navbar.css';
 import Cart from './Cart';
 import DropShop from './DropShop';
 import NavbarDropCollections from './NavbarDropCollections';
+import Sidebar from './Sidebar';
 
 export default function Navbar() {
   const hide = (name) => {
@@ -37,6 +38,38 @@ export default function Navbar() {
       </div>
       <div className='navbar'>
         <div className='navbar__header'>
+          <div className='navbar__header__apps__svg'>
+            <svg
+              onClick={() =>
+                (document.getElementById('sidebar--container').style.display =
+                  'block')
+              }
+              width='25'
+              height='12'
+              viewBox='0 0 14 9'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M1 1H6.45455H13'
+                stroke='black'
+                strokeWidth='2'
+                strokeLinecap='round'
+              />
+              <path
+                d='M1 4.5H13'
+                stroke='black'
+                strokeWidth='2'
+                strokeLinecap='round'
+              />
+              <path
+                d='M1 8H13'
+                stroke='black'
+                strokeWidth='2'
+                strokeLinecap='round'
+              />
+            </svg>
+          </div>
           <Link to='/'>
             <svg
               className='navbar__logo'
@@ -102,14 +135,6 @@ export default function Navbar() {
               >
                 <h4 className='navbar__headings__h4'>shop</h4>
               </Link>
-              <div
-                onMouseEnter={() => display('shop')}
-                onMouseLeave={() => hide('shop')}
-                className='navbar__drop navbar__drop__shop '
-                id='navbar__drop__shop'
-              >
-                <DropShop />
-              </div>
             </div>
             <div className='navbar__headings__group'>
               <Link
@@ -123,14 +148,6 @@ export default function Navbar() {
               >
                 <h4 className='navbar__headings__h4 '>collections</h4>
               </Link>
-              <div
-                onMouseEnter={() => display('collections')}
-                onMouseLeave={() => hide('collections')}
-                className='navbar__drop navbar__drop__collections'
-                id='navbar__drop__collections'
-              >
-                <NavbarDropCollections />
-              </div>
             </div>
             <Link
               className='link'
@@ -157,12 +174,12 @@ export default function Navbar() {
               }}
             >
               <svg
-                className='navbar__icons__icon'
+                className='navbar__icons__icon navbar__icons__icon__hide'
                 viewBox='0 0 20 20'
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'
-                width='15px'
-                height='15px'
+                width='17px'
+                height='17px'
               >
                 <ellipse
                   cx='9.99998'
@@ -178,9 +195,9 @@ export default function Navbar() {
               </svg>
             </Link>
             <svg
-              className='navbar__icons__icon'
-              width='15'
-              height='15'
+              className='navbar__icons__icon navbar__icons__icon__hide'
+              width='17px'
+              height='17px'
               viewBox='0 0 22 20'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
@@ -208,8 +225,8 @@ export default function Navbar() {
               viewBox='0 0 22 21'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
-              width='20px'
-              height='20px'
+              width='25px'
+              height='25px'
             >
               <path
                 d='M6.35016 5H21.3502C21.3502 5 20.3502 12.5 18.8502 12.5C17.3502 12.5 9.85016 12.5 8.35016 12.5C6.85016 12.5 6.35016 5 6.35016 5Z'
@@ -229,6 +246,25 @@ export default function Navbar() {
               <Cart />
             </div>
           </div>
+        </div>
+        <div
+          onMouseEnter={() => display('shop')}
+          onMouseLeave={() => hide('shop')}
+          className='navbar__drop navbar__drop__shop '
+          id='navbar__drop__shop'
+        >
+          <DropShop />
+        </div>
+        <div
+          onMouseEnter={() => display('collections')}
+          onMouseLeave={() => hide('collections')}
+          className='navbar__drop navbar__drop__collections'
+          id='navbar__drop__collections'
+        >
+          <NavbarDropCollections />
+        </div>
+        <div className='sidebar--container' id='sidebar--container'>
+          <Sidebar />
         </div>
       </div>
     </>
