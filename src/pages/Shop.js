@@ -5,7 +5,7 @@ import '../css/shop.css';
 
 export default function Shop() {
   useEffect(() => {
-    window.scrollTo({
+    document.getElementById('App').scrollTo({
       top: 0,
       behavior: 'auto',
     });

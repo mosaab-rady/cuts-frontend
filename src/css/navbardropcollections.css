@@ -6,3 +6,10 @@
   padding-bottom: 4rem;
   gap: 2rem;
 }
+
+@media screen and (max-width: 1100px) {
+  .navbar__drop__collections--container {
+    display: flex;
+    flex-direction: column;
+  }
+}

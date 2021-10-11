@@ -4,7 +4,7 @@
 }
 
 body {
-  overflow: auto;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -59,6 +59,9 @@ h4 {
   font-family: 'Akzidenz-Grotesk BQ', sans-serif;
   line-height: 1.5;
   letter-spacing: 0.2px;
+  height: 100vh;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .link {

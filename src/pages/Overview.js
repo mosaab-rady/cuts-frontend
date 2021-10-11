@@ -16,7 +16,7 @@ export default function Overview() {
   const [bestSellers, setBestSellers] = useState('');
 
   useEffect(() => {
-    window.scrollTo({
+    document.getElementById('App').scrollTo({
       top: 0,
       behavior: 'auto',
     });
@@ -54,12 +54,15 @@ export default function Overview() {
     }
   };
 
-  window.onscroll = function () {
-    myFn();
-  };
+  const app = document.getElementById('App');
+  if (app) {
+    app.onscroll = function () {
+      myFn();
+    };
+  }
 
   return (
-    <section className='overview'>
+    <section className='overview' id='overview'>
       {mainCollection ? (
         <div className='overview__hero'>
           <Hero

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/navbar.css';
 import Cart from './Cart';
@@ -7,6 +7,7 @@ import NavbarDropCollections from './NavbarDropCollections';
 import Sidebar from './Sidebar';
 
 export default function Navbar() {
+  const [sidebar, setSidebar] = useState(false);
   const hide = (name) => {
     const collections = document.getElementById('navbar__drop__collections');
     const shop = document.getElementById('navbar__drop__shop');
@@ -38,38 +39,39 @@ export default function Navbar() {
       </div>
       <div className='navbar'>
         <div className='navbar__header'>
-          <div className='navbar__header__apps__svg'>
-            <svg
-              onClick={() =>
-                (document.getElementById('sidebar--container').style.display =
-                  'block')
-              }
-              width='25'
-              height='12'
-              viewBox='0 0 14 9'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M1 1H6.45455H13'
-                stroke='black'
-                strokeWidth='2'
-                strokeLinecap='round'
-              />
-              <path
-                d='M1 4.5H13'
-                stroke='black'
-                strokeWidth='2'
-                strokeLinecap='round'
-              />
-              <path
-                d='M1 8H13'
-                stroke='black'
-                strokeWidth='2'
-                strokeLinecap='round'
-              />
-            </svg>
-          </div>
+          <svg
+            className='navbar__header__apps__svg'
+            onClick={() => {
+              document.getElementById('sidebar--container').style.display =
+                'block';
+              setSidebar(true);
+            }}
+            width='25'
+            height='12'
+            viewBox='0 0 14 9'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M1 1H6.45455H13'
+              stroke='black'
+              strokeWidth='2'
+              strokeLinecap='round'
+            />
+            <path
+              d='M1 4.5H13'
+              stroke='black'
+              strokeWidth='2'
+              strokeLinecap='round'
+            />
+            <path
+              d='M1 8H13'
+              stroke='black'
+              strokeWidth='2'
+              strokeLinecap='round'
+            />
+          </svg>
+
           <Link to='/'>
             <svg
               className='navbar__logo'
@@ -264,7 +266,7 @@ export default function Navbar() {
           <NavbarDropCollections />
         </div>
         <div className='sidebar--container' id='sidebar--container'>
-          <Sidebar />
+          {sidebar ? <Sidebar /> : ''}
         </div>
       </div>
     </>

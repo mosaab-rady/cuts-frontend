@@ -18,7 +18,7 @@ export default function Product() {
   const [fabrics, setFabrics] = useState('');
 
   useEffect(() => {
-    window.scrollTo({
+    document.getElementById('App').scrollTo({
       top: 0,
       behavior: 'auto',
     });

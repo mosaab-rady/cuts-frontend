@@ -8,7 +8,7 @@ export default function Account() {
   const { currentUser } = useContext(myContext);
 
   useEffect(() => {
-    window.scrollTo({
+    document.getElementById('App').scrollTo({
       top: 0,
       behavior: 'auto',
     });

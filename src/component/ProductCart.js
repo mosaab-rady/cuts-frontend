@@ -12,10 +12,19 @@ export default function ProductCart({ product }) {
     dispatch({ type: 'ADD_TO_CART', payload: order });
   };
 
+  const sidebar = document.getElementById('sidebar--container');
+
+  const hidesidebar = () => {
+    if (sidebar) {
+      sidebar.style.display = 'none';
+    }
+  };
+
   return (
     <div className='product'>
       <section className='product__img'>
         <Link
+          onClick={hidesidebar}
           to={{
             pathname: `/shirts/${product.slug}`,
             search: `fabric=${product.fabric}&color=${product.color}`,
@@ -152,6 +161,7 @@ export default function ProductCart({ product }) {
       <section className='product__footer'>
         <h6 className='product__footer__color'>{product.color}</h6>
         <Link
+          onClick={hidesidebar}
           className='link'
           to={{
             pathname: `/shirts/${product.name}`,
