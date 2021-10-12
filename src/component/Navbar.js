@@ -8,29 +8,32 @@ import Sidebar from './Sidebar';
 
 export default function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-  const hide = (name) => {
-    const collections = document.getElementById('navbar__drop__collections');
-    const shop = document.getElementById('navbar__drop__shop');
+  const [dropshop, setDropshop] = useState(false);
+  const [dropcollections, setDropcollections] = useState(false);
 
-    if (name === 'collections') {
-      collections.style.display = 'none';
-    } else if (name === 'shop') {
-      shop.style.display = 'none';
-    }
-  };
+  // const hide = (name) => {
+  //   const collections = document.getElementById('navbar__drop__collections');
+  //   const shop = document.getElementById('navbar__drop__shop');
 
-  const display = (name) => {
-    const collections = document.getElementById('navbar__drop__collections');
-    const shop = document.getElementById('navbar__drop__shop');
+  //   if (name === 'collections') {
+  //     collections.style.display = 'none';
+  //   } else if (name === 'shop') {
+  //     shop.style.display = 'none';
+  //   }
+  // };
 
-    if (name === 'collections') {
-      collections.style.display = 'block';
-      shop.style.display = 'none';
-    } else if (name === 'shop') {
-      collections.style.display = 'none';
-      shop.style.display = 'block';
-    }
-  };
+  // const display = (name) => {
+  //   const collections = document.getElementById('navbar__drop__collections');
+  //   const shop = document.getElementById('navbar__drop__shop');
+
+  //   if (name === 'collections') {
+  //     collections.style.display = 'block';
+  //     shop.style.display = 'none';
+  //   } else if (name === 'shop') {
+  //     collections.style.display = 'none';
+  //     shop.style.display = 'block';
+  //   }
+  // };
 
   return (
     <>
@@ -42,8 +45,6 @@ export default function Navbar() {
           <svg
             className='navbar__header__apps__svg'
             onClick={() => {
-              document.getElementById('sidebar--container').style.display =
-                'block';
               setSidebar(true);
             }}
             width='25'
@@ -127,9 +128,12 @@ export default function Navbar() {
           <div className='navbar__headings'>
             <div className='navbar__headings__group'>
               <Link
-                onMouseEnter={() => display('shop')}
-                onMouseLeave={() => hide('shop')}
-                onClick={() => hide('shop')}
+                onMouseEnter={() => setDropshop(true)}
+                onMouseLeave={() => setDropshop(false)}
+                onClick={() => setDropshop(false)}
+                // onMouseEnter={() => display('shop')}
+                // onMouseLeave={() => hide('shop')}
+                // onClick={() => hide('shop')}
                 to={{
                   pathname: '/shop-all',
                 }}
@@ -140,9 +144,12 @@ export default function Navbar() {
             </div>
             <div className='navbar__headings__group'>
               <Link
-                onMouseEnter={() => display('collections')}
-                onMouseLeave={() => hide('collections')}
-                onClick={() => hide('collections')}
+                onMouseEnter={() => setDropcollections(true)}
+                onMouseLeave={() => setDropcollections(false)}
+                onClick={() => setDropcollections(false)}
+                // onMouseEnter={() => display('collections')}
+                // onMouseLeave={() => hide('collections')}
+                // onClick={() => hide('collections')}
                 className=' link navbar__headings__collections'
                 to={{
                   pathname: '/collections/all-products',
@@ -249,25 +256,41 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-        <div
-          onMouseEnter={() => display('shop')}
-          onMouseLeave={() => hide('shop')}
-          className='navbar__drop navbar__drop__shop '
-          id='navbar__drop__shop'
-        >
-          <DropShop />
-        </div>
-        <div
-          onMouseEnter={() => display('collections')}
-          onMouseLeave={() => hide('collections')}
-          className='navbar__drop navbar__drop__collections'
-          id='navbar__drop__collections'
-        >
-          <NavbarDropCollections />
-        </div>
-        <div className='sidebar--container' id='sidebar--container'>
-          {sidebar ? <Sidebar /> : ''}
-        </div>
+        {dropshop ? (
+          <div
+            onMouseEnter={() => setDropshop(true)}
+            onMouseLeave={() => setDropshop(false)}
+            // onMouseEnter={() => display('shop')}
+            // onMouseLeave={() => hide('shop')}
+            className='navbar__drop navbar__drop__shop '
+            id='navbar__drop__shop'
+          >
+            <DropShop />
+          </div>
+        ) : (
+          ''
+        )}
+        {dropcollections ? (
+          <div
+            onMouseEnter={() => setDropcollections(true)}
+            onMouseLeave={() => setDropcollections(false)}
+            // onMouseEnter={() => display('collections')}
+            // onMouseLeave={() => hide('collections')}
+            className='navbar__drop navbar__drop__collections'
+            id='navbar__drop__collections'
+          >
+            <NavbarDropCollections />
+          </div>
+        ) : (
+          ''
+        )}
+        {sidebar ? (
+          <div className='sidebar--container' id='sidebar--container'>
+            <Sidebar setSidebar={setSidebar} />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </>
   );

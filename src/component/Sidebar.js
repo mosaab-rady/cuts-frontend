@@ -6,7 +6,7 @@ import DropShop from './DropShop';
 import NavbarDropCollections from './NavbarDropCollections';
 import ProductCart from './ProductCart';
 
-export default function Sidebar() {
+export default function Sidebar({ setSidebar }) {
   const [bestSellers, setBestSellers] = useState([]);
   const [shop, setShop] = useState(false);
   const [collections, setCollections] = useState(false);
@@ -24,7 +24,7 @@ export default function Sidebar() {
   }, []);
 
   const hidesidebar = () => {
-    document.getElementById('sidebar--container').style.display = 'none';
+    setSidebar(false);
   };
 
   return (
@@ -118,8 +118,8 @@ export default function Sidebar() {
                     <path
                       d='M10.5 1.5L2.5 8.5L10.5 15.5'
                       stroke='black'
-                      stroke-width='2'
-                      stroke-linecap='round'
+                      strokeWidth='2'
+                      strokeLinecap='round'
                     />
                   </svg>
                   shop
@@ -183,8 +183,8 @@ export default function Sidebar() {
                     <path
                       d='M10.5 1.5L2.5 8.5L10.5 15.5'
                       stroke='black'
-                      stroke-width='2'
-                      stroke-linecap='round'
+                      strokeWidth='2'
+                      strokeLinecap='round'
                     />
                   </svg>
                   collections
@@ -205,11 +205,14 @@ export default function Sidebar() {
                     d='M1 1L16 19M16 1L1 19'
                     stroke='black'
                     strokeWidth='2'
-                    strokeinecap='round'
+                    strokeLinecap='round'
                   />
                 </svg>
               </div>
-              <NavbarDropCollections />
+              <NavbarDropCollections
+                setCollections={setCollections}
+                setSidebar={setSidebar}
+              />
             </div>
           ) : (
             ''

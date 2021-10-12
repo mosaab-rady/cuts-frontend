@@ -2,15 +2,43 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/navbarcollection.css';
 
-export default function NavbarCollection({ name, slug, img }) {
+export default function NavbarCollection({
+  name,
+  slug,
+  img,
+  setCollections,
+  setSidebar,
+}) {
   const host = 'http://localhost:5000';
+
+  const dropshop = document.getElementById('navbar__drop__collections');
+  const dropcollections = document.getElementById('navbar__drop__shop');
+
+  const hideDropNavbar = () => {
+    if (dropshop) {
+      dropshop.style.display = 'none';
+    }
+    if (dropcollections) {
+      dropcollections.style.display = 'none';
+    }
+  };
+
+  const sidebar = document.getElementById('sidebar--container');
+  const hidesidebar = () => {
+    if (sidebar) {
+      setSidebar(false);
+      setCollections(false);
+    } else return;
+  };
 
   return (
     <Link
       onClick={() => {
-        document.getElementById('navbar__drop__collections').style.display =
-          'none';
-        document.getElementById('navbar__drop__shop').style.display = 'none';
+        hideDropNavbar();
+        // document.getElementById('navbar__drop__collections').style.display =
+        //   'none';
+        // document.getElementById('navbar__drop__shop').style.display = 'none';
+        hidesidebar();
       }}
       className='link navbar--collection'
       to={{

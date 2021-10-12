@@ -3,7 +3,7 @@ import '../css/navbardropcollections.css';
 import { request } from '../js/axios';
 import NavbarCollection from './NavbarCollection';
 
-export default function NavbarDropCollections() {
+export default function NavbarDropCollections({ setCollections, setSidebar }) {
   const [main, setMain] = useState('');
   const [first, setFirst] = useState('');
 
@@ -35,6 +35,8 @@ export default function NavbarDropCollections() {
           name={main.name}
           slug={main.slug}
           img={main.imageDetail}
+          setCollections={setCollections}
+          setSidebar={setSidebar}
         />
       ) : (
         ''
@@ -44,6 +46,8 @@ export default function NavbarDropCollections() {
           name={first.name}
           slug={first.slug}
           img={first.imageDetail}
+          setCollections={setCollections}
+          setSidebar={setSidebar}
         />
       ) : (
         ''
@@ -52,11 +56,15 @@ export default function NavbarDropCollections() {
         name='new releases'
         slug='new-releases'
         img='image/new-releases/imageDetail'
+        setCollections={setCollections}
+        setSidebar={setSidebar}
       />
       <NavbarCollection
         name='best sellers'
         slug='best-sellers'
         img='image/best-sellers/imageDetail'
+        setCollections={setCollections}
+        setSidebar={setSidebar}
       />
     </div>
   );
