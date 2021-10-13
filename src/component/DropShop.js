@@ -14,7 +14,42 @@ export default function DropShop() {
 
   return (
     <section className='drop--shop'>
-      <div className='drop--shop__sidebar'>
+      <div className='drop--shop__shirts--container'>
+        <div className='drop--shop__shirts__names'>
+          <h3 className='drop--shop__names__h3'>shop shirts</h3>
+          <h4 className='drop--shop__names__h4'>t-shirts</h4>
+          <h4 className='drop--shop__names__h4'>polos</h4>
+          <h4 className='drop--shop__names__h4'>long sleeves</h4>
+        </div>
+        <div className='drop--shop__shirts'>
+          <Cut top={true} name='crew' img='crew.webp' />
+          <Cut top={true} name='v-neck' img='v-neck.webp' />
+          <Cut top={true} name='henley' img='hanly.webp' />
+          <Cut top={false} name='classic' img='classic.webp' />
+          <Cut top={false} name='split' img='split.webp' />
+          <Cut top={false} name='elongated' img='elongated.webp' />
+        </div>
+      </div>
+      <div className='drop--shop__collections--container'>
+        <div className='drop--shop__collections__names'>
+          <h3 className='drop--shop__names__h3'>shop layers</h3>
+          <h4 className='drop--shop__names__h4'>sweatshirts</h4>
+          <h4 className='drop--shop__names__h4'>hooded shirts</h4>
+        </div>
+        <div className='drop--shop__collections'>
+          <NavbarCollection
+            name='sweatshirts'
+            slug='sweat-shirt'
+            img='image/sweat-shirt/imageDetail'
+          />
+          <NavbarCollection
+            name='hooded shirts'
+            slug='hooded-shirt'
+            img='image/hooded-shirt/imageDetail'
+          />
+        </div>
+      </div>
+      {/* <div className='drop--shop__sidebar'>
         <div
           className='drop--shop__sidebar__group'
           onMouseEnter={() => {
@@ -184,7 +219,7 @@ export default function DropShop() {
         ) : (
           ''
         )}
-      </section>
+      </section> */}
     </section>
   );
 }

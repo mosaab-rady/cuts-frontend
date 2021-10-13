@@ -1,8 +1,47 @@
 .drop--shop {
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'shirtsname images images'
+    'sweatshirtsname images images'; */
+  gap: 2rem;
+  height: 90vh;
+  overflow: scroll;
 }
+
+.drop--shop__shirts--container {
+  display: flex;
+}
+
+.drop--shop__collections--container {
+  display: flex;
+}
+
+.drop--shop__shirts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(5rem, 12rem));
+  gap: 1rem;
+  grid-area: images;
+}
+
+.drop--shop__collections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(20rem, 25rem));
+  width: 100%;
+  gap: 2rem;
+  grid-area: images;
+}
+
+.drop--shop__shirts__names {
+  grid-area: shirtsname;
+}
+
+.drop--shop__collections__names {
+  grid-area: sweatshirtsname;
+}
+
+/* 
 
 .drop--shop__sidebar {
   border-right: 1px solid #d4d4d4;
@@ -53,7 +92,7 @@
   width: 40rem;
   grid-template-columns: repeat(3, minmax(5rem, 15rem));
   /* justify-content: space-between; */
-  gap: 2rem;
+/* gap: 2rem;
 }
 
 .drop--shop__collections {
@@ -61,4 +100,74 @@
   width: 40rem;
   grid-template-columns: repeat(2, minmax(15rem, 20rem));
   gap: 2rem;
+} */
+
+.drop--shop__names__h3 {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  font-weight: normal;
+  border-bottom: 1px solid var(--gray);
+  color: var(--main-black);
+  width: fit-content;
+}
+
+.drop--shop__names__h4 {
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-transform: capitalize;
+  width: fit-content;
+  border-bottom: 1px solid var(--main-white);
+  cursor: pointer;
+}
+
+.drop--shop__names__h4:hover {
+  border-bottom: 1px solid var(--gray);
+}
+
+@media screen and (max-width: 1100px) {
+  .drop--shop {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .drop--shop__shirts--container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      'names'
+      'cuts'
+      'cuts'; */
+    /* gap: 1rem; */
+    /* justify-content: center;
+    align-items: center; */
+  }
+  /* 
+  .drop--shop__shirts__names {
+    grid-area: names;
+  } */
+
+  .drop--shop__shirts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(5rem, 12rem));
+    gap: 1rem;
+    /* grid-area: cuts; */
+  }
+
+  .drop--shop__collections--container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .drop--shop__collections {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
