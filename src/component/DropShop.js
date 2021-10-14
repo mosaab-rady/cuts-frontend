@@ -5,22 +5,40 @@ import Cut from '../component/Cut';
 import NavbarCollection from './NavbarCollection';
 
 export default function DropShop() {
-  const [display, setDisplay] = useState('shirts');
+  // const [display, setDisplay] = useState('shirts');
 
-  const hideShop = () => {
-    const shop = document.getElementById('navbar__drop__shop');
-    shop.style.display = 'none';
+  // const hideShop = () => {
+  //   const shop = document.getElementById('navbar__drop__shop');
+  //   shop.style.display = 'none';
+  // };
+
+  const toggle = (name) => {
+    if (window.innerWidth > 1100) {
+      const shirts = document.getElementById('navbar__shop__shirts');
+      const collections = document.getElementById('navbar__shop__collections');
+      if (name === 'shirts') {
+        shirts.style.display = 'block';
+        collections.style.display = 'none';
+      } else if (name === 'collections') {
+        shirts.style.display = 'none';
+        collections.style.display = 'block';
+      }
+    } else return;
   };
 
   return (
     <section className='drop--shop'>
-      <div className='drop--shop__shirts--container'>
-        <div className='drop--shop__shirts__names'>
-          <h3 className='drop--shop__names__h3'>shop shirts</h3>
-          <h4 className='drop--shop__names__h4'>t-shirts</h4>
-          <h4 className='drop--shop__names__h4'>polos</h4>
-          <h4 className='drop--shop__names__h4'>long sleeves</h4>
-        </div>
+      {/* <div className='drop--shop__shirts--container'> */}
+      <div
+        className='drop--shop__shirts__names'
+        onMouseEnter={() => toggle('shirts')}
+      >
+        <h3 className='drop--shop__names__h3'>shop shirts</h3>
+        <h4 className='drop--shop__names__h4'>t-shirts</h4>
+        <h4 className='drop--shop__names__h4'>polos</h4>
+        <h4 className='drop--shop__names__h4'>long sleeves</h4>
+      </div>
+      <div className='drop--shop__shirts--container' id='navbar__shop__shirts'>
         <div className='drop--shop__shirts'>
           <Cut top={true} name='crew' img='crew.webp' />
           <Cut top={true} name='v-neck' img='v-neck.webp' />
@@ -30,12 +48,20 @@ export default function DropShop() {
           <Cut top={false} name='elongated' img='elongated.webp' />
         </div>
       </div>
-      <div className='drop--shop__collections--container'>
-        <div className='drop--shop__collections__names'>
-          <h3 className='drop--shop__names__h3'>shop layers</h3>
-          <h4 className='drop--shop__names__h4'>sweatshirts</h4>
-          <h4 className='drop--shop__names__h4'>hooded shirts</h4>
-        </div>
+      {/* </div> */}
+      {/* <div className='drop--shop__collections--container'> */}
+      <div
+        className='drop--shop__collections__names'
+        onMouseEnter={() => toggle('collections')}
+      >
+        <h3 className='drop--shop__names__h3'>shop layers</h3>
+        <h4 className='drop--shop__names__h4'>sweatshirts</h4>
+        <h4 className='drop--shop__names__h4'>hooded shirts</h4>
+      </div>
+      <div
+        className='drop--shop__collections--container'
+        id='navbar__shop__collections'
+      >
         <div className='drop--shop__collections'>
           <NavbarCollection
             name='sweatshirts'
@@ -49,6 +75,8 @@ export default function DropShop() {
           />
         </div>
       </div>
+
+      {/* </div> */}
       {/* <div className='drop--shop__sidebar'>
         <div
           className='drop--shop__sidebar__group'
