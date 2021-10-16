@@ -41,7 +41,8 @@
 }
 
 .navbar__sidebar__bestsellers--container {
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
+  padding-left: 1rem;
   padding-top: 2rem;
 }
 

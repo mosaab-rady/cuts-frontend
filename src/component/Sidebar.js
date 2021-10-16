@@ -80,7 +80,7 @@ export default function Sidebar({ setSidebar }) {
         <h4 className='navbar__sidebar__bestsellers__h4'>best sellers</h4>
         <div className='navbar__sidebar__bestsellers'>
           {bestSellers.map((item, i) => (
-            <ProductCart key={i} product={item} />
+            <ProductCart key={i} product={item} setSidebar={setSidebar} />
           ))}
         </div>
       </div>
@@ -144,7 +144,11 @@ export default function Sidebar({ setSidebar }) {
                   />
                 </svg>
               </div>
-              <DropShop />
+              <DropShop
+                setCollections={setCollections}
+                setShop={setShop}
+                setSidebar={setSidebar}
+              />
             </div>
           ) : (
             ''
@@ -212,6 +216,7 @@ export default function Sidebar({ setSidebar }) {
               <NavbarDropCollections
                 setCollections={setCollections}
                 setSidebar={setSidebar}
+                setShop={setShop}
               />
             </div>
           ) : (
@@ -251,6 +256,28 @@ export default function Sidebar({ setSidebar }) {
           >
             <h3 className='navbar__sidebar__groups__group__h3'>
               sweat shirts{' '}
+              <svg
+                width='13px'
+                height='13px'
+                viewBox='0 0 12 18'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path d='M1 1L11 9.5L1 17' stroke='black' strokeWidth='2' />
+              </svg>
+            </h3>
+          </Link>
+        </div>
+        <div className='navbar__sidebar__groups__group'>
+          <Link
+            onClick={hidesidebar}
+            className='link'
+            to={{
+              pathname: '/collections/all-products',
+            }}
+          >
+            <h3 className='navbar__sidebar__groups__group__h3'>
+              all products
               <svg
                 width='13px'
                 height='13px'

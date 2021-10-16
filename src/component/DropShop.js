@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/dropshop.css';
 import Cut from '../component/Cut';
 import NavbarCollection from './NavbarCollection';
 
-export default function DropShop() {
+export default function DropShop({ setShop, setCollections, setSidebar }) {
   // const [display, setDisplay] = useState('shirts');
 
   // const hideShop = () => {
@@ -26,6 +26,21 @@ export default function DropShop() {
     } else return;
   };
 
+  const hideNavbarShop = () => {
+    const navbarShop = document.getElementById('navbar__drop__shop');
+    if (navbarShop) {
+      navbarShop.style.display = 'none';
+    } else return;
+  };
+
+  const hideSidebar = () => {
+    const sidebar = document.getElementById('sidebar--container');
+    if (sidebar) {
+      setSidebar(false);
+      setShop(false);
+    } else return;
+  };
+
   return (
     <section className='drop--shop'>
       {/* <div className='drop--shop__shirts--container'> */}
@@ -34,18 +49,117 @@ export default function DropShop() {
         onMouseEnter={() => toggle('shirts')}
       >
         <h3 className='drop--shop__names__h3'>shop shirts</h3>
-        <h4 className='drop--shop__names__h4'>t-shirts</h4>
-        <h4 className='drop--shop__names__h4'>polos</h4>
-        <h4 className='drop--shop__names__h4'>long sleeves</h4>
+        <Link
+          onClick={() => {
+            hideSidebar();
+            hideNavbarShop();
+          }}
+          className='link'
+          to={{
+            pathname: '/collections/t-shirt',
+          }}
+        >
+          <h4 className='drop--shop__names__h4'>t-shirts</h4>
+        </Link>
+        <Link
+          onClick={() => {
+            hideSidebar();
+            hideNavbarShop();
+          }}
+          className='link'
+          to={{
+            pathname: '/collections/polo',
+          }}
+        >
+          <h4 className='drop--shop__names__h4'>polos</h4>
+        </Link>
+        <Link
+          onClick={() => {
+            hideSidebar();
+            hideNavbarShop();
+          }}
+          className='link'
+          to={{
+            pathname: '/collections/long-sleeve',
+          }}
+        >
+          <h4 className='drop--shop__names__h4'>long sleeves</h4>
+        </Link>
       </div>
       <div className='drop--shop__shirts--container' id='navbar__shop__shirts'>
         <div className='drop--shop__shirts'>
-          <Cut top={true} name='crew' img='crew.webp' />
-          <Cut top={true} name='v-neck' img='v-neck.webp' />
-          <Cut top={true} name='henley' img='hanly.webp' />
-          <Cut top={false} name='classic' img='classic.webp' />
-          <Cut top={false} name='split' img='split.webp' />
-          <Cut top={false} name='elongated' img='elongated.webp' />
+          <Link
+            onClick={() => {
+              hideSidebar();
+              hideNavbarShop();
+            }}
+            className='link'
+            to={{
+              pathname: '/collections/crew-neck',
+            }}
+          >
+            <Cut top={true} name='crew' img='crew.webp' />
+          </Link>
+          <Link
+            onClick={() => {
+              hideSidebar();
+              hideNavbarShop();
+            }}
+            className='link'
+            to={{
+              pathname: '/collections/v-neck',
+            }}
+          >
+            <Cut top={true} name='v-neck' img='v-neck.webp' />
+          </Link>
+          <Link
+            onClick={() => {
+              hideSidebar();
+              hideNavbarShop();
+            }}
+            className='link'
+            to={{
+              pathname: '/collections/henley',
+            }}
+          >
+            <Cut top={true} name='henley' img='hanly.webp' />
+          </Link>
+          <Link
+            onClick={() => {
+              hideSidebar();
+              hideNavbarShop();
+            }}
+            className='link'
+            to={{
+              pathname: '/collections/classic',
+            }}
+          >
+            <Cut top={false} name='classic' img='classic.webp' />
+          </Link>
+          <Link
+            onClick={() => {
+              hideSidebar();
+              hideNavbarShop();
+            }}
+            className='link'
+            to={{
+              pathname: '/collections/split',
+            }}
+          >
+            <Cut top={false} name='split' img='split.webp' />
+          </Link>
+          <Link
+            onClick={() => {
+              hideSidebar();
+              hideNavbarShop();
+            }}
+            className='link'
+            to={{
+              pathname: '/collections/elongated',
+            }}
+          >
+            <Cut top={false} name='elongated' img='elongated.webp' />
+          </Link>
         </div>
       </div>
       {/* </div> */}
@@ -55,8 +169,31 @@ export default function DropShop() {
         onMouseEnter={() => toggle('collections')}
       >
         <h3 className='drop--shop__names__h3'>shop layers</h3>
-        <h4 className='drop--shop__names__h4'>sweatshirts</h4>
-        <h4 className='drop--shop__names__h4'>hooded shirts</h4>
+        <Link
+          onClick={() => {
+            hideSidebar();
+            hideNavbarShop();
+          }}
+          className='link'
+          to={{
+            pathname: '/collections/sweat-shirt',
+          }}
+        >
+          <h4 className='drop--shop__names__h4'>sweatshirts</h4>
+        </Link>
+
+        <Link
+          onClick={() => {
+            hideSidebar();
+            hideNavbarShop();
+          }}
+          className='link'
+          to={{
+            pathname: '/collections/hooded-shirt',
+          }}
+        >
+          <h4 className='drop--shop__names__h4'>hooded shirts</h4>
+        </Link>
       </div>
       <div
         className='drop--shop__collections--container'
@@ -67,11 +204,17 @@ export default function DropShop() {
             name='sweatshirts'
             slug='sweat-shirt'
             img='image/sweat-shirt/imageDetail'
+            setCollections={setCollections}
+            setShop={setShop}
+            setSidebar={setSidebar}
           />
           <NavbarCollection
             name='hooded shirts'
             slug='hooded-shirt'
             img='image/hooded-shirt/imageDetail'
+            setCollections={setCollections}
+            setShop={setShop}
+            setSidebar={setSidebar}
           />
         </div>
       </div>

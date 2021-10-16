@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/productCart.css';
 import { myContext } from '../Context';
 
-export default function ProductCart({ product }) {
+export default function ProductCart({ product, setSidebar }) {
   const host = 'http://localhost:5000';
   const { dispatch } = useContext(myContext);
 
@@ -12,11 +12,10 @@ export default function ProductCart({ product }) {
     dispatch({ type: 'ADD_TO_CART', payload: order });
   };
 
-  const sidebar = document.getElementById('sidebar--container');
-
   const hidesidebar = () => {
+    const sidebar = document.getElementById('sidebar--container');
     if (sidebar) {
-      sidebar.style.display = 'none';
+      setSidebar(false);
     }
   };
 

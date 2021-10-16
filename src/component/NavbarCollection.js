@@ -7,14 +7,16 @@ export default function NavbarCollection({
   slug,
   img,
   setCollections,
+  setShop,
   setSidebar,
 }) {
   const host = 'http://localhost:5000';
 
-  const dropshop = document.getElementById('navbar__drop__collections');
-  const dropcollections = document.getElementById('navbar__drop__shop');
-
   const hideDropNavbar = () => {
+    const dropcollections = document.getElementById(
+      'navbar__drop__collections'
+    );
+    const dropshop = document.getElementById('navbar__drop__shop');
     if (dropshop) {
       dropshop.style.display = 'none';
     }
@@ -23,10 +25,12 @@ export default function NavbarCollection({
     }
   };
 
-  const sidebar = document.getElementById('sidebar--container');
   const hidesidebar = () => {
+    const sidebar = document.getElementById('sidebar--container');
+
     if (sidebar) {
       setSidebar(false);
+      setShop(false);
       setCollections(false);
     } else return;
   };

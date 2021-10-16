@@ -164,6 +164,7 @@
   width: fit-content;
   border-bottom: 1px solid var(--main-white);
   cursor: pointer;
+  color: var(--main-black);
 }
 
 .drop--shop__names__h4:hover {
