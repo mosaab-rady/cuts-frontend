@@ -40,6 +40,7 @@ export default function Overview() {
       }
     };
     getData();
+    myFn();
   }, []);
 
   const myFn = () => {
