@@ -13,7 +13,9 @@ export default function Hero({ img, name, btn, slug }) {
         alt='img__hero'
       />
       <div className='hero__box'>
-        <h2 className={btn ? '' : 'hero__box__h2__small'}>{name}</h2>
+        <h2 className={btn ? 'hero__box__h2' : 'hero__box__h2__small'}>
+          {name}
+        </h2>
         {btn ? (
           <Link
             to={{
