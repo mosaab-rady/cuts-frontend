@@ -13,7 +13,7 @@ export default function DropShop({ setShop, setCollections, setSidebar }) {
   // };
 
   const toggle = (name) => {
-    if (window.innerWidth > 1100) {
+    if (window.innerWidth > 1000) {
       const shirts = document.getElementById('navbar__shop__shirts');
       const collections = document.getElementById('navbar__shop__collections');
       if (name === 'shirts') {

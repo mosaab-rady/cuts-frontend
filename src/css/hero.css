@@ -25,12 +25,15 @@
   color: var(--main-white);
   text-transform: uppercase;
   font-size: 2.5rem;
+  text-transform: capitalize;
 }
 
 .hero__box__h2__small {
   font-weight: normal;
   font-size: 2.3rem;
   font-weight: bold;
+  color: var(--main-white);
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 550px) {

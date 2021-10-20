@@ -171,12 +171,16 @@
   border-bottom: 1px solid var(--gray);
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1000px) {
   .drop--shop {
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .drop--shop__shirts--container {
+    height: 100%;
   }
 
   .drop--shop__shirts {
@@ -189,6 +193,7 @@
 
   .drop--shop__collections--container {
     display: block;
+    height: 100%;
   }
 
   .drop--shop__collections {

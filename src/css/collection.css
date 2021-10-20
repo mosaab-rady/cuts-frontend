@@ -4,6 +4,7 @@
 .collection__hero {
   width: 100%;
   height: 35%;
+  object-fit: cover;
   margin-bottom: 5rem;
 }
 
@@ -16,7 +17,7 @@
 .collection__body__products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-template-rows: 32rem;
+  /* grid-template-rows: 32rem; */
   column-gap: 3rem;
   row-gap: 6rem;
   width: 100%;
@@ -26,4 +27,16 @@
 .collection__midsection {
   width: 90%;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .collection__hero {
+    width: 100%;
+    height: 46vh;
+    margin-bottom: 1rem;
+  }
+
+  .collection__body {
+    flex-direction: column;
+  }
 }
