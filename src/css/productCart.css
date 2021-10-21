@@ -1,6 +1,6 @@
 .product {
-  /* width: 100%; */
-  min-width: 12rem;
+  width: 100%;
+  /* min-width: 12rem; */
   align-items: center;
   display: flex;
   flex-direction: column;
