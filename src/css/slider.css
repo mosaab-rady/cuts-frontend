@@ -1,6 +1,7 @@
 .product__imgs__container {
   width: 100%;
   position: relative;
+  height: fit-content;
 }
 
 .product__imgs__main--img {
