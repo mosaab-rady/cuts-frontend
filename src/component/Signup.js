@@ -7,7 +7,6 @@ export default function Signup() {
 
   return (
     <div className='signup'>
-      <h3 className='form__header'>sign up</h3>
       <form className='form' onSubmit={(e) => signup(e, dispatch)}>
         <div className='form__group'>
           <label htmlFor='firstname' className='form__group__label'>

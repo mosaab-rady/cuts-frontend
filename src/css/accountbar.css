@@ -33,10 +33,53 @@
   cursor: pointer;
 }
 
+.account--bar__links__header {
+  display: none;
+}
+
 .account--bar__links__svg {
   width: 1rem;
 }
 
 .account--bar__links__active {
   border-bottom: 2px solid var(--main-black);
+}
+
+@media screen and (max-width: 1000px) {
+  .account--bar {
+    width: 100%;
+    margin-right: 0rem;
+  }
+
+  .account--bar__user {
+    margin-bottom: 1rem;
+  }
+
+  .account--bar__links--container {
+    position: relative;
+  }
+
+  .account--bar__links__header {
+    display: block;
+    border: 1px solid #b3b0b0;
+  }
+
+  .account--bar__links {
+    display: none;
+    background-color: var(--main-white);
+    position: absolute;
+    width: 100%;
+    border: 1px solid #b3b0b0;
+  }
+
+  .account--bar__Links__link {
+    border-bottom: none;
+    padding: 0.5rem;
+    border-bottom: 1px solid #b3b0b0;
+  }
+
+  .account--bar__links__active {
+    border-bottom: 2px solid var(--main-black);
+    background-color: #dddbdb;
+  }
 }

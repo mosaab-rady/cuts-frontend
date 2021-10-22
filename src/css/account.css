@@ -16,3 +16,15 @@
   font-weight: 600;
   font-size: 3.5rem;
 }
+
+@media screen and (max-width: 1000px) {
+  .account__header__h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .account__header__h1 {
+    font-size: 1.5rem;
+  }
+}

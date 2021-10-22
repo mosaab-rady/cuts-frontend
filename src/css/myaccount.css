@@ -96,9 +96,27 @@
   text-transform: capitalize;
   border: 1px solid var(--main-black);
   cursor: pointer;
+  width: 100%;
 }
 
 .address__btn:hover {
   background-color: var(--main-white);
   color: var(--main-black);
+}
+
+@media screen and (max-width: 1000px) {
+  .my--account {
+    padding: 6rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .account--body {
+    margin-top: 2rem;
+  }
+
+  .account--body__orders,
+  .account--body__addresses {
+    padding: 0rem;
+  }
 }
