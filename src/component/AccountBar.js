@@ -10,11 +10,13 @@ export default function AccountBar() {
   const location = useLocation();
 
   const displaylinks = () => {
-    const links = document.getElementById('account--bar__links');
-    if (links.style.display === 'block') {
-      links.style.display = 'none';
-    } else {
-      links.style.display = 'block';
+    if (window.innerWidth <= 1000) {
+      const links = document.getElementById('account--bar__links');
+      if (links.style.display === 'block') {
+        links.style.display = 'none';
+      } else {
+        links.style.display = 'block';
+      }
     }
   };
 
@@ -83,12 +85,78 @@ export default function AccountBar() {
             </h4>
           </Link>
           <h4 className='account--bar__Links__link'>rewards</h4>
+          {currentUser.role === 'admin' ? (
+            <>
+              <Link
+                className='link account--bar__link '
+                to={{
+                  pathname: '/account/default-collections',
+                }}
+              >
+                <h4
+                  onClick={() => {
+                    displaylinks();
+                    setCurrentlink('default-collections');
+                  }}
+                  className={
+                    location.pathname === '/account/default-collections'
+                      ? 'account--bar__Links__link account--bar__links__active'
+                      : 'account--bar__Links__link'
+                  }
+                >
+                  default collections
+                </h4>
+              </Link>
+              <Link
+                className='link account--bar__link '
+                to={{
+                  pathname: '/account/collections',
+                }}
+              >
+                <h4
+                  onClick={() => {
+                    displaylinks();
+                    setCurrentlink('collections');
+                  }}
+                  className={
+                    location.pathname === '/account/collections'
+                      ? 'account--bar__Links__link account--bar__links__active'
+                      : 'account--bar__Links__link'
+                  }
+                >
+                  collections
+                </h4>
+              </Link>
+              <Link
+                className='link account--bar__link '
+                to={{
+                  pathname: '/account/products',
+                }}
+              >
+                <h4
+                  onClick={() => {
+                    displaylinks();
+                    setCurrentlink('products');
+                  }}
+                  className={
+                    location.pathname === '/account/products'
+                      ? 'account--bar__Links__link account--bar__links__active'
+                      : 'account--bar__Links__link'
+                  }
+                >
+                  products
+                </h4>
+              </Link>
+            </>
+          ) : (
+            ''
+          )}
           <h4
             onClick={() => {
               displaylinks();
+              logout(dispatch);
             }}
             className='account--bar__Links__link'
-            onClick={() => logout(dispatch)}
           >
             sign out
           </h4>

@@ -110,6 +110,7 @@
     '... shirts collections ...'
     '... sweatshirts collections ...';
   justify-content: space-between;
+  gap: 4rem;
   /* justify-items: center; */
   padding: 2rem;
 }
