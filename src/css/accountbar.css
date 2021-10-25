@@ -1,6 +1,7 @@
 .account--bar {
   width: 25rem;
   margin-right: 5rem;
+  z-index: 100;
 }
 
 .account--bar__user {
