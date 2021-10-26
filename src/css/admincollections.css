@@ -27,7 +27,8 @@
   font-size: 1rem;
 }
 
-.account--body__collection__form__group input {
+.account--body__collection__form__group input,
+.account--body__collection__form__group select {
   color: var(--gray);
   text-transform: capitalize;
   width: fit-content;
@@ -52,7 +53,8 @@
   font-weight: normal;
 }
 
-.account--body__collection__form__group__fileinput:hover {
+.account--body__collection__form__group__fileinput:hover,
+.account--body__collection__form__group__btns button:hover {
   background-color: var(--main-white);
   color: var(--main-black);
 }
@@ -80,5 +82,25 @@
   text-transform: capitalize;
   font-size: 0.8rem;
   color: #9b9b9b;
+  font-weight: normal;
+}
+
+.account--body__collection__form__group__btns {
+  display: flex;
+  gap: 8rem;
+  width: 100%;
+  justify-content: flex-end;
+  margin-top: 4rem;
+}
+
+.account--body__collection__form__group__btns button {
+  background-color: var(--main-black);
+  width: 10rem;
+  color: white;
+  padding: 0.8rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  border: 1px solid var(--main-black);
   font-weight: normal;
 }

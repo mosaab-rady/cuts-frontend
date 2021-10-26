@@ -2,6 +2,9 @@
   width: 25rem;
   margin-right: 5rem;
   z-index: 100;
+  position: sticky;
+  top: 6rem;
+  height: 80vh;
 }
 
 .account--bar__user {
@@ -50,6 +53,8 @@
   .account--bar {
     width: 100%;
     margin-right: 0rem;
+    position: static;
+    height: auto;
   }
 
   .account--bar__user {
