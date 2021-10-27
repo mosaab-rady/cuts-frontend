@@ -11,6 +11,7 @@ export default function AdminCollectionDetail() {
   const [imageCover, setImageCover] = useState('');
   const [image, setImage] = useState('');
   const [imageDetail, setImageDetail] = useState('');
+  const [mode, setMode] = useState('');
 
   useEffect(() => {
     document.getElementById('App').scrollTo({
@@ -34,6 +35,7 @@ export default function AdminCollectionDetail() {
           setImageDetail(
             `${host}/api/v1/images/${res.data.data.collection.imageDetail}`
           );
+          setMode(res.data.data.collection.mode);
         }
       }
     };
@@ -54,9 +56,36 @@ export default function AdminCollectionDetail() {
     }
   };
 
+  const displaymodes = () => {
+    const options = document.getElementById(
+      'account--body__collection__form__group__options'
+    );
+    if (options.style.display === 'block') {
+      options.style.display = 'none';
+    } else {
+      options.style.display = 'block';
+    }
+  };
+
+  const updatecollection = (e) => {
+    e.preventDefault();
+
+    console.log(e.target.name.value);
+    console.log(mode);
+    console.log(e.target.imageHero.files[0]);
+  };
+
+  const removecollection = (e) => {
+    e.preventDefault();
+    console.log('removed');
+  };
+
   return (
     <div className='account--body'>
-      <form className='account--body__collection__form'>
+      <form
+        className='account--body__collection__form'
+        onSubmit={updatecollection}
+      >
         <div className='account--body__collection__form__group account--body__collection__form__name__group'>
           <label
             htmlFor='name'
@@ -74,10 +103,70 @@ export default function AdminCollectionDetail() {
           >
             mode
           </label>
-          {/* <select name='mode' defaultValuee={collection.mode}>
-            <option value='main'>main 'overview page hero & navbar' </option>
-            <option value='first'>first 'navbar collections' </option>
-            <option value='second'>second 'overview section collection'</option>
+
+          <div className='account--body__collection__form__group__options--container'>
+            <label
+              className='account--body__collection__form__group__select'
+              onClick={displaymodes}
+            >
+              {mode}
+              <svg
+                width='10'
+                height='10'
+                viewBox='0 0 5 4'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path d='M2.5 4L0.334936 0.25H4.66506L2.5 4Z' fill='#b3b0b0' />
+              </svg>
+            </label>
+            <div
+              className='account--body__collection__form__group__options'
+              id='account--body__collection__form__group__options'
+            >
+              <h4
+                className='account--body__collection__form__group__options__option'
+                onClick={() => {
+                  displaymodes();
+                  setMode('main');
+                }}
+              >
+                main 'overview hero & navbar'
+              </h4>
+              <h4
+                className='account--body__collection__form__group__options__option'
+                onClick={() => {
+                  displaymodes();
+                  setMode('first');
+                }}
+              >
+                first 'navbar'
+              </h4>
+              <h4
+                className='account--body__collection__form__group__options__option'
+                onClick={() => {
+                  displaymodes();
+                  setMode('second');
+                }}
+              >
+                second 'overview section'
+              </h4>
+              <h4
+                className='account--body__collection__form__group__options__option'
+                onClick={() => {
+                  displaymodes();
+                  setMode('none');
+                }}
+              >
+                none
+              </h4>
+            </div>
+          </div>
+          {/* 
+          <select name='mode' defaultvalue={collection.mode}>
+            <option value='main'>main </option>
+            <option value='first'>first</option>
+            <option value='second'>second</option>
             <option value='none'>none</option>
           </select> */}
         </div>
@@ -186,8 +275,8 @@ export default function AdminCollectionDetail() {
           </label>
         </div>
         <div className='account--body__collection__form__group__btns'>
-          <button>update</button>
-          <button>remove</button>
+          <button type='submit'>update</button>
+          <button onClick={removecollection}>remove</button>
         </div>
       </form>
     </div>
