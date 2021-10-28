@@ -5,6 +5,11 @@
   position: sticky;
   top: 6rem;
   height: 80vh;
+  overflow-y: scroll;
+}
+
+.account--bar::-webkit-scrollbar {
+  display: none;
 }
 
 .account--bar__user {

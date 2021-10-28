@@ -23,7 +23,7 @@ export default function MyAccount() {
           <Addresses />
         </Route>
         {currentUser.role === 'admin' ? (
-          <>
+          <Switch>
             <Route exact path='/account/collections'>
               <AdminCollections />
             </Route>
@@ -36,7 +36,7 @@ export default function MyAccount() {
             <Route exact path='/account/products'>
               <AdminProduct />
             </Route>
-          </>
+          </Switch>
         ) : (
           ''
         )}

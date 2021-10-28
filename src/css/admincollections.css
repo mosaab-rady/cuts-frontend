@@ -51,6 +51,10 @@
   cursor: pointer;
 }
 
+.account--body__collection__form__group__select__inp {
+  display: none;
+}
+
 .account--body__collection__form__group__options--container {
   position: relative;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { request } from '../../js/axios';
+import { update } from '../../js/collectionOperations';
 
 export default function AdminCollectionDetail() {
   const host = 'http://localhost:5000';
@@ -69,10 +70,7 @@ export default function AdminCollectionDetail() {
 
   const updatecollection = (e) => {
     e.preventDefault();
-
-    console.log(e.target.name.value);
-    console.log(mode);
-    console.log(e.target.imageHero.files[0]);
+    update(e, collection);
   };
 
   const removecollection = (e) => {
@@ -119,7 +117,15 @@ export default function AdminCollectionDetail() {
               >
                 <path d='M2.5 4L0.334936 0.25H4.66506L2.5 4Z' fill='#b3b0b0' />
               </svg>
+              <input
+                onClick={displaymodes}
+                type='text'
+                defaultValue={mode}
+                name='mode'
+                className='account--body__collection__form__group__select__inp'
+              />
             </label>
+
             <div
               className='account--body__collection__form__group__options'
               id='account--body__collection__form__group__options'

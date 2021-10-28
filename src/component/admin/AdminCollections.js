@@ -10,6 +10,10 @@ export default function AdminCollections() {
   const [collections, setCollections] = useState([]);
 
   useEffect(() => {
+    document.getElementById('App').scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
     const getData = async () => {
       const res = await request('GET', 'api/v1/collections');
       if (res) {
