@@ -9,6 +9,7 @@ import AdminCollections from './admin/AdminCollections';
 import AdminProduct from './admin/AdminProduct';
 import AdminDefaultCollections from './admin/AdminDefaultCollections';
 import AdminCollectionDetail from './admin/AdminCollectionDetail';
+import AddCollection from './admin/AddCollection';
 
 export default function MyAccount() {
   const { currentUser } = useContext(myContext);
@@ -26,6 +27,9 @@ export default function MyAccount() {
           <Switch>
             <Route exact path='/account/collections'>
               <AdminCollections />
+            </Route>
+            <Route exact path='/account/collections/add-collection'>
+              <AddCollection />
             </Route>
             <Route exact path='/account/collections/:collection'>
               <AdminCollectionDetail />

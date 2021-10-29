@@ -108,6 +108,14 @@
   margin-bottom: 1.5rem;
 }
 
+.success--div__h4 {
+  background-color: rgb(95, 194, 49);
+  font-size: 1rem;
+  text-transform: capitalize;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 @media screen and (max-width: 1000px) {
   .auth {
     padding: 4rem 1rem;

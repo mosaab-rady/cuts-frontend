@@ -60,6 +60,8 @@
     margin-right: 0rem;
     position: static;
     height: auto;
+    top: 0;
+    overflow: visible;
   }
 
   .account--bar__user {
@@ -79,8 +81,11 @@
     display: none;
     background-color: var(--main-white);
     position: absolute;
+    /* top: 0rem; */
     width: 100%;
     border: 1px solid #b3b0b0;
+    z-index: 1000;
+    /* height: 20rem; */
   }
 
   .account--bar__Links__link {

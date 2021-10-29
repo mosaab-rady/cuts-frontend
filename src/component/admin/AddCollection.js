@@ -1,47 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-import { request } from '../../js/axios';
-import { remove, update } from '../../js/collectionOperations';
+import React, { useState } from 'react';
+import { create } from '../../js/collectionOperations';
 
-export default function AdminCollectionDetail() {
-  const host = 'http://localhost:5000';
-  const location = useLocation();
-  const [collection, setCollection] = useState('');
-
+export default function AddCollection() {
   const [imageHero, setImageHero] = useState('');
   const [imageCover, setImageCover] = useState('');
   const [image, setImage] = useState('');
   const [imageDetail, setImageDetail] = useState('');
-  const [mode, setMode] = useState('');
-
-  useEffect(() => {
-    document.getElementById('App').scrollTo({
-      top: 0,
-      behavior: 'auto',
-    });
-
-    const getData = async () => {
-      const res = await request('GET', `api/v1/collections/${location.state}`);
-      if (res) {
-        // console.log(res);
-        if (res.data.status === 'success') {
-          setCollection(res.data.data.collection);
-          setImageHero(
-            `${host}/api/v1/images/${res.data.data.collection.imageHero}`
-          );
-          setImageCover(
-            `${host}/api/v1/images/${res.data.data.collection.imageCover}`
-          );
-          setImage(`${host}/api/v1/images/${res.data.data.collection.image}`);
-          setImageDetail(
-            `${host}/api/v1/images/${res.data.data.collection.imageDetail}`
-          );
-          setMode(res.data.data.collection.mode);
-        }
-      }
-    };
-    getData();
-  }, [location]);
+  const [mode, setMode] = useState('none');
 
   const handlePhoto = (img) => (e) => {
     e.preventDefault();
@@ -59,7 +24,7 @@ export default function AdminCollectionDetail() {
 
   const displaymodes = () => {
     const options = document.getElementById(
-      'account--body__collection__form__group__options'
+      'account--body__add__collection__form__group__options'
     );
     if (options.style.display === 'block') {
       options.style.display = 'none';
@@ -68,22 +33,17 @@ export default function AdminCollectionDetail() {
     }
   };
 
-  const updatecollection = (e) => {
+  const addNewCollection = (e) => {
     e.preventDefault();
     e.target.mode.value = mode;
-    update(e, collection);
-  };
-
-  const removecollection = (e) => {
-    e.preventDefault();
-    remove(collection._id);
+    create(e);
   };
 
   return (
     <div className='account--body'>
       <form
         className='account--body__collection__form'
-        onSubmit={updatecollection}
+        onSubmit={addNewCollection}
       >
         <div className='account--body__collection__form__group account--body__collection__form__name__group'>
           <label
@@ -92,7 +52,7 @@ export default function AdminCollectionDetail() {
           >
             name
           </label>
-          <input type='text' name='name' defaultValue={collection.name} />
+          <input type='text' name='name' required placeholder='name' />
         </div>
 
         <div className='account--body__collection__form__group account--body__collection__form__mode__group'>
@@ -121,15 +81,15 @@ export default function AdminCollectionDetail() {
               <input
                 onClick={displaymodes}
                 type='text'
-                defaultValue={mode}
+                // defaultValue={mode}
                 name='mode'
                 className='account--body__collection__form__group__select__inp'
               />
             </label>
 
             <div
-              className='account--body__collection__form__group__options'
-              id='account--body__collection__form__group__options'
+              className='account--body__add__collection__form__group__options'
+              id='account--body__add__collection__form__group__options'
             >
               <h4
                 className='account--body__collection__form__group__options__option'
@@ -218,6 +178,7 @@ export default function AdminCollectionDetail() {
               accept='image/*'
               name='imageCover'
               onChange={handlePhoto('cover')}
+              required
             />
             choose new cover image
           </label>
@@ -274,11 +235,10 @@ export default function AdminCollectionDetail() {
             choose new image detail
           </label>
         </div>
-        <div className='err--div' id='update__collection--err'></div>
-        <div className='success--div' id='update__collection--success'></div>
+        <div className='err--div' id='add__collection--err'></div>
+        <div className='success--div' id='add__collection--success'></div>
         <div className='account--body__collection__form__group__btns'>
-          <button type='submit'>update</button>
-          <button onClick={removecollection}>remove</button>
+          <button type='submit'>add new collection</button>
         </div>
       </form>
     </div>

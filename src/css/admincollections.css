@@ -5,6 +5,30 @@
   gap: 2rem;
 }
 
+.account--body__collections__add {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.account--body__collections__add__h4 {
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  color: var(--main-white);
+  padding: 0.8rem;
+  border: 1px solid var(--main-black);
+  letter-spacing: 0.8px;
+  font-weight: normal;
+  background-color: var(--main-black);
+  cursor: pointer;
+}
+
+.account--body__collections__add__h4:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}
+
 .account--body__collections__collection {
   width: 100%;
   height: 15rem;
@@ -60,6 +84,15 @@
 }
 
 .account--body__collection__form__group__options {
+  width: 15rem;
+  background-color: var(--main-white);
+  border: 1px solid #dadada;
+  position: absolute;
+  top: 3rem;
+  display: none;
+}
+
+.account--body__add__collection__form__group__options {
   width: 15rem;
   background-color: var(--main-white);
   border: 1px solid #dadada;
