@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { request } from '../../js/axios';
-import { remove, update } from '../../js/collectionOperations';
+import { updateDefault } from '../../js/collectionOperations';
 
-export default function AdminCollectionDetail() {
+export default function AdminDefaultCollectionDetail() {
   const host = 'http://localhost:5000';
+
   const location = useLocation();
-  const [collection, setCollection] = useState('');
+  const [doc, setDoc] = useState('');
 
   const [imageHero, setImageHero] = useState('');
   const [imageCover, setImageCover] = useState('');
   const [image, setImage] = useState('');
   const [imageDetail, setImageDetail] = useState('');
-  const [mode, setMode] = useState('');
+  const [imageOverview, setImageOverview] = useState('');
 
   useEffect(() => {
     document.getElementById('App').scrollTo({
@@ -26,9 +27,8 @@ export default function AdminCollectionDetail() {
         `api/v1/collections/${location.pathname}`
       );
       if (res) {
-        // console.log(res);
         if (res.data.status === 'success') {
-          setCollection(res.data.data.collection);
+          setDoc(res.data.data.collection);
           setImageHero(
             `${host}/api/v1/images/${res.data.data.collection.imageHero}`
           );
@@ -39,8 +39,11 @@ export default function AdminCollectionDetail() {
           setImageDetail(
             `${host}/api/v1/images/${res.data.data.collection.imageDetail}`
           );
-          setMode(res.data.data.collection.mode);
+          setImageOverview(
+            `${host}/api/v1/images/${res.data.data.collection.imageOverview}`
+          );
         }
+        // if not found create one
       }
     };
     getData();
@@ -55,38 +58,22 @@ export default function AdminCollectionDetail() {
         if (img === 'cover') setImageCover(e.target.result);
         if (img === 'image') setImage(e.target.result);
         if (img === 'detail') setImageDetail(e.target.result);
+        if (img === 'overview') setImageOverview(e.target.result);
       };
       reader.readAsDataURL(e.target.files[0]);
     }
   };
 
-  const displaymodes = () => {
-    const options = document.getElementById(
-      'account--body__collection__form__group__options'
-    );
-    if (options.style.display === 'block') {
-      options.style.display = 'none';
-    } else {
-      options.style.display = 'block';
-    }
-  };
-
-  const updatecollection = (e) => {
+  const updateDefaultCollection = (e) => {
     e.preventDefault();
-    e.target.mode.value = mode;
-    update(e, collection);
-  };
-
-  const removecollection = (e) => {
-    e.preventDefault();
-    remove(collection._id);
+    updateDefault(e, doc._id);
   };
 
   return (
     <div className='account--body'>
       <form
         className='account--body__collection__form'
-        onSubmit={updatecollection}
+        onSubmit={updateDefaultCollection}
       >
         <div className='account--body__collection__form__group account--body__collection__form__name__group'>
           <label
@@ -95,83 +82,7 @@ export default function AdminCollectionDetail() {
           >
             name
           </label>
-          <input type='text' name='name' defaultValue={collection.name} />
-        </div>
-
-        <div className='account--body__collection__form__group account--body__collection__form__mode__group'>
-          <label
-            htmlFor='mode'
-            className='account--body__collection__form__group__label'
-          >
-            mode
-          </label>
-
-          <div className='account--body__collection__form__group__options--container'>
-            <label
-              className='account--body__collection__form__group__select'
-              onClick={displaymodes}
-            >
-              {mode}
-              <svg
-                width='10'
-                height='10'
-                viewBox='0 0 5 4'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path d='M2.5 4L0.334936 0.25H4.66506L2.5 4Z' fill='#b3b0b0' />
-              </svg>
-              <input
-                onClick={displaymodes}
-                type='text'
-                defaultValue={mode}
-                name='mode'
-                className='account--body__collection__form__group__select__inp'
-              />
-            </label>
-
-            <div
-              className='account--body__collection__form__group__options'
-              id='account--body__collection__form__group__options'
-            >
-              <h4
-                className='account--body__collection__form__group__options__option'
-                onClick={() => {
-                  displaymodes();
-                  setMode('main');
-                }}
-              >
-                main 'overview hero & navbar'
-              </h4>
-              <h4
-                className='account--body__collection__form__group__options__option'
-                onClick={() => {
-                  displaymodes();
-                  setMode('first');
-                }}
-              >
-                first 'navbar'
-              </h4>
-              <h4
-                className='account--body__collection__form__group__options__option'
-                onClick={() => {
-                  displaymodes();
-                  setMode('second');
-                }}
-              >
-                second 'overview section'
-              </h4>
-              <h4
-                className='account--body__collection__form__group__options__option'
-                onClick={() => {
-                  displaymodes();
-                  setMode('none');
-                }}
-              >
-                none
-              </h4>
-            </div>
-          </div>
+          <input type='text' name='name' defaultValue={doc.name} readOnly />
         </div>
 
         <div className='account--body__collection__form__group account--body__collection__form__imagehero__group'>
@@ -277,11 +188,40 @@ export default function AdminCollectionDetail() {
             choose new image detail
           </label>
         </div>
-        <div className='err--div' id='update__collection--err'></div>
-        <div className='success--div' id='update__collection--success'></div>
+
+        <div className='account--body__collection__form__group account--body__collection__form__imageoverview__group'>
+          <label
+            htmlFor='imageOverview'
+            className='account--body__collection__form__group__label'
+          >
+            the image overview
+          </label>
+          <h4 className='account--body__collection__form__group__detail'>
+            the image that appears in shop "not required"
+          </h4>
+          <img
+            src={imageOverview}
+            alt=''
+            className='account--body__collection__form__group__imgoverview'
+          />
+          <label className='account--body__collection__form__group__fileinput'>
+            <input
+              type='file'
+              accept='image/*'
+              name='imageOverview'
+              onChange={handlePhoto('overview')}
+            />
+            choose new image overview
+          </label>
+        </div>
+
+        <div className='err--div' id='update__default__collection--err'></div>
+        <div
+          className='success--div'
+          id='update__default__collection--success'
+        ></div>
         <div className='account--body__collection__form__group__btns'>
           <button type='submit'>update</button>
-          <button onClick={removecollection}>remove</button>
         </div>
       </form>
     </div>

@@ -32,8 +32,8 @@ export default function NavbarDropCollections({
     getData();
 
     return () => {
-      setFirst('');
-      setMain('');
+      setFirst();
+      setMain();
     };
   }, []);
 

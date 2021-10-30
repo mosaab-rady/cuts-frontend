@@ -151,7 +151,8 @@
 }
 
 .account--body__collection__form__group__img,
-.account--body__collection__form__group__imgdetail {
+.account--body__collection__form__group__imgdetail,
+.account--body__collection__form__group__imgoverview {
   width: 45%;
   /* height: 400px; */
   object-fit: cover;

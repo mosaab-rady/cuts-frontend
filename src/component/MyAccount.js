@@ -10,6 +10,7 @@ import AdminProduct from './admin/AdminProduct';
 import AdminDefaultCollections from './admin/AdminDefaultCollections';
 import AdminCollectionDetail from './admin/AdminCollectionDetail';
 import AddCollection from './admin/AddCollection';
+import AdminDefaultCollectionDetail from './admin/AdminDefaultCollectionDetail';
 
 export default function MyAccount() {
   const { currentUser } = useContext(myContext);
@@ -36,6 +37,9 @@ export default function MyAccount() {
             </Route>
             <Route exact path='/account/default-collections'>
               <AdminDefaultCollections />
+            </Route>
+            <Route exact path='/account/default-collections/:collection'>
+              <AdminDefaultCollectionDetail />
             </Route>
             <Route exact path='/account/products'>
               <AdminProduct />
