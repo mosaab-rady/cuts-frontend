@@ -1,0 +1,91 @@
+.account--body__products__addproduct {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.account--body__products__addproduct__h3 {
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  color: var(--main-white);
+  padding: 0.8rem;
+  border: 1px solid var(--main-black);
+  letter-spacing: 0.8px;
+  font-weight: normal;
+  background-color: var(--main-black);
+  cursor: pointer;
+}
+
+.account--body__products__addproduct__h3:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}
+
+.account--body__product__form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.account--body__product__form__group label {
+  color: var(--gray);
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+
+.account--body__product__form__group input {
+  color: var(--gray);
+  text-transform: capitalize;
+  width: fit-content;
+  padding: 0.8rem;
+  border: 0.2px solid #dadada;
+  background-color: #f5f5f5;
+}
+
+.account--body__product__form__group__type__inp {
+  display: none;
+}
+
+.account--body__product__form__group__types__label {
+  color: var(--gray);
+  text-transform: capitalize;
+  width: 12rem;
+  padding: 0.8rem;
+  border: 0.2px solid #dadada;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+/* 
+.account--body__product__form__group__types__label svg {
+
+} */
+
+.account--body__product__form__types--container {
+  position: relative;
+}
+
+.account--body__product__form__types {
+  display: none;
+  position: absolute;
+  border: 1px solid #dadada;
+  width: 10rem;
+}
+
+.account--body__product__form__types__type {
+  color: var(--gray);
+  text-transform: capitalize;
+  width: 12rem;
+  padding: 0.8rem;
+  border: 0.2px solid #dadada;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
