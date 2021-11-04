@@ -22,6 +22,11 @@
   color: var(--main-black);
 }
 
+.account--body__product__form {
+  background-color: var(--main-white);
+  padding: 1rem;
+}
+
 .account--body__product__form__group {
   display: flex;
   flex-direction: column;
@@ -44,14 +49,14 @@
   background-color: #f5f5f5;
 }
 
-.account--body__product__form__group__type__inp {
+.account--body__product__form__group__options__inp {
   display: none;
 }
 
-.account--body__product__form__group__types__label {
+.account--body__product__form__group__options__label {
   color: var(--gray);
   text-transform: capitalize;
-  width: 12rem;
+  width: 12.4rem;
   padding: 0.8rem;
   border: 0.2px solid #dadada;
   background-color: #f5f5f5;
@@ -59,33 +64,88 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  /* font-size: 5rem; */
+  font-weight: normal;
 }
 /* 
 .account--body__product__form__group__types__label svg {
 
 } */
 
-.account--body__product__form__types--container {
+.account--body__product__form__options--container {
   position: relative;
 }
 
-.account--body__product__form__types {
+.account--body__product__form__options {
   display: none;
   position: absolute;
   border: 1px solid #dadada;
   width: 10rem;
+  z-index: 1000;
 }
 
-.account--body__product__form__types__type {
+.account--body__product__form__options__option {
   color: var(--gray);
   text-transform: capitalize;
-  width: 12rem;
+  width: 12.4rem;
   padding: 0.8rem;
   border: 0.2px solid #dadada;
   background-color: #f5f5f5;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
+  /* justify-content: space-between; */
   cursor: pointer;
   font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.account--body__product__form__options__option:hover {
+  background-color: #e4e4e4;
+}
+
+.account--body__product__form__options__option svg {
+  width: 2rem;
+}
+
+.account--body__product__form__cutcollar {
+  display: flex;
+  /* align-items: center; */
+  column-gap: 5rem;
+  width: 100%;
+}
+
+.account--body__product__form__fabricfeatures {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, 10rem);
+  width: 100%;
+  gap: 1rem;
+  column-gap: 4rem; */
+}
+
+.account--body__product__form__fabricfeatures__feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 10rem;
+}
+
+.account--body__product__form__fabricfeatures__feature__label {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.account--body__product__form__fabricfeatures__feature__label span {
+  font-size: 0.8rem;
+}
+
+.account--body__product__form__fabricfeatures__feature__label svg {
+  width: 1.5rem;
 }
