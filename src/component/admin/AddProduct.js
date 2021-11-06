@@ -2270,6 +2270,22 @@ export default function AddProduct() {
             </div>
           </div>
         </div>
+        <div className='account--body__product__form__color'>
+          <div className='account--body__product__form__group'>
+            <label htmlFor='color'>color name</label>
+            <input type='text' placeholder='color' required name='color' />
+          </div>
+          <div className='account--body__product__form__group'>
+            <label htmlFor='colorHex'>color hex</label>
+            <input
+              type='color'
+              required
+              placeholder='color hex'
+              name='colorHex'
+              id='account--body__product__form__color__inp'
+            />
+          </div>
+        </div>
       </form>
     </div>
   );
