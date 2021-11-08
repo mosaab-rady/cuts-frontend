@@ -4,6 +4,8 @@ export default function AddProduct() {
   const [type, setType] = useState('t-shirt');
   const [cut, setCut] = useState('classic');
   const [collar, setCollar] = useState('crew');
+  const [imageCover, setImageCover] = useState('');
+  const [imageDetail, setImageDetail] = useState('');
 
   const showTypes = () => {
     const types = document.getElementById(
@@ -34,6 +36,19 @@ export default function AddProduct() {
       collars.style.display = 'none';
     } else {
       collars.style.display = 'block';
+    }
+  };
+
+  const handlePhoto = (img) => (e) => {
+    e.preventDefault();
+    if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        if (img === 'cover') setImageCover(e.target.result);
+        // if (img === 'image') setImage(e.target.result);
+        if (img === 'detail') setImageDetail(e.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
 
@@ -2285,6 +2300,84 @@ export default function AddProduct() {
               id='account--body__product__form__color__inp'
             />
           </div>
+        </div>
+        <div className='account--body__product__form__price'>
+          <div className='account--body__product__form__group'>
+            <label htmlFor='price'>price</label>
+            <input
+              type='number'
+              required
+              defaultValue='0'
+              min='0'
+              name='price'
+            />
+          </div>
+          <div className='account--body__product__form__group'>
+            <label htmlFor='sale'>sale (%)</label>
+            <input type='number' defaultValue='0' min='0' name='sale' />
+          </div>
+        </div>
+        <div className='account--body__product__form__sizes'>
+          <h3 className='account--body__product__form__sizes__h3'>sizes :</h3>
+          <div className='account--body__product__form__sizes--container'>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='small'>small amount</label>
+              <input type='number' defaultValue='0' min='0' name='small' />
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='medium'>medium amount</label>
+              <input type='number' name='medium' min='0' defaultValue='0' />
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='large'>large amount</label>
+              <input type='number' defaultValue='0' min='0' name='large' />
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='xLarge'>x-large amount</label>
+              <input type='number' defaultValue='0' min='0' name='xLarge' />
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='xxLarge'>xx-large amount</label>
+              <input type='number' defaultValue='0' min='0' name='xxLarge' />
+            </div>
+          </div>
+        </div>
+        <div className='account--body__product__form__group'>
+          <label htmlFor='summary'>summary</label>
+          <textarea name='summary' required placeholder='summary'></textarea>
+        </div>
+        <div className='account--body__product__form__group'>
+          <label htmlFor='sizeAndFit'>size and fit</label>
+          <textarea name='sizeAndFit' placeholder='size and fit'></textarea>
+        </div>
+        <div className='account--body__product__form__group'>
+          <label htmlFor='materialAndCare'>material and care</label>
+          <textarea
+            name='materialAndCare'
+            placeholder='material and care'
+          ></textarea>
+        </div>
+        <div className='account--body__product__form__group'>
+          <label htmlFor='reason'>why you made this</label>
+          <textarea name='reason' placeholder='reason'></textarea>
+        </div>
+        <div className='account--body__product__form__group'>
+          <label htmlFor='imageCover'>the first image</label>
+          <img
+            src={imageCover}
+            alt=''
+            className='account--body__product__form__group__imgcover'
+          />
+          <label className='account--body__product__form__group__fileinput'>
+            <input
+              type='file'
+              accept='image/*'
+              name='imageCover'
+              onChange={handlePhoto('cover')}
+              required
+            />
+            choose new image
+          </label>
         </div>
       </form>
     </div>

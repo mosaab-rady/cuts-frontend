@@ -43,13 +43,18 @@
   font-size: 1rem;
 }
 
-.account--body__product__form__group input {
+.account--body__product__form__group input,
+.account--body__product__form__group textarea {
   color: var(--gray);
   text-transform: capitalize;
   width: fit-content;
   padding: 0.8rem;
   border: 0.2px solid #dadada;
   background-color: #f5f5f5;
+}
+
+.account--body__product__form__group textarea {
+  width: 100%;
 }
 
 .account--body__product__form__group__options__inp {
@@ -111,7 +116,8 @@
   width: 2rem;
 }
 
-.account--body__product__form__cutcollar {
+.account--body__product__form__cutcollar,
+.account--body__product__form__price {
   display: flex;
   /* align-items: center; */
   column-gap: 5rem;
@@ -164,4 +170,43 @@
   width: 5rem;
   padding: 0.5rem;
   height: 2.8rem;
+}
+
+.account--body__product__form__sizes__h3 {
+  color: var(--gray);
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.account--body__product__form__sizes--container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.account--body__product__form__group input[type='file'] {
+  display: none;
+}
+
+.account--body__product__form__group img {
+  width: 40%;
+}
+
+.account--body__product__form__group__fileinput {
+  background-color: var(--main-black);
+  width: fit-content;
+  color: white !important;
+  padding: 0.8rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  border: 1px solid var(--main-black);
+  font-weight: normal;
+}
+
+.account--body__product__form__group__fileinput:hover {
+  background-color: var(--main-white);
+  color: var(--main-black) !important ;
 }
