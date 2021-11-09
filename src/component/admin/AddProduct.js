@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { create } from '../../js/productOperations';
 
 export default function AddProduct() {
   const [type, setType] = useState('t-shirt');
@@ -6,6 +7,9 @@ export default function AddProduct() {
   const [collar, setCollar] = useState('crew');
   const [imageCover, setImageCover] = useState('');
   const [imageDetail, setImageDetail] = useState('');
+  const [img_1, setImg_1] = useState('');
+  const [img_2, setImg_2] = useState('');
+  const [img_3, setImg_3] = useState('');
 
   const showTypes = () => {
     const types = document.getElementById(
@@ -45,25 +49,70 @@ export default function AddProduct() {
       let reader = new FileReader();
       reader.onload = (e) => {
         if (img === 'cover') setImageCover(e.target.result);
-        // if (img === 'image') setImage(e.target.result);
         if (img === 'detail') setImageDetail(e.target.result);
+        if (img === 'img_1') setImg_1(e.target.result);
+        if (img === 'img_2') setImg_2(e.target.result);
+        if (img === 'img_3') setImg_3(e.target.result);
       };
       reader.readAsDataURL(e.target.files[0]);
     }
   };
 
+  const createproduct = (e) => {
+    e.preventDefault();
+    e.target.type.value = type;
+    e.target.cut.value = cut;
+    e.target.collar.value = collar;
+    create(e);
+    console.log(e.target.name.value);
+    console.log(e.target.type.value);
+    console.log(e.target.cut.value);
+    console.log(e.target.collar.value);
+    console.log(e.target.fabric.value);
+    console.log(e.target.stretch.checked);
+    console.log(e.target.antiPilling.checked);
+    console.log(e.target.butterySoft.checked);
+    console.log(e.target.preShrunk.checked);
+    console.log(e.target.wrinkleFree.checked);
+    console.log(e.target.colorAndFitRetention.checked);
+    console.log(e.target.breathable.checked);
+    console.log(e.target.durable.checked);
+    console.log(e.target.lightweight.checked);
+    console.log(e.target.naturalSoftness.checked);
+    console.log(e.target.color.value);
+    console.log(e.target.colorHex.value);
+    console.log(e.target.price.value);
+    console.log(e.target.sale.value);
+    console.log(e.target.small.value);
+    console.log(e.target.medium.value);
+    console.log(e.target.large.value);
+    console.log(e.target.xLarge.value);
+    console.log(e.target.xxLarge.value);
+    console.log(e.target.summary.value);
+    console.log(e.target.sizeAndFit.value.split('\n'));
+    console.log(e.target.materialAndCare.value.split('\n'));
+    console.log(e.target.reason.value);
+  };
+
   return (
     <div className='account--body'>
-      <form className='account--body__product__form'>
+      <form className='account--body__product__form' onSubmit={createproduct}>
         <div className='account--body__product__form__group'>
           <label htmlFor='name'>name</label>
-          <input type='text' required placeholder='name' minLength='10' />
+          <input
+            type='text'
+            required
+            placeholder='name'
+            minLength='10'
+            name='name'
+          />
         </div>
         <div className='account--body__product__form__group'>
           <label htmlFor='type'>type</label>
           <input
             type='text'
             required
+            name='type'
             placeholder='type'
             defaultValue={type}
             className='account--body__product__form__group__options__inp'
@@ -142,6 +191,7 @@ export default function AddProduct() {
             <input
               type='text'
               required
+              name='cut'
               defaultValue={cut}
               className='account--body__product__form__group__options__inp'
             />
@@ -269,6 +319,7 @@ export default function AddProduct() {
             <input
               type='text'
               required
+              name='collar'
               defaultValue={collar}
               className='account--body__product__form__group__options__inp'
             />
@@ -835,7 +886,7 @@ export default function AddProduct() {
         <div className='account--body__product__form__fabric'>
           <div className='account--body__product__form__group'>
             <label htmlFor='fabric'>fabric</label>
-            <input type='text' required placeholder='fabric' />
+            <input type='text' required placeholder='fabric' name='fabric' />
           </div>
           <div className='account--body__product__form__group'>
             <label htmlFor='fabricFeatures'>fabric features </label>
@@ -2285,22 +2336,7 @@ export default function AddProduct() {
             </div>
           </div>
         </div>
-        <div className='account--body__product__form__color'>
-          <div className='account--body__product__form__group'>
-            <label htmlFor='color'>color name</label>
-            <input type='text' placeholder='color' required name='color' />
-          </div>
-          <div className='account--body__product__form__group'>
-            <label htmlFor='colorHex'>color hex</label>
-            <input
-              type='color'
-              required
-              placeholder='color hex'
-              name='colorHex'
-              id='account--body__product__form__color__inp'
-            />
-          </div>
-        </div>
+
         <div className='account--body__product__form__price'>
           <div className='account--body__product__form__group'>
             <label htmlFor='price'>price</label>
@@ -2357,28 +2393,127 @@ export default function AddProduct() {
             placeholder='material and care'
           ></textarea>
         </div>
+
         <div className='account--body__product__form__group'>
           <label htmlFor='reason'>why you made this</label>
           <textarea name='reason' placeholder='reason'></textarea>
         </div>
-        <div className='account--body__product__form__group'>
-          <label htmlFor='imageCover'>the first image</label>
-          <img
-            src={imageCover}
-            alt=''
-            className='account--body__product__form__group__imgcover'
-          />
-          <label className='account--body__product__form__group__fileinput'>
+        <div className='account--body__product__form__color'>
+          <div className='account--body__product__form__group'>
+            <label htmlFor='color'>color name</label>
+            <input type='text' placeholder='color' required name='color' />
+          </div>
+          <div className='account--body__product__form__group'>
+            <label htmlFor='colorHex'>color hex</label>
             <input
-              type='file'
-              accept='image/*'
-              name='imageCover'
-              onChange={handlePhoto('cover')}
+              type='color'
               required
+              placeholder='color hex'
+              name='colorHex'
+              id='account--body__product__form__color__inp'
             />
-            choose new image
-          </label>
+          </div>
         </div>
+        <div className='account--body__product__form__imgs'>
+          <h3 className='account--body__product__form__sizes__h3'>images :</h3>
+          <div className='account--group__product__form__imgs--container'>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='imageCover'> first image</label>
+              <img
+                src={imageCover}
+                alt=''
+                className='account--body__product__form__group__imgcover'
+              />
+              <label className='account--body__product__form__group__fileinput'>
+                <input
+                  type='file'
+                  accept='image/*'
+                  name='imageCover'
+                  onChange={handlePhoto('cover')}
+                  required
+                />
+                choose new image
+              </label>
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='imageDetail'> second image</label>
+              <img
+                src={imageDetail}
+                alt=''
+                className='account--body__product__form__group__imgcover'
+              />
+              <label className='account--body__product__form__group__fileinput'>
+                <input
+                  type='file'
+                  accept='image/*'
+                  name='imageDetail'
+                  onChange={handlePhoto('detail')}
+                  required
+                />
+                choose new image
+              </label>
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='img_1'>third image</label>
+              <img
+                src={img_1}
+                alt=''
+                className='account--body__product__form__group__imgcover'
+              />
+              <label className='account--body__product__form__group__fileinput'>
+                <input
+                  type='file'
+                  accept='image/*'
+                  name='img_1'
+                  onChange={handlePhoto('img_1')}
+                />
+                choose new image
+              </label>
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='img_2'>forth image</label>
+              <img
+                src={img_2}
+                alt=''
+                className='account--body__product__form__group__imgcover'
+              />
+              <label className='account--body__product__form__group__fileinput'>
+                <input
+                  type='file'
+                  accept='image/*'
+                  name='img_2'
+                  onChange={handlePhoto('img_2')}
+                />
+                choose new image
+              </label>
+            </div>
+            <div className='account--body__product__form__group'>
+              <label htmlFor='img_3'>fifth image</label>
+              <img
+                src={img_3}
+                alt=''
+                className='account--body__product__form__group__imgcover'
+              />
+              <label className='account--body__product__form__group__fileinput'>
+                <input
+                  type='file'
+                  accept='image/*'
+                  name='img_3'
+                  onChange={handlePhoto('img_3')}
+                />
+                choose new image
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className='err--div' id='add__product--err'></div>
+        <div className='success--div' id='add__product--success'></div>
+        <button
+          type='submit'
+          className='account--body__product__form__group__fileinput'
+        >
+          create new product
+        </button>
       </form>
     </div>
   );
