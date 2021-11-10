@@ -6,12 +6,13 @@ import AccountBar from './AccountBar';
 import OrderHistory from './OrderHistory';
 import { myContext } from '../Context';
 import AdminCollections from './admin/AdminCollections';
-import AdminProducts from './admin/AdminProduct';
+import AdminProducts from './admin/AdminProducts';
 import AdminDefaultCollections from './admin/AdminDefaultCollections';
 import AdminCollectionDetail from './admin/AdminCollectionDetail';
 import AddCollection from './admin/AddCollection';
 import AdminDefaultCollectionDetail from './admin/AdminDefaultCollectionDetail';
 import AddProduct from './admin/AddProduct';
+import AdominProductDetail from './admin/AdominProductDetail';
 
 export default function MyAccount() {
   const { currentUser } = useContext(myContext);
@@ -47,6 +48,9 @@ export default function MyAccount() {
             </Route>
             <Route exact path='/account/products/add-product'>
               <AddProduct />
+            </Route>
+            <Route exact path='/account/products/:slug'>
+              <AdominProductDetail />
             </Route>
           </Switch>
         ) : (

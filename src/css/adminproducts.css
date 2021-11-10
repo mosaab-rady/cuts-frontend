@@ -226,10 +226,99 @@
 
 .account--body__products--container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
 }
 
-.account--body__products__product img {
+.account--body__products__product {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.account--body__products__product__detail {
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  z-index: 1000;
+  background-color: var(--main-black);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  visibility: hidden;
+}
+
+.account--body__products__product:hover
+  .account--body__products__product__detail {
+  visibility: visible;
+}
+
+.account--body__products__product__img {
+  width: 100%;
+}
+
+.account--body__products__product__name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--main-white);
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  font-weight: normal;
+}
+
+.account--body__products__product__amount {
+  color: var(--main-white);
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.account--body__products__product__sizes {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* border: 1px solid #dadada; */
+  width: 100%;
+  /* padding: 0.5rem 0; */
+  font-weight: normal;
+}
+
+.account--body__products__product__sizes h4 {
+  color: var(--main-black);
+  background-color: var(--main-white);
+  font-size: 0.8rem;
+  border: 1px solid var(--main-black);
+  width: 100%;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.account--body__product__addnewcolor {
+  width: 100%;
+  position: relative;
+}
+
+.account--body__product__addnewcolor__btn {
+  background-color: var(--main-black);
+  color: var(--main-white);
+  font-size: 1rem;
+  border: 1px solid var(--main-black);
+  padding: 1rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  align-self: flex-end;
+  font-weight: normal;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.account--body__product__addnewcolor__btn:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
 }
