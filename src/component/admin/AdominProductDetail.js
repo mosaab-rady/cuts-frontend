@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router';
 import { request } from '../../js/axios';
+import { removeProduct, updateProduct } from '../../js/productOperations';
 import AddNewColor from './AddNewColor';
 
 export default function AdominProductDetail() {
@@ -17,6 +18,8 @@ export default function AdominProductDetail() {
   const [img_2, setImg_2] = useState('');
   const [img_3, setImg_3] = useState('');
   const [addColor, setAddColor] = useState(false);
+  const [collections, setCollections] = useState([]);
+  const [collection, setCollection] = useState('');
 
   useEffect(() => {
     document.getElementById('App').scrollTo({
@@ -25,17 +28,19 @@ export default function AdominProductDetail() {
     });
 
     const getData = async () => {
-      const res = await request(
+      let res = await request(
         'GET',
         `api/v1/products/shirts/${slug}${location.search}`
       );
       if (res) {
-        // console.log(res);
         if (res.data.status === 'success') {
           setProduct(res.data.data.product);
           setType(res.data.data.product.type);
           setCollar(res.data.data.product.collar);
           setCut(res.data.data.product.cut);
+          if (res.data.data.product.collectionId) {
+            setCollection(res.data.data.product.collectionId);
+          }
 
           setImageCover(
             `${host}/api/v1/images/${res.data.data.product.imageCover}`
@@ -46,6 +51,12 @@ export default function AdominProductDetail() {
           setImg_1(`${host}/api/v1/images/${res.data.data.product.images[0]}`);
           setImg_2(`${host}/api/v1/images/${res.data.data.product.images[1]}`);
           setImg_3(`${host}/api/v1/images/${res.data.data.product.images[2]}`);
+        }
+      }
+      res = await request('GET', 'api/v1/collections');
+      if (res) {
+        if (res.data.status === 'success') {
+          setCollections(res.data.data.collections);
         }
       }
     };
@@ -86,6 +97,17 @@ export default function AdominProductDetail() {
     }
   };
 
+  const showCollections = () => {
+    const collections = document.getElementById(
+      'account--body__productdetail__form__collections'
+    );
+    if (collections.style.display === 'block') {
+      collections.style.display = 'none';
+    } else {
+      collections.style.display = 'block';
+    }
+  };
+
   const handlePhoto = (img) => (e) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
@@ -101,20 +123,43 @@ export default function AdominProductDetail() {
     }
   };
 
+  const handleUpdateProductSubmit = (e) => {
+    e.preventDefault();
+    e.target.type.value = type;
+    e.target.cut.value = cut;
+    e.target.collar.value = collar;
+    if (collection) {
+      e.target.collection.value = collection._id;
+    }
+    updateProduct(e, product._id);
+  };
+
+  const handleRemoveProduct = (e) => {
+    e.preventDefault();
+    removeProduct(product._id);
+  };
+
   return (
     <div className='account--body'>
+      {addColor ? <AddNewColor product={product} /> : ''}
       {product ? (
-        <form className='account--body__product__form'>
-          <div className='account--body__product__addnewcolor'>
-            <button
-              type='button'
-              className='account--body__product__addnewcolor__btn'
-              onClick={() => setAddColor(true)}
-            >
-              add new color
-            </button>
-            {addColor ? <AddNewColor /> : ''}
-          </div>
+        <form
+          className='account--body__product__form'
+          onSubmit={handleUpdateProductSubmit}
+        >
+          {addColor ? (
+            ''
+          ) : (
+            <div className='account--body__product__addnewcolor'>
+              <button
+                type='button'
+                className='account--body__product__addnewcolor__btn'
+                onClick={() => setAddColor(true)}
+              >
+                add new color
+              </button>
+            </div>
+          )}
           <div className='account--body__product__form__group'>
             <label htmlFor='name'>name</label>
             <input
@@ -125,6 +170,55 @@ export default function AdominProductDetail() {
               minLength='10'
               name='name'
             />
+          </div>
+          <div className='account--body__product__form__group'>
+            <label htmlFor='collection'>collection</label>
+            <input
+              type='text'
+              placeholder='collection'
+              defaultValue={
+                product.collectionId ? product.collectionId.name : ''
+              }
+              name='collection'
+              className='account--body__product__form__group__options__inp'
+            />
+            <div className='account--body__product__form__options--container'>
+              <label
+                className='account--body__product__form__group__options__label'
+                onClick={showCollections}
+              >
+                {collection.name}
+                <svg
+                  width='10'
+                  height='10'
+                  viewBox='0 0 5 4'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M2.5 4L0.334936 0.25H4.66506L2.5 4Z'
+                    fill='#b3b0b0'
+                  />
+                </svg>
+              </label>
+              <div
+                className='account--body__product__form__options'
+                id='account--body__productdetail__form__collections'
+              >
+                {collections.map((item, i) => (
+                  <h4
+                    key={i}
+                    className='account--body__product__form__options__option'
+                    onClick={() => {
+                      setCollection(item);
+                      showCollections();
+                    }}
+                  >
+                    {item.name}
+                  </h4>
+                ))}
+              </div>
+            </div>
           </div>
           <div className='account--body__product__form__group'>
             <label htmlFor='type'>type</label>
@@ -2571,7 +2665,6 @@ export default function AdominProductDetail() {
                     accept='image/*'
                     name='imageCover'
                     onChange={handlePhoto('cover')}
-                    required
                   />
                   choose new image
                 </label>
@@ -2589,7 +2682,6 @@ export default function AdominProductDetail() {
                     accept='image/*'
                     name='imageDetail'
                     onChange={handlePhoto('detail')}
-                    required
                   />
                   choose new image
                 </label>
@@ -2647,14 +2739,23 @@ export default function AdominProductDetail() {
               </div>
             </div>
           </div>
-          <div className='err--div' id='add__product--err'></div>
-          <div className='success--div' id='add__product--success'></div>
-          {/* <button
-          type='submit'
-          className='account--body__product__form__group__fileinput'
-        >
-          create new product
-        </button> */}
+          <div className='err--div' id='update__product--err'></div>
+          <div className='success--div' id='update__product--success'></div>
+          <div className='account--body__product__form__btns'>
+            <button
+              type='submit'
+              className='account--body__product__form__group__fileinput'
+            >
+              update product
+            </button>
+            <button
+              type='button'
+              className='account--body__product__form__group__fileinput'
+              onClick={handleRemoveProduct}
+            >
+              remove
+            </button>
+          </div>
         </form>
       ) : (
         ''

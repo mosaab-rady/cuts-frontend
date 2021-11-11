@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { request } from '../../js/axios';
 import { create } from '../../js/productOperations';
 
 export default function AddProduct() {
@@ -10,6 +11,20 @@ export default function AddProduct() {
   const [img_1, setImg_1] = useState('');
   const [img_2, setImg_2] = useState('');
   const [img_3, setImg_3] = useState('');
+  const [collections, setCollections] = useState([]);
+  const [collection, setCollection] = useState({});
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await request('GET', 'api/v1/collections');
+      if (res) {
+        if (res.data.status === 'success') {
+          setCollections(res.data.data.collections);
+        }
+      }
+    };
+    getData();
+  }, []);
 
   const showTypes = () => {
     const types = document.getElementById(
@@ -63,35 +78,21 @@ export default function AddProduct() {
     e.target.type.value = type;
     e.target.cut.value = cut;
     e.target.collar.value = collar;
+    if (collection) {
+      e.target.collection.value = collection._id;
+    }
     create(e);
-    console.log(e.target.name.value);
-    console.log(e.target.type.value);
-    console.log(e.target.cut.value);
-    console.log(e.target.collar.value);
-    console.log(e.target.fabric.value);
-    console.log(e.target.stretch.checked);
-    console.log(e.target.antiPilling.checked);
-    console.log(e.target.butterySoft.checked);
-    console.log(e.target.preShrunk.checked);
-    console.log(e.target.wrinkleFree.checked);
-    console.log(e.target.colorAndFitRetention.checked);
-    console.log(e.target.breathable.checked);
-    console.log(e.target.durable.checked);
-    console.log(e.target.lightweight.checked);
-    console.log(e.target.naturalSoftness.checked);
-    console.log(e.target.color.value);
-    console.log(e.target.colorHex.value);
-    console.log(e.target.price.value);
-    console.log(e.target.sale.value);
-    console.log(e.target.small.value);
-    console.log(e.target.medium.value);
-    console.log(e.target.large.value);
-    console.log(e.target.xLarge.value);
-    console.log(e.target.xxLarge.value);
-    console.log(e.target.summary.value);
-    console.log(e.target.sizeAndFit.value.split('\n'));
-    console.log(e.target.materialAndCare.value.split('\n'));
-    console.log(e.target.reason.value);
+  };
+
+  const showCollections = () => {
+    const collections = document.getElementById(
+      'account--body__add--product__form__collections'
+    );
+    if (collections.style.display === 'block') {
+      collections.style.display = 'none';
+    } else {
+      collections.style.display = 'block';
+    }
   };
 
   return (
@@ -106,6 +107,49 @@ export default function AddProduct() {
             minLength='10'
             name='name'
           />
+        </div>
+        <div className='account--body__product__form__group'>
+          <label htmlFor='collection'>collection</label>
+          <input
+            type='text'
+            placeholder='collection'
+            name='collection'
+            className='account--body__product__form__group__options__inp'
+          />
+          <div className='account--body__product__form__options--container'>
+            <label
+              className='account--body__product__form__group__options__label'
+              onClick={showCollections}
+            >
+              {collection.name}
+              <svg
+                width='10'
+                height='10'
+                viewBox='0 0 5 4'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path d='M2.5 4L0.334936 0.25H4.66506L2.5 4Z' fill='#b3b0b0' />
+              </svg>
+            </label>
+            <div
+              className='account--body__product__form__options'
+              id='account--body__add--product__form__collections'
+            >
+              {collections.map((item, i) => (
+                <h4
+                  key={i}
+                  className='account--body__product__form__options__option'
+                  onClick={() => {
+                    setCollection(item);
+                    showCollections();
+                  }}
+                >
+                  {item.name}
+                </h4>
+              ))}
+            </div>
+          </div>
         </div>
         <div className='account--body__product__form__group'>
           <label htmlFor='type'>type</label>

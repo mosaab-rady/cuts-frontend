@@ -226,7 +226,7 @@
 
 .account--body__products--container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
   gap: 2rem;
 }
 
@@ -288,7 +288,7 @@
 .account--body__products__product__sizes h4 {
   color: var(--main-black);
   background-color: var(--main-white);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   border: 1px solid var(--main-black);
   width: 100%;
   padding: 0.5rem 0;
@@ -304,14 +304,15 @@
 }
 
 .account--body__product__addnewcolor__btn {
-  background-color: var(--main-black);
-  color: var(--main-white);
-  font-size: 1rem;
-  border: 1px solid var(--main-black);
-  padding: 1rem;
   text-transform: capitalize;
+  font-size: 0.8rem;
+  color: var(--main-white);
+  padding: 0.8rem;
+  border: 1px solid var(--main-black);
+  letter-spacing: 0.8px;
+  font-weight: normal;
+  background-color: var(--main-black);
   cursor: pointer;
-  align-self: flex-end;
   font-weight: normal;
   position: absolute;
   top: 0;
@@ -321,4 +322,37 @@
 .account--body__product__addnewcolor__btn:hover {
   background-color: var(--main-white);
   color: var(--main-black);
+}
+
+.addnewcolor--container {
+  border-bottom: 1px solid #747474;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.account--body__product__addnewcolor__form__btn {
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  color: var(--main-white);
+  padding: 0.8rem;
+  border: 1px solid var(--main-black);
+  letter-spacing: 0.8px;
+  font-weight: normal;
+  background-color: var(--main-black);
+  cursor: pointer;
+  font-weight: normal;
+  position: absolute;
+  bottom: 1rem;
+  right: 0;
+}
+
+.account--body__product__addnewcolor__form__btn:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}
+
+.account--body__product__form__btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
 }
