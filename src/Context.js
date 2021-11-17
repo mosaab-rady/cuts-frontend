@@ -16,14 +16,15 @@ const reducer = (state, action) => {
 
     for (let i = 0; i < state.shoppings.length; i++) {
       if (order.id === orders[i].id && order.size === orders[i].size) {
-        orders[i] = { ...orders[i], quantity: orders[i].quantity++ };
+        orders[i].quantity++;
+        // orders[i] = { ...orders[i], quantity: orders[i].quantity++ };
         orders[i] = {
           ...orders[i],
           total: orders[i].price * orders[i].quantity,
         };
 
         document.getElementById('cart').style.display = 'block';
-        localStorage.setItem('shoppings', JSON.stringify(orders));
+        // localStorage.setItem('shoppings', JSON.stringify(orders));
 
         return {
           ...state,
@@ -31,12 +32,13 @@ const reducer = (state, action) => {
         };
       }
     }
+
     document.getElementById('cart').style.display = 'block';
 
-    localStorage.setItem(
-      'shoppings',
-      JSON.stringify([...state.shoppings, action.payload])
-    );
+    // localStorage.setItem(
+    //   'shoppings',
+    //   JSON.stringify([...state.shoppings, action.payload])
+    // );
     return { ...state, shoppings: [...state.shoppings, action.payload] };
   }
   if (action.type === 'DECREASE_ONE') {
@@ -45,24 +47,24 @@ const reducer = (state, action) => {
 
     for (let i = 0; i < state.shoppings.length; i++) {
       if (order.id === orders[i].id && order.size === orders[i].size) {
-        if (orders[i].quantity === 0) {
+        if (orders[i].quantity === 1) {
           const newOrders = orders.filter(
             (item) => item.id !== order.id || item.size !== order.size
           );
-          localStorage.setItem('shoppings', JSON.stringify(newOrders));
+          // localStorage.setItem('shoppings', JSON.stringify(newOrders));
 
           return {
             ...state,
             shoppings: [...newOrders],
           };
         }
-        orders[i] = { ...orders[i], quantity: orders[i].quantity-- };
+        orders[i].quantity--;
+        // orders[i] = { ...orders[i], quantity: orders[i].quantity-- };
         orders[i] = {
           ...orders[i],
           total: orders[i].price * orders[i].quantity,
         };
-        localStorage.setItem('shoppings', JSON.stringify(orders));
-
+        // localStorage.setItem('shoppings', JSON.stringify(orders));
         return {
           ...state,
           shoppings: [...orders],
@@ -77,7 +79,7 @@ const reducer = (state, action) => {
     const newOrders = orders.filter(
       (item) => item.id !== order.id || item.size !== order.size
     );
-    localStorage.setItem('shoppings', JSON.stringify(newOrders));
+    // localStorage.setItem('shoppings', JSON.stringify(newOrders));
 
     return {
       ...state,
@@ -110,7 +112,7 @@ export default function Context({ children }) {
       }
     };
     getMe();
-    localStorage.setItem('shoppings', JSON.stringify([]));
+    // localStorage.setItem('shoppings', JSON.stringify([]));
   }, []);
 
   return (

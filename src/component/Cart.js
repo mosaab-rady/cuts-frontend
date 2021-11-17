@@ -5,19 +5,22 @@ import '../css/cart.css';
 import { request } from '../js/axios';
 
 export default function Cart() {
-  const { dispatch } = useContext(myContext);
+  const { dispatch, shoppings } = useContext(myContext);
   const host = 'http://localhost:5000';
 
-  const shoppings = JSON.parse(localStorage.getItem('shoppings'));
+  // let shoppings = [];
+  // shoppings = JSON.parse(localStorage.getItem('shoppings'));
 
   let quantity = 0;
-  for (let i = 0; i < shoppings.length; i++) {
-    quantity += shoppings[i].quantity;
-  }
-
   let totalPrice = 0;
-  for (let i = 0; i < shoppings.length; i++) {
-    totalPrice += shoppings[i].total;
+  if (shoppings) {
+    for (let i = 0; i < shoppings.length; i++) {
+      quantity += shoppings[i].quantity;
+    }
+
+    for (let i = 0; i < shoppings.length; i++) {
+      totalPrice += shoppings[i].total;
+    }
   }
 
   const addToCart = (e, order) => {
