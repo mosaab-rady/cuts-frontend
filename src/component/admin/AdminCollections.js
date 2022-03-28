@@ -5,7 +5,7 @@ import { request } from '../../js/axios';
 import Hero from '../Hero';
 
 export default function AdminCollections() {
-  // const host = 'http://localhost:5000';
+  // const host = process.env.REACT_APP_HOST
 
   const [collections, setCollections] = useState([]);
 
