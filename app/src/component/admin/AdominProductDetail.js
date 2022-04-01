@@ -61,7 +61,7 @@ export default function AdominProductDetail() {
       }
     };
     getData();
-  }, [slug, location]);
+  }, [slug, location, host]);
 
   const showTypes = () => {
     const types = document.getElementById(

@@ -44,7 +44,7 @@ export default function AdminCollectionDetail() {
       }
     };
     getData();
-  }, [location]);
+  }, [location, host]);
 
   const handlePhoto = (img) => (e) => {
     e.preventDefault();
