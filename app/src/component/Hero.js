@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/hero.css';
 
 export default function Hero({ img, name, btn, slug }) {
-  const host = 'http://localhost:5000';
+  const host = process.env.REACT_APP_HOST;
 
   return (
     <div className='hero'>

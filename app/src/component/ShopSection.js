@@ -5,7 +5,7 @@ import { request } from '../js/axios';
 import ProductCart from './ProductCart';
 
 export default function ShopSection({ type }) {
-  const host = 'http://localhost:5000';
+  const host = process.env.REACT_APP_HOST;
   const [products, setProducts] = useState('');
 
   useEffect(() => {

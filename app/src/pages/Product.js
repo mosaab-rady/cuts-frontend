@@ -10,7 +10,7 @@ import MidSection from '../component/MidSection';
 import ProductReviews from '../component/ProductReviews';
 
 export default function Product() {
-  // const host = 'http://localhost:5000';
+  // const host = process.env.REACT_APP_HOST
   // const { state } = useLocation();
   const location = useLocation();
   const [product, setProduct] = useState('');

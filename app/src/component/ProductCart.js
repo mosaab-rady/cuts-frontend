@@ -4,7 +4,7 @@ import '../css/productCart.css';
 import { myContext } from '../Context';
 
 export default function ProductCart({ product, setSidebar }) {
-  const host = 'http://localhost:5000';
+  const host = process.env.REACT_APP_HOST;
   const { dispatch } = useContext(myContext);
 
   const addToCart = (e, order) => {
